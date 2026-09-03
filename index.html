@@ -2,10 +2,11 @@
 <html lang="zh-Hant"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="ff-version" content="vmtlaozui">
+<meta name="ff-version" content="v6a993e7c">
 <title>健身工廠 桃園｜Peter(彼得) 健體顧問</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Noto+Sans+TC:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <style>
   :root{
     --bg:#0a0a0a;
@@ -121,7 +122,7 @@
   .footer .footer-links{display:flex;gap:14px;justify-content:center;margin-top:2px;}
 
   .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--yellow);color:#000;padding:12px 20px;border-radius:30px;font-size:13px;font-weight:700;z-index:999;opacity:0;pointer-events:none;transition:opacity .25s, bottom .25s;max-width:88%;text-align:center;}
-  .toast.show{opacity:1;bottom:34px;}
+  .toast.show{opacity:1;bottom:34px;pointer-events:auto;cursor:pointer;}
 
   .overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:900;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:0;}
   .overlay.show{display:flex;}
@@ -1212,6 +1213,9 @@
       </div>
 
       <div class="admin-panel active" data-apanel="settings">
+        <div id="storage-warning" class="hint" style="display:none;color:var(--danger);background:rgba(224,93,93,.1);border:1px solid var(--danger);border-radius:8px;padding:10px 12px;margin-bottom:14px;">
+          ⚠️ 目前開啟這個頁面的環境無法連接雲端儲存，所有修改只會暫時顯示在畫面上，重新整理或離開後會還原成預設內容。請透過 Claude 平台開啟本頁面來編輯並儲存，或使用下方「下載 .html 檔案」搭配直接修改程式碼的方式更新內容。
+        </div>
         <div class="section-title">💾 儲存</div>
         <button class="btn btn-yellow btn-wide" id="save-all">儲存全部變更</button>
         <div class="hint">名片、廠館內容、課表圖片、班表、FAQ 內文與下方設定欄位的修改，都要按這裡才會真的存檔（新增／刪除／排序會立即儲存，不用等這個按鈕）。</div>
@@ -1234,7 +1238,7 @@
         <div class="section-title">🔧 系統識別碼</div>
         <span class="field-label">LINE LIFF ID</span>
         <input class="field" id="a-liffid" placeholder="例：2009693763-bOg2whDg">
-        <div class="hint">✏️ 從 LINE Developers 後台取得的 LIFF ID，目前僅作為欄位保存、尚未實際串接 LIFF SDK 功能，一般不需改動。</div>
+        <div class="hint">✏️ 已串接 LIFF SDK：當使用者從 LINE 聊天室／選單開啟本頁面時，「送出諮詢」會嘗試直接自動送出訊息，不需再按傳送；其他一般瀏覽器開啟的情況會自動退回「開啟LINE對話、手動按傳送」的方式。若需更換 LIFF ID，請直接修改 HTML 原始碼中的 <code>liffId</code> 預設值，或在這裡填入後按「儲存全部變更」。</div>
 
         <span class="field-label" style="margin-top:16px;">自動更新偵測網址（GitHub Raw URL）</span>
         <input class="field" id="a-rawurl" placeholder="https://raw.githubusercontent.com/帳號/repo名稱/main/檔案.html">
@@ -1252,7 +1256,7 @@
   </div>
 </div>
 
-<script type="application/json" id="ff-seed-data">{"profile":{"name":"Peter 彼得","title":"健體顧問｜健身工廠 青埔廠","area":"📍 桃園地區皆可服務","phone":"","lineUrl":"","photo":""},"venues":[{"id":"v3","name":"桃園青埔廠","phone":"03-287-2799","address":"桃園市中壢區永信路219號","mapsUrl":"","hideFromSchedule":false,"facilities":["fa1","fa2","fa3","fa4","fa5"],"park":{"loc":"廠館正後方","fee":"超時50元/小時；非會員300元/小時","discount":"不分平假日，每次折抵3小時","notice":"折抵後須過繳費機"},"schedCycling":"","schedAerobics":""},{"id":"v6","name":"桃園中壢廠","phone":"03-434-5588","address":"桃園市中壢區中華路二段330號","mapsUrl":"","hideFromSchedule":false,"facilities":["fa1","fa2","fa3","fa4","fa5"],"park":{"loc":"B3室內停車場（汽車）／FF對面人行道及中園路劃位機車格（機車）","fee":"汽車50元/時","discount":"不分平假日會員運動享3小時免費停車","notice":"折抵後仍須插卡過繳費機消磁；B3需停放於FF停車牌格內"},"schedCycling":"","schedAerobics":""},{"id":"v8","name":"桃園桃鶯廠","phone":"03-3642-999","address":"桃園市桃園區桃鶯路196號3樓","mapsUrl":"","hideFromSchedule":false,"facilities":["fa1","fa2","fa3","fa4"],"park":{"loc":"桃園桃鶯停車場／多多停（大豐場）（汽車）；全聯、星巴克周邊空白停車格（機車）","fee":"桃鶯停車場每半小時40元（最高12hr/180元）；多多停平日每半小時15元、例假日20元（24hr內160元）","discount":"無折抵","notice":"桃鶯停車場僅電子支付；多多停可用現金／LINE PAY／悠遊卡／街口支付"},"schedCycling":"","schedAerobics":""},{"id":"v5","name":"桃園正光廠","phone":"03-392-1777","address":"桃園市桃園區正光路339號","mapsUrl":"","hideFromSchedule":false,"facilities":["fa1","fa2","fa3","fa4","fa5"],"park":{"loc":"廠館正後方（力行路右轉再右轉正光一街）","fee":"逾時1小時50元，未滿1小時以1小時計","discount":"不分平假日，每次折抵3小時","notice":"離場前須至繳費機消磁；車輛不得停放超過晚上12點；不開放重機停放"},"schedCycling":"","schedAerobics":""},{"id":"v2","name":"桃園經國廠","phone":"03-355-5333","address":"桃園市桃園區經國路116號","mapsUrl":"","hideFromSchedule":true,"facilities":["fa3","fa4"],"park":{"loc":"週邊停車格或附近私人停車場（汽車）／週邊停車格（機車）","fee":"汽車30元/時（當日最高400元）；機車30元/次","discount":"-","notice":"依該停車場標示收費標準為主"},"schedCycling":"","schedAerobics":""},{"id":"v1","name":"桃園復興廠","phone":"03-339-3399","address":"桃園市桃園區復興路207號B1","mapsUrl":"","hideFromSchedule":false,"facilities":["fa1","fa2","fa3","fa4"],"park":{"loc":"新光大樓B2~B4","fee":"汽車40元/時；機車免費","discount":"-","notice":"24小時營業，當日上限200元"},"schedCycling":"","schedAerobics":""},{"id":"v4","name":"桃園大有廠","phone":"03-335-7575","address":"桃園市桃園區民光東路81號1樓","mapsUrl":"","hideFromSchedule":false,"facilities":["fa1","fa2","fa3","fa4"],"park":{"loc":"新光三越（二館）地下B2停車場（汽車室內非機械式／重機可停，一般機車不可）","fee":"汽車／重型機車 30元/30分鐘","discount":"依車牌為單位，平日當日上限3小時、六日及國定假日上限2小時","notice":"離場向櫃台報車號折抵，15分鐘內離場；週一至六00:00-06:00、週日00:00-08:00為非營業時間不可折抵；採車牌辨識入場"},"schedCycling":"","schedAerobics":""},{"id":"v7","name":"桃園南崁廠","phone":"03-322-7333","address":"桃園市蘆竹區南平街11號","mapsUrl":"","hideFromSchedule":false,"facilities":["fa1","fa2","fa3","fa4"],"park":{"loc":"廠館對面／側邊停車場（汽車）／附近車格（機車）","fee":"汽車50元/時；機車免費","discount":"不分假日平日，會員運動可抵3小時/次","notice":"折抵後至自動繳費機過卡，15分鐘內離場"},"schedCycling":"","schedAerobics":""}],"faqs":[{"id":"f1","q":"怎麼辦理入會？","a":"直接聯絡 Peter 約時間到廠館參觀，現場說明方案並協助辦理，全程約 20-30 分鐘。"},{"id":"f2","q":"可以先免費體驗嗎？","a":"可以，請透過下方表單或 LINE 聯絡 Peter 預約體驗時段。"},{"id":"f3","q":"停車真的能折抵嗎？","a":"各廠館折抵規則略有不同，詳見各廠館頁面內的停車資訊，離場前記得至櫃台或繳費機辦理折抵。"},{"id":"f4","q":"可以跨廠館使用嗎？","a":"依會籍卡別而定，部分卡別（如區卡）可跨廠館使用，詳細規則可洽詢 Peter。"}],"settings":{"adminPassword":"233009","shareText":"我是健身工廠 Peter，桃園地區入會諮詢找我最快！","lineOaId":"12345","leadMessageTemplate":"【入會諮詢】\n姓名：{name}\n電話：{phone}\n方便聯絡時段：{time}\n需求：{note}","liffId":"","githubRawUrl":"https://xiangpin666.github.io/ff_peter/"},"roster":{"2026-09":{}},"facilities":[{"id":"fa1","name":"有氧教室"},{"id":"fa2","name":"飛輪教室"},{"id":"fa3","name":"蒸氣室"},{"id":"fa4","name":"烤箱"},{"id":"fa5","name":"女性專區"}]}</script>
+<script type="application/json" id="ff-seed-data">{"profile": {"name": "Peter 彼得", "title": "健體顧問｜健身工廠 青埔廠", "area": "📍 桃園地區皆可服務", "phone": "", "lineUrl": "", "photo": ""}, "venues": [{"id": "v3", "name": "桃園青埔廠", "phone": "03-287-2799", "address": "桃園市中壢區永信路219號", "mapsUrl": "", "hideFromSchedule": false, "facilities": ["fa1", "fa2", "fa3", "fa4", "fa5"], "park": {"loc": "廠館正後方", "fee": "超時50元/小時；非會員300元/小時", "discount": "不分平假日，每次折抵3小時", "notice": "折抵後須過繳費機"}, "schedCycling": "", "schedAerobics": ""}, {"id": "v6", "name": "桃園中壢廠", "phone": "03-434-5588", "address": "桃園市中壢區中華路二段330號", "mapsUrl": "", "hideFromSchedule": false, "facilities": ["fa1", "fa2", "fa3", "fa4", "fa5"], "park": {"loc": "B3室內停車場（汽車）／FF對面人行道及中園路劃位機車格（機車）", "fee": "汽車50元/時", "discount": "不分平假日會員運動享3小時免費停車", "notice": "折抵後仍須插卡過繳費機消磁；B3需停放於FF停車牌格內"}, "schedCycling": "", "schedAerobics": ""}, {"id": "v8", "name": "桃園桃鶯廠", "phone": "03-3642-999", "address": "桃園市桃園區桃鶯路196號3樓", "mapsUrl": "", "hideFromSchedule": false, "facilities": ["fa1", "fa2", "fa3", "fa4"], "park": {"loc": "桃園桃鶯停車場／多多停（大豐場）（汽車）；全聯、星巴克周邊空白停車格（機車）", "fee": "桃鶯停車場每半小時40元（最高12hr/180元）；多多停平日每半小時15元、例假日20元（24hr內160元）", "discount": "無折抵", "notice": "桃鶯停車場僅電子支付；多多停可用現金／LINE PAY／悠遊卡／街口支付"}, "schedCycling": "", "schedAerobics": ""}, {"id": "v5", "name": "桃園正光廠", "phone": "03-392-1777", "address": "桃園市桃園區正光路339號", "mapsUrl": "", "hideFromSchedule": false, "facilities": ["fa1", "fa2", "fa3", "fa4", "fa5"], "park": {"loc": "廠館正後方（力行路右轉再右轉正光一街）", "fee": "逾時1小時50元，未滿1小時以1小時計", "discount": "不分平假日，每次折抵3小時", "notice": "離場前須至繳費機消磁；車輛不得停放超過晚上12點；不開放重機停放"}, "schedCycling": "", "schedAerobics": ""}, {"id": "v2", "name": "桃園經國廠", "phone": "03-355-5333", "address": "桃園市桃園區經國路116號", "mapsUrl": "", "hideFromSchedule": true, "facilities": ["fa3", "fa4"], "park": {"loc": "週邊停車格或附近私人停車場（汽車）／週邊停車格（機車）", "fee": "汽車30元/時（當日最高400元）；機車30元/次", "discount": "-", "notice": "依該停車場標示收費標準為主"}, "schedCycling": "", "schedAerobics": ""}, {"id": "v1", "name": "桃園復興廠", "phone": "03-339-3399", "address": "桃園市桃園區復興路207號B1", "mapsUrl": "", "hideFromSchedule": false, "facilities": ["fa1", "fa2", "fa3", "fa4"], "park": {"loc": "新光大樓B2~B4", "fee": "汽車40元/時；機車免費", "discount": "-", "notice": "24小時營業，當日上限200元"}, "schedCycling": "", "schedAerobics": ""}, {"id": "v4", "name": "桃園大有廠", "phone": "03-335-7575", "address": "桃園市桃園區民光東路81號1樓", "mapsUrl": "", "hideFromSchedule": false, "facilities": ["fa1", "fa2", "fa3", "fa4"], "park": {"loc": "新光三越（二館）地下B2停車場（汽車室內非機械式／重機可停，一般機車不可）", "fee": "汽車／重型機車 30元/30分鐘", "discount": "依車牌為單位，平日當日上限3小時、六日及國定假日上限2小時", "notice": "離場向櫃台報車號折抵，15分鐘內離場；週一至六00:00-06:00、週日00:00-08:00為非營業時間不可折抵；採車牌辨識入場"}, "schedCycling": "", "schedAerobics": ""}, {"id": "v7", "name": "桃園南崁廠", "phone": "03-322-7333", "address": "桃園市蘆竹區南平街11號", "mapsUrl": "", "hideFromSchedule": false, "facilities": ["fa1", "fa2", "fa3", "fa4"], "park": {"loc": "廠館對面／側邊停車場（汽車）／附近車格（機車）", "fee": "汽車50元/時；機車免費", "discount": "不分假日平日，會員運動可抵3小時/次", "notice": "折抵後至自動繳費機過卡，15分鐘內離場"}, "schedCycling": "", "schedAerobics": ""}], "faqs": [{"id": "f1", "q": "怎麼辦理入會？", "a": "直接聯絡 Peter 約時間到廠館參觀，現場說明方案並協助辦理，全程約 20-30 分鐘。"}, {"id": "f2", "q": "可以先免費體驗嗎？", "a": "可以，請透過下方表單或 LINE 聯絡 Peter 預約體驗時段。"}, {"id": "f3", "q": "停車真的能折抵嗎？", "a": "各廠館折抵規則略有不同，詳見各廠館頁面內的停車資訊，離場前記得至櫃台或繳費機辦理折抵。"}, {"id": "f4", "q": "可以跨廠館使用嗎？", "a": "依會籍卡別而定，部分卡別（如區卡）可跨廠館使用，詳細規則可洽詢 Peter。"}], "settings": {"adminPassword": "233009", "shareText": "我是健身工廠 Peter，桃園地區入會諮詢找我最快！", "lineOaId": "247dlvxp", "leadMessageTemplate": "【入會諮詢】\n姓名：{name}\n電話：{phone}\n方便聯絡時段：{time}\n需求：{note}", "liffId": "2011406415-bO24WvOi", "githubRawUrl": "https://xiangpin666.github.io/ff_peter/"}, "roster": {"2026-09": {}}, "facilities": [{"id": "fa1", "name": "有氧教室"}, {"id": "fa2", "name": "飛輪教室"}, {"id": "fa3", "name": "蒸氣室"}, {"id": "fa4", "name": "烤箱"}, {"id": "fa5", "name": "女性專區"}]}</script>
 
 <script>
 (function(){
@@ -1266,9 +1270,9 @@
   const DEFAULT_SETTINGS = {
     adminPassword:'233009',
     shareText:'我是健身工廠 Peter，桃園地區入會諮詢找我最快！',
-    lineOaId:'12345',
+    lineOaId:'247dlvxp',
     leadMessageTemplate: DEFAULT_LEAD_TEMPLATE,
-    liffId:'',
+    liffId:'2011406415-bO24WvOi',
     githubRawUrl:''
   };
   const DEFAULT_FAQS = [
@@ -1338,14 +1342,17 @@
   let curSchedVenueId = null;
   let curRosterYm = null;
   let updateCheckTimer = null;
+  const STORAGE_AVAILABLE = (typeof window !== 'undefined' && window.storage && typeof window.storage.get === 'function' && typeof window.storage.set === 'function');
 
   async function sget(key, shared){
+    if(!STORAGE_AVAILABLE) return null;
     try{ const r = await window.storage.get(key, shared); return r ? JSON.parse(r.value) : null; }
     catch(e){ return null; }
   }
   async function sset(key, value, shared){
-    try{ await window.storage.set(key, JSON.stringify(value), shared); }
-    catch(e){ console.error('storage error', e); showToast('儲存失敗，請重試'); }
+    if(!STORAGE_AVAILABLE) return false;
+    try{ await window.storage.set(key, JSON.stringify(value), shared); return true; }
+    catch(e){ console.error('storage error', e); return false; }
   }
 
   function uid(){ return 'id' + Math.random().toString(36).slice(2,9); }
@@ -1353,11 +1360,18 @@
   function ymNow(){ const d=new Date(); return d.getFullYear()+'-'+pad2(d.getMonth()+1); }
   function ymLabel(ym){ const [y,m]=ym.split('-'); return y+'年 '+parseInt(m,10)+'月'; }
 
+  let toastTimer = null;
   function showToast(msg){
     const t = document.getElementById('toast');
-    t.textContent = msg; t.classList.add('show');
-    setTimeout(()=>t.classList.remove('show'), 2400);
+    if(toastTimer){ clearTimeout(toastTimer); toastTimer = null; }
+    t.textContent = msg;
+    t.classList.add('show');
+    toastTimer = setTimeout(()=>{ t.classList.remove('show'); toastTimer = null; }, 2400);
   }
+  document.getElementById('toast').addEventListener('click', ()=>{
+    if(toastTimer){ clearTimeout(toastTimer); toastTimer = null; }
+    document.getElementById('toast').classList.remove('show');
+  });
 
   function setDirty(key){ dirty[key] = true; updateDirtyBanner(); }
   function isAnyDirty(){ return Object.values(dirty).some(Boolean); }
@@ -1390,6 +1404,22 @@
 
     renderAll();
     setupUpdateChecker();
+    setupLiff();
+  }
+
+  /* ---------- LIFF (LINE Front-end Framework) ---------- */
+  let liffReady = false;
+  async function setupLiff(){
+    liffReady = false;
+    const liffId = state.settings.liffId;
+    if(!liffId || typeof liff === 'undefined') return;
+    try{
+      await liff.init({ liffId: liffId });
+      liffReady = true;
+    }catch(e){
+      console.error('LIFF init failed', e);
+      liffReady = false;
+    }
   }
 
   function renderAll(){
@@ -1538,7 +1568,7 @@
   leadPhoneInput.addEventListener('input', ()=>{
     leadPhoneInput.value = leadPhoneInput.value.replace(/\D/g,'').slice(0,8);
   });
-  document.getElementById('lead-submit').addEventListener('click', ()=>{
+  document.getElementById('lead-submit').addEventListener('click', async ()=>{
     const name = document.getElementById('lead-name').value.trim();
     const phoneSuffix = leadPhoneInput.value.trim();
     const time = document.getElementById('lead-time').value.trim();
@@ -1546,20 +1576,44 @@
     if(!name){ showToast('請填寫姓名'); return; }
     if(phoneSuffix.length !== 8){ showToast('請輸入完整電話後8碼（09 開頭共10碼）'); return; }
     const phone = '09' + phoneSuffix;
-    document.getElementById('lead-name').value='';
-    leadPhoneInput.value='';
-    document.getElementById('lead-time').value='';
-    document.getElementById('lead-note').value='';
-    showToast('正在為您開啟 LINE…');
-    const oaId = (state.settings.lineOaId || '').replace(/^@/,'');
     const tpl = state.settings.leadMessageTemplate || DEFAULT_LEAD_TEMPLATE;
     const msg = tpl
       .replace(/\{name\}/g, name)
       .replace(/\{phone\}/g, phone)
       .replace(/\{time\}/g, time || '未填')
       .replace(/\{note\}/g, note || '未填');
-    if(oaId){
-      window.open('https://line.me/R/oaMessage/@' + oaId + '/?' + encodeURIComponent(msg), '_blank');
+
+    document.getElementById('lead-name').value='';
+    leadPhoneInput.value='';
+    document.getElementById('lead-time').value='';
+    document.getElementById('lead-note').value='';
+
+    /* 優先嘗試用 LIFF 直接送出訊息（僅在從 LINE 聊天室／選單開啟本頁時才可能成立） */
+    let sentViaLiff = false;
+    if(liffReady && typeof liff !== 'undefined'){
+      try{
+        const inClient = liff.isInClient && liff.isInClient();
+        const canSend = inClient && typeof liff.isApiAvailable === 'function' && liff.isApiAvailable('sendMessages');
+        if(canSend){
+          await liff.sendMessages([{ type:'text', text: msg }]);
+          sentViaLiff = true;
+          showToast('已自動送出諮詢給 Peter(彼得)！');
+        }
+      }catch(e){
+        console.error('liff.sendMessages failed', e);
+        sentViaLiff = false;
+      }
+    }
+
+    /* LIFF 無法直接送出時，退回開啟 LINE 對話、訊息已打好，使用者按一下傳送 */
+    if(!sentViaLiff){
+      const oaId = (state.settings.lineOaId || '').replace(/^@/,'');
+      if(oaId){
+        showToast('正在為您開啟 LINE…');
+        window.open('https://line.me/R/oaMessage/@' + oaId + '/?' + encodeURIComponent(msg), '_blank');
+      } else {
+        showToast('尚未設定 LINE 官方帳號，請聯繫 Peter(彼得)');
+      }
     }
   });
 
@@ -1681,6 +1735,7 @@
   });
 
   function fillAdminForms(){
+    document.getElementById('storage-warning').style.display = STORAGE_AVAILABLE ? 'none' : 'block';
     document.getElementById('a-name').value = state.profile.name || '';
     document.getElementById('a-title').value = state.profile.title || '';
     document.getElementById('a-area').value = state.profile.area || '';
@@ -2092,6 +2147,7 @@
     renderAdminVenueList();
     renderAdminFaqList();
     setupUpdateChecker();
+    setupLiff();
     showToast('已儲存全部變更');
   });
 
