@@ -1,9 +1,25 @@
 <!DOCTYPE html>
-<html lang="zh-Hant"><head>
+<html lang="zh-Hant" style="color-scheme: light; --liff-base-background-color: #FFFFFF; --liff-base-text-color: #000000; --liff-base-background-rgb-color: 255, 255, 255; --liff-base-text-rgb-color: 0, 0, 0; --liff-light-button-border-color: rgba(0, 0, 0, 0.15); --liff-title-text-color: #111111; --liff-title-background-color: #FFFFFF; --liff-title-button-color: #111111; --liff-icon-color: #111111; --liff-status-bar-color: black; --liff-title-subtext-color: #B7B7B7; --liff-progress-bar-color: #06C755; --liff-progress-background-color: #FFFFFF; --liff-title-button-area-background-color: rgba(255, 255, 255, 0.12); --liff-title-button-area-border-color: rgba(0, 0, 0, 0.15);"><head>
+<!--
+  ============================================================
+  這個檔案是「健身工廠｜Peter 彼得」的個人名片網頁（LINE LIFF 頁面）。
+
+  給新手的導覽：
+  1. 想改「文字內容」（名片資訊、廠館資料、常見問答等）
+     → 找 <script> 區塊裡的 SITE_CONFIG 物件（用 Ctrl+F 搜尋 SITE_CONFIG）
+  2. 想改「外觀樣式」（顏色、字體大小、間距等）
+     → 修改 <style> 區塊裡的 CSS
+  3. 想改「畫面結構」（例如新增一顆按鈕）
+     → 修改 <body> 裡對應的 HTML，大部分內容區塊會由 JS 自動產生，
+       所以像廠館卡片、FAQ 卡片這類「清單」不需要手動寫 HTML
+  4. 也可以直接在網頁下方「後台管理」介面裡編輯內容，
+     編輯完可以用「設定 → 下載 .html 檔案」匯出成新檔案保存
+  ============================================================
+-->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="ff-version" content="v6a993e7c">
-<title>健身工廠 桃園｜Peter(彼得) 健體顧問</title>
+<meta name="ff-version" content="vmtlqrgk0">
+<title>健身工廠 桃園｜Peter 彼得 健體顧問</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Noto+Sans+TC:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
 <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
@@ -39,14 +55,13 @@
   .card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;}
   .card-hero{padding:20px;}
   .profile-top{display:flex;gap:14px;align-items:center;}
-  .avatar{width:104px;height:104px;border-radius:50%;object-fit:cover;border:2px solid var(--yellow);flex:none;background:#222;}
-  .avatar-fallback{width:104px;height:104px;border-radius:50%;border:2px solid var(--yellow);flex:none;background:#222;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:34px;color:var(--yellow);}
+  .avatar{width:132px;height:132px;border-radius:16px;object-fit:cover;border:2px solid var(--yellow);flex:none;background:#222;}
+  .avatar-fallback{width:132px;height:132px;border-radius:16px;border:2px solid var(--yellow);flex:none;background:#222;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:40px;color:var(--yellow);}
   .hero-text{margin-top:14px;}
   .hero-actions-wrap{padding:16px 0 0;}
   .profile-name{font-size:24px;font-weight:700;}
   .profile-title{color:var(--yellow);font-size:14px;font-weight:600;margin-top:2px;}
   .profile-area{color:var(--grey);font-size:13px;margin-top:4px;white-space:pre-line;}
-  .hero-actions-wrap{padding:16px 0 0;}
   .profile-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
   .btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:12px 10px;border-radius:10px;font-size:14px;font-weight:700;font-family:'Noto Sans TC',sans-serif;}
   .btn-primary{background:var(--yellow);color:#000;}
@@ -110,6 +125,9 @@
   .form-section{margin-top:26px;}
   .form-section h2{font-size:17px;margin-bottom:4px;}
   .form-section p.sub{color:var(--grey);font-size:13px;margin-bottom:14px;}
+  .form-note{background:rgba(255,199,44,.1);border:1px solid var(--yellow-dim);border-radius:10px;padding:10px 12px;font-size:12.5px;color:var(--yellow);line-height:1.6;margin-bottom:14px;}
+  .lead-reminder{display:none;color:var(--danger);font-size:12.5px;line-height:1.6;margin-bottom:10px;}
+  .lead-reminder.show{display:block;}
   input.field, textarea.field{width:100%;background:var(--bg-card-2);border:1px solid var(--border);color:var(--white);padding:12px;border-radius:10px;font-size:14px;margin-bottom:10px;font-family:inherit;}
   .phone-group{display:flex;align-items:stretch;gap:8px;margin-bottom:10px;}
   .phone-prefix{flex:none;display:flex;align-items:center;justify-content:center;padding:0 14px;background:var(--bg-card-2);border:1px solid var(--border);border-radius:10px;font-size:14px;color:var(--grey);font-weight:700;}
@@ -161,7 +179,7 @@
   .admin-card.open .ev-chev{transform:rotate(180deg);}
   .ev-detail{display:none;}
   .admin-card.open .ev-detail{display:block;}
-  .photo-preview{width:130px;height:130px;border-radius:50%;object-fit:cover;border:2px solid var(--yellow);margin-bottom:10px;background:#222;}
+  .photo-preview{width:160px;height:160px;border-radius:16px;object-fit:cover;border:2px solid var(--yellow);margin-bottom:10px;background:#222;}
   input[type="file"].field{padding:10px;font-size:12px;}
   .facility-check-list{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 4px;}
   .facility-check{display:flex;align-items:center;gap:6px;background:var(--bg-card-2);border:1px solid var(--border);border-radius:20px;padding:6px 8px 6px 10px;font-size:12px;}
@@ -175,6 +193,12 @@
   .roster-day-row{display:flex;align-items:center;justify-content:space-between;background:var(--bg-card-2);border:1px solid var(--border);border-radius:10px;padding:8px 12px;margin-bottom:6px;}
   .roster-day-row .dlabel{font-size:13px;font-weight:700;}
   .roster-day-row select{background:var(--bg-card);color:var(--white);border:1px solid var(--border);border-radius:8px;padding:6px 8px;font-size:12px;}
+  .drag-handle{cursor:grab;color:var(--grey);font-size:16px;padding:0 4px;flex:none;touch-action:none;user-select:none;}
+  .drag-handle:active{cursor:grabbing;}
+  .admin-card.dragging{opacity:.4;}
+  .admin-card.drag-over-top{box-shadow:inset 0 2px 0 var(--yellow);}
+  .admin-card.drag-over-bottom{box-shadow:inset 0 -2px 0 var(--yellow);}
+  .faq-order-head h4{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .code-block{background:var(--bg-card-2);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-family:monospace;font-size:11.5px;color:var(--yellow);word-break:break-all;margin-top:4px;}
 </style>
 </head>
@@ -187,18 +211,20 @@
   <div class="hero">
     <div class="card card-hero">
       <div class="profile-top">
-        <img id="p-avatar" class="avatar" style="display:none;">
-        <div id="p-avatar-fallback" class="avatar-fallback" style="display: flex;">P</div>
+        <img id="p-avatar" class="avatar" style="display:none">
+        <div id="p-avatar-fallback" class="avatar-fallback">P</div>
         <div>
-          <div class="profile-name brand-font" id="p-name">Peter 彼得</div>
-          <div class="profile-title" id="p-title">健體顧問｜健身工廠 青埔廠</div>
-          <div class="profile-area" id="p-area">📍 桃園地區皆可服務</div>
+          <div class="profile-name brand-font" id="p-name"></div>
+          <div class="profile-title" id="p-title"></div>
+          <div class="profile-area" id="p-area"></div>
         </div>
       </div>
       <div class="hero-actions-wrap">
         <div class="profile-actions">
           <a class="btn btn-primary" id="p-line" href="#">💬 加 LINE 好友</a>
           <a class="btn btn-outline" id="p-call" href="#">📞 撥打電話</a>
+          <a class="btn btn-outline" id="p-fb" href="#" target="_blank" rel="noopener" style="display:none">📘 Facebook</a>
+          <a class="btn btn-outline" id="p-ig" href="#" target="_blank" rel="noopener" style="display:none">📸 Instagram</a>
           <button class="btn btn-outline btn-full" id="p-share">📲 分享我的名片到 LINE</button>
         </div>
       </div>
@@ -207,197 +233,38 @@
 
   <div class="tabs">
     <div class="tab active" data-tab="venues">🏢 廠館據點</div>
-    <div class="tab" data-tab="sched">🚴 當月團體課表</div>
+    <div class="tab" data-tab="sched">🚴 團體課程表</div>
     <div class="tab" data-tab="roster">🗓️ 顧問班表</div>
     <div class="tab" data-tab="faq">❓ 常見問題</div>
   </div>
 
-  <div class="panel active" id="panel-venues">
-      <div class="venue" data-vid="v3">
-        <div class="venue-head" data-toggle="v3">
-          <div class="venue-name">🏋️ 桃園青埔廠</div>
-          <div class="chev">▾</div>
-        </div>
-        <div class="venue-tags"><span class="tag">有氧教室</span><span class="tag">飛輪教室</span><span class="tag">蒸氣室</span><span class="tag">烤箱</span><span class="tag">女性專區</span></div>
-        <div class="venue-body">
-          <a class="row-link" href="tel:032872799"><span class="row-ic">📞</span>03-287-2799</a>
-          <a class="row-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%A1%83%E5%9C%92%E5%B8%82%E4%B8%AD%E5%A3%A2%E5%8D%80%E6%B0%B8%E4%BF%A1%E8%B7%AF219%E8%99%9F" target="_blank" rel="noopener"><span class="row-ic">📍</span>桃園市中壢區永信路219號</a>
-          <div class="park-block">
-            <div class="park-item"><b>🚗 停車位置：</b>廠館正後方</div>
-            <div class="park-item"><b>💰 收費規則：</b>超時50元/小時；非會員300元/小時</div>
-            <div class="park-item"><b>🎫 折抵優惠：</b>不分平假日，每次折抵3小時</div>
-            <div class="park-item"><b>⚠️ 注意事項：</b>折抵後須過繳費機</div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="venue" data-vid="v6">
-        <div class="venue-head" data-toggle="v6">
-          <div class="venue-name">🏋️ 桃園中壢廠</div>
-          <div class="chev">▾</div>
-        </div>
-        <div class="venue-tags"><span class="tag">有氧教室</span><span class="tag">飛輪教室</span><span class="tag">蒸氣室</span><span class="tag">烤箱</span><span class="tag">女性專區</span></div>
-        <div class="venue-body">
-          <a class="row-link" href="tel:034345588"><span class="row-ic">📞</span>03-434-5588</a>
-          <a class="row-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%A1%83%E5%9C%92%E5%B8%82%E4%B8%AD%E5%A3%A2%E5%8D%80%E4%B8%AD%E8%8F%AF%E8%B7%AF%E4%BA%8C%E6%AE%B5330%E8%99%9F" target="_blank" rel="noopener"><span class="row-ic">📍</span>桃園市中壢區中華路二段330號</a>
-          <div class="park-block">
-            <div class="park-item"><b>🚗 停車位置：</b>B3室內停車場（汽車）／FF對面人行道及中園路劃位機車格（機車）</div>
-            <div class="park-item"><b>💰 收費規則：</b>汽車50元/時</div>
-            <div class="park-item"><b>🎫 折抵優惠：</b>不分平假日會員運動享3小時免費停車</div>
-            <div class="park-item"><b>⚠️ 注意事項：</b>折抵後仍須插卡過繳費機消磁；B3需停放於FF停車牌格內</div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="venue" data-vid="v8">
-        <div class="venue-head" data-toggle="v8">
-          <div class="venue-name">🏋️ 桃園桃鶯廠</div>
-          <div class="chev">▾</div>
-        </div>
-        <div class="venue-tags"><span class="tag">有氧教室</span><span class="tag">飛輪教室</span><span class="tag">蒸氣室</span><span class="tag">烤箱</span></div>
-        <div class="venue-body">
-          <a class="row-link" href="tel:033642999"><span class="row-ic">📞</span>03-3642-999</a>
-          <a class="row-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%A1%83%E5%9C%92%E5%B8%82%E6%A1%83%E5%9C%92%E5%8D%80%E6%A1%83%E9%B6%AF%E8%B7%AF196%E8%99%9F3%E6%A8%93" target="_blank" rel="noopener"><span class="row-ic">📍</span>桃園市桃園區桃鶯路196號3樓</a>
-          <div class="park-block">
-            <div class="park-item"><b>🚗 停車位置：</b>桃園桃鶯停車場／多多停（大豐場）（汽車）；全聯、星巴克周邊空白停車格（機車）</div>
-            <div class="park-item"><b>💰 收費規則：</b>桃鶯停車場每半小時40元（最高12hr/180元）；多多停平日每半小時15元、例假日20元（24hr內160元）</div>
-            <div class="park-item"><b>🎫 折抵優惠：</b>無折抵</div>
-            <div class="park-item"><b>⚠️ 注意事項：</b>桃鶯停車場僅電子支付；多多停可用現金／LINE PAY／悠遊卡／街口支付</div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="venue" data-vid="v5">
-        <div class="venue-head" data-toggle="v5">
-          <div class="venue-name">🏋️ 桃園正光廠</div>
-          <div class="chev">▾</div>
-        </div>
-        <div class="venue-tags"><span class="tag">有氧教室</span><span class="tag">飛輪教室</span><span class="tag">蒸氣室</span><span class="tag">烤箱</span><span class="tag">女性專區</span></div>
-        <div class="venue-body">
-          <a class="row-link" href="tel:033921777"><span class="row-ic">📞</span>03-392-1777</a>
-          <a class="row-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%A1%83%E5%9C%92%E5%B8%82%E6%A1%83%E5%9C%92%E5%8D%80%E6%AD%A3%E5%85%89%E8%B7%AF339%E8%99%9F" target="_blank" rel="noopener"><span class="row-ic">📍</span>桃園市桃園區正光路339號</a>
-          <div class="park-block">
-            <div class="park-item"><b>🚗 停車位置：</b>廠館正後方（力行路右轉再右轉正光一街）</div>
-            <div class="park-item"><b>💰 收費規則：</b>逾時1小時50元，未滿1小時以1小時計</div>
-            <div class="park-item"><b>🎫 折抵優惠：</b>不分平假日，每次折抵3小時</div>
-            <div class="park-item"><b>⚠️ 注意事項：</b>離場前須至繳費機消磁；車輛不得停放超過晚上12點；不開放重機停放</div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="venue" data-vid="v2">
-        <div class="venue-head" data-toggle="v2">
-          <div class="venue-name">🏋️ 桃園經國廠</div>
-          <div class="chev">▾</div>
-        </div>
-        <div class="venue-tags"><span class="tag">蒸氣室</span><span class="tag">烤箱</span></div>
-        <div class="venue-body">
-          <a class="row-link" href="tel:033555333"><span class="row-ic">📞</span>03-355-5333</a>
-          <a class="row-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%A1%83%E5%9C%92%E5%B8%82%E6%A1%83%E5%9C%92%E5%8D%80%E7%B6%93%E5%9C%8B%E8%B7%AF116%E8%99%9F" target="_blank" rel="noopener"><span class="row-ic">📍</span>桃園市桃園區經國路116號</a>
-          <div class="park-block">
-            <div class="park-item"><b>🚗 停車位置：</b>週邊停車格或附近私人停車場（汽車）／週邊停車格（機車）</div>
-            <div class="park-item"><b>💰 收費規則：</b>汽車30元/時（當日最高400元）；機車30元/次</div>
-            <div class="park-item"><b>🎫 折抵優惠：</b>-</div>
-            <div class="park-item"><b>⚠️ 注意事項：</b>依該停車場標示收費標準為主</div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="venue" data-vid="v1">
-        <div class="venue-head" data-toggle="v1">
-          <div class="venue-name">🏋️ 桃園復興廠</div>
-          <div class="chev">▾</div>
-        </div>
-        <div class="venue-tags"><span class="tag">有氧教室</span><span class="tag">飛輪教室</span><span class="tag">蒸氣室</span><span class="tag">烤箱</span></div>
-        <div class="venue-body">
-          <a class="row-link" href="tel:033393399"><span class="row-ic">📞</span>03-339-3399</a>
-          <a class="row-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%A1%83%E5%9C%92%E5%B8%82%E6%A1%83%E5%9C%92%E5%8D%80%E5%BE%A9%E8%88%88%E8%B7%AF207%E8%99%9FB1" target="_blank" rel="noopener"><span class="row-ic">📍</span>桃園市桃園區復興路207號B1</a>
-          <div class="park-block">
-            <div class="park-item"><b>🚗 停車位置：</b>新光大樓B2~B4</div>
-            <div class="park-item"><b>💰 收費規則：</b>汽車40元/時；機車免費</div>
-            <div class="park-item"><b>🎫 折抵優惠：</b>-</div>
-            <div class="park-item"><b>⚠️ 注意事項：</b>24小時營業，當日上限200元</div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="venue" data-vid="v4">
-        <div class="venue-head" data-toggle="v4">
-          <div class="venue-name">🏋️ 桃園大有廠</div>
-          <div class="chev">▾</div>
-        </div>
-        <div class="venue-tags"><span class="tag">有氧教室</span><span class="tag">飛輪教室</span><span class="tag">蒸氣室</span><span class="tag">烤箱</span></div>
-        <div class="venue-body">
-          <a class="row-link" href="tel:033357575"><span class="row-ic">📞</span>03-335-7575</a>
-          <a class="row-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%A1%83%E5%9C%92%E5%B8%82%E6%A1%83%E5%9C%92%E5%8D%80%E6%B0%91%E5%85%89%E6%9D%B1%E8%B7%AF81%E8%99%9F1%E6%A8%93" target="_blank" rel="noopener"><span class="row-ic">📍</span>桃園市桃園區民光東路81號1樓</a>
-          <div class="park-block">
-            <div class="park-item"><b>🚗 停車位置：</b>新光三越（二館）地下B2停車場（汽車室內非機械式／重機可停，一般機車不可）</div>
-            <div class="park-item"><b>💰 收費規則：</b>汽車／重型機車 30元/30分鐘</div>
-            <div class="park-item"><b>🎫 折抵優惠：</b>依車牌為單位，平日當日上限3小時、六日及國定假日上限2小時</div>
-            <div class="park-item"><b>⚠️ 注意事項：</b>離場向櫃台報車號折抵，15分鐘內離場；週一至六00:00-06:00、週日00:00-08:00為非營業時間不可折抵；採車牌辨識入場</div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="venue" data-vid="v7">
-        <div class="venue-head" data-toggle="v7">
-          <div class="venue-name">🏋️ 桃園南崁廠</div>
-          <div class="chev">▾</div>
-        </div>
-        <div class="venue-tags"><span class="tag">有氧教室</span><span class="tag">飛輪教室</span><span class="tag">蒸氣室</span><span class="tag">烤箱</span></div>
-        <div class="venue-body">
-          <a class="row-link" href="tel:033227333"><span class="row-ic">📞</span>03-322-7333</a>
-          <a class="row-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%A1%83%E5%9C%92%E5%B8%82%E8%98%86%E7%AB%B9%E5%8D%80%E5%8D%97%E5%B9%B3%E8%A1%9711%E8%99%9F" target="_blank" rel="noopener"><span class="row-ic">📍</span>桃園市蘆竹區南平街11號</a>
-          <div class="park-block">
-            <div class="park-item"><b>🚗 停車位置：</b>廠館對面／側邊停車場（汽車）／附近車格（機車）</div>
-            <div class="park-item"><b>💰 收費規則：</b>汽車50元/時；機車免費</div>
-            <div class="park-item"><b>🎫 折抵優惠：</b>不分假日平日，會員運動可抵3小時/次</div>
-            <div class="park-item"><b>⚠️ 注意事項：</b>折抵後至自動繳費機過卡，15分鐘內離場</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- 廠館據點分頁：內容由 JS 依 SITE_CONFIG.venues 自動產生 -->
+  <div class="panel active" id="panel-venues"></div>
 
+  
+  <!-- 團體課程表分頁：內容由 JS 依 SITE_CONFIG.venues 的 schedImage 自動產生 -->
   <div class="panel" id="panel-sched">
-    <select class="select" id="sched-select"><option value="v3">桃園青埔廠</option><option value="v6">桃園中壢廠</option><option value="v8">桃園桃鶯廠</option><option value="v5">桃園正光廠</option><option value="v1">桃園復興廠</option><option value="v4">桃園大有廠</option><option value="v7">桃園南崁廠</option></select>
-    <div class="sched-imgs" id="sched-imgs">
-      <div class="sched-block"><h3>🚴 飛輪課表</h3><div class="sched-empty">本廠館尚未上傳飛輪課表</div></div>
-      <div class="sched-block"><h3>🔥 有氧課表</h3><div class="sched-empty">本廠館尚未上傳有氧課表</div></div>
-    </div>
+    <select class="select" id="sched-select"></select>
+    <div class="sched-imgs" id="sched-imgs"></div>
   </div>
 
+  
+  <!-- 顧問班表分頁：月曆格子由 JS 自動產生，資料存在 window.storage（透過後台編輯） -->
   <div class="panel" id="panel-roster">
-    <div class="roster-head"><div class="ym" id="roster-ym">2026年 9月</div></div>
-    <div class="cal-grid" id="roster-grid"><div class="cal-dow">日</div><div class="cal-dow">一</div><div class="cal-dow">二</div><div class="cal-dow">三</div><div class="cal-dow">四</div><div class="cal-dow">五</div><div class="cal-dow">六</div><div class="cal-day blank"></div><div class="cal-day blank"></div><div class="cal-day "><div class="dnum">1</div></div><div class="cal-day "><div class="dnum">2</div></div><div class="cal-day "><div class="dnum">3</div></div><div class="cal-day "><div class="dnum">4</div></div><div class="cal-day "><div class="dnum">5</div></div><div class="cal-day "><div class="dnum">6</div></div><div class="cal-day "><div class="dnum">7</div></div><div class="cal-day "><div class="dnum">8</div></div><div class="cal-day "><div class="dnum">9</div></div><div class="cal-day "><div class="dnum">10</div></div><div class="cal-day "><div class="dnum">11</div></div><div class="cal-day "><div class="dnum">12</div></div><div class="cal-day "><div class="dnum">13</div></div><div class="cal-day "><div class="dnum">14</div></div><div class="cal-day "><div class="dnum">15</div></div><div class="cal-day "><div class="dnum">16</div></div><div class="cal-day "><div class="dnum">17</div></div><div class="cal-day "><div class="dnum">18</div></div><div class="cal-day "><div class="dnum">19</div></div><div class="cal-day "><div class="dnum">20</div></div><div class="cal-day "><div class="dnum">21</div></div><div class="cal-day "><div class="dnum">22</div></div><div class="cal-day "><div class="dnum">23</div></div><div class="cal-day "><div class="dnum">24</div></div><div class="cal-day "><div class="dnum">25</div></div><div class="cal-day "><div class="dnum">26</div></div><div class="cal-day "><div class="dnum">27</div></div><div class="cal-day "><div class="dnum">28</div></div><div class="cal-day "><div class="dnum">29</div></div><div class="cal-day "><div class="dnum">30</div></div></div>
-    <div class="cal-legend" id="roster-legend"><span><span class="legend-dot" style="background:var(--yellow)"></span>上班時段</span>
-       <span><span class="legend-dot" style="background:#555"></span>休假</span></div>
+    <div class="roster-head"><div class="ym" id="roster-ym"></div></div>
+    <div class="cal-grid" id="roster-grid"></div>
+    <div class="cal-legend" id="roster-legend"></div>
   </div>
 
-  <div class="panel" id="panel-faq">
-      <div class="faq" data-fid="f1">
-        <div class="faq-q" data-ftoggle="f1"><span>❓ 怎麼辦理入會？</span><span class="chev">▾</span></div>
-        <div class="faq-a">直接聯絡 Peter 約時間到廠館參觀，現場說明方案並協助辦理，全程約 20-30 分鐘。</div>
-      </div>
-    
-      <div class="faq" data-fid="f2">
-        <div class="faq-q" data-ftoggle="f2"><span>❓ 可以先免費體驗嗎？</span><span class="chev">▾</span></div>
-        <div class="faq-a">可以，請透過下方表單或 LINE 聯絡 Peter 預約體驗時段。</div>
-      </div>
-    
-      <div class="faq" data-fid="f3">
-        <div class="faq-q" data-ftoggle="f3"><span>❓ 停車真的能折抵嗎？</span><span class="chev">▾</span></div>
-        <div class="faq-a">各廠館折抵規則略有不同，詳見各廠館頁面內的停車資訊，離場前記得至櫃台或繳費機辦理折抵。</div>
-      </div>
-    
-      <div class="faq" data-fid="f4">
-        <div class="faq-q" data-ftoggle="f4"><span>❓ 可以跨廠館使用嗎？</span><span class="chev">▾</span></div>
-        <div class="faq-a">依會籍卡別而定，部分卡別（如區卡）可跨廠館使用，詳細規則可洽詢 Peter。</div>
-      </div>
-    </div>
+  
+  <!-- 常見問題分頁：內容由 JS 依 SITE_CONFIG.faqs 自動產生 -->
+  <div class="panel" id="panel-faq"></div>
 
+  
+  <!-- 諮詢表單：欄位是固定的，文字提示可以直接在這裡修改 -->
   <div class="form-section">
     <h2>💬 免費諮詢 / 預約參觀體驗</h2>
-    <p class="sub">留下資料，送出後會自動開啟 LINE，Peter(彼得) 會盡快與您聯繫</p>
+    <p class="sub">留下您的資料，Peter 彼得 會盡快與您聯繫</p>
     <input class="field" id="lead-name" placeholder="姓名">
     <div class="phone-group">
       <span class="phone-prefix">09</span>
@@ -405,18 +272,19 @@
     </div>
     <input class="field" id="lead-time" placeholder="方便聯絡時段（例：平日晚上）">
     <textarea class="field" id="lead-note" placeholder="想了解的內容（選填）"></textarea>
-    <button class="btn btn-primary btn-wide" id="lead-submit">送出諮詢</button>
+    <div class="lead-reminder" id="lead-reminder"></div>
+    <button class="btn btn-primary btn-wide" id="lead-submit">立即預約參觀</button>
   </div>
 
   <div class="footer">
-    健身工廠 桃園地區｜Peter(彼得) 健體顧問
+    健身工廠 桃園地區｜Peter 彼得 健體顧問
     <div class="footer-links">
       <a id="admin-open" href="#">後台管理</a>
     </div>
   </div>
 </div>
 
-<div class="toast show" id="toast">已儲存全部變更</div>
+<div class="toast" id="toast">已下載目前版本的 .html 檔案</div>
 
 <div class="overlay" id="admin-overlay">
   <div class="admin-box">
@@ -434,7 +302,8 @@
       <div class="hint" id="admin-pw-err" style="color:var(--danger);"></div>
     </div>
 
-    <div id="admin-main" style="display:none;">
+    <div id="admin-main" style="display: none;">
+      <!-- 以下後台各分頁的清單（廠館/FAQ/班表）都是由 JS 自動產生，不需要手動編輯 HTML -->
       <div class="admin-tabs">
         <div class="admin-tab" data-atab="profile">名片</div>
         <div class="admin-tab" data-atab="venue">廠館</div>
@@ -446,516 +315,22 @@
 
       <div class="admin-panel" data-apanel="profile">
         <span class="field-label">大頭照</span>
-        <img class="photo-preview" id="a-photo-preview" style="display:none;">
-        <input class="field" type="file" accept="image/*" id="a-photo-file">
-        <button class="btn btn-sm btn-ghost" id="a-photo-remove" style="margin-bottom:10px;">移除照片</button>
-        <div class="hint">選擇照片後系統會自動壓縮，建議選擇主體置中、方形構圖的照片效果最好。記得到「設定」分頁按「儲存全部變更」才會真的存檔。</div>
+        <img class="photo-preview" id="a-photo-preview" style="display:none">
+        <input class="field" id="a-photo-url" placeholder="https://raw.githubusercontent.com/你的帳號/repo/main/photo.jpg">
+        <button class="btn btn-sm btn-ghost" id="a-photo-remove" style="margin-bottom:10px;">清除照片</button>
+        <div class="hint">跟課表圖片一樣，把照片上傳到 GitHub 後，貼上 raw.githubusercontent.com 開頭的網址即可，建議選擇主體置中、方形構圖的照片效果最好。記得到「設定」分頁按「儲存全部變更」才會真的存檔。</div>
         <span class="field-label">姓名</span><input class="field" id="a-name">
         <span class="field-label">職稱／所屬廠館</span><input class="field" id="a-title">
         <span class="field-label">服務區域文字（可換行）</span><textarea class="field" id="a-area" placeholder="例：📍 桃園地區皆可服務"></textarea>
         <span class="field-label">電話（純數字，例 0912345678）</span><input class="field" id="a-phone">
         <span class="field-label">LINE 加好友連結</span><input class="field" id="a-line">
+        <span class="field-label">Facebook 連結（選填，留空則不顯示按鈕）</span><input class="field" id="a-fb" placeholder="https://facebook.com/...">
+        <span class="field-label">Instagram 連結（選填，留空則不顯示按鈕）</span><input class="field" id="a-ig" placeholder="https://instagram.com/...">
       </div>
 
       <div class="admin-panel" data-apanel="venue">
         <div class="section-title">現有廠館（點名稱可展開／收合；↑↓ 調整前台顯示順序，會立即儲存）</div>
-        <div id="a-venue-list">
-      <div class="admin-card" data-vid="v3">
-        <div class="venue-order-head" data-ev-toggle="v3">
-          <h4>桃園青埔廠</h4>
-          <div class="order-btns">
-            <button class="ev-up" disabled="">↑</button>
-            <button class="ev-down">↓</button>
-          </div>
-          <span class="ev-chev">▾</span>
-        </div>
-        <div class="meta">03-287-2799｜桃園市中壢區永信路219號</div>
-        <div class="ev-detail">
-          <span class="field-label">廠館名稱</span><input class="field ev-name" value="桃園青埔廠">
-          <span class="field-label">電話</span><input class="field ev-phone" value="03-287-2799">
-          <span class="field-label">地址</span><input class="field ev-address" value="桃園市中壢區永信路219號">
-          <span class="field-label">Google 地圖商家連結（選填，貼了會優先使用）</span><input class="field ev-mapsurl" value="" placeholder="https://maps.app.goo.gl/...">
-          <span class="field-label">設施</span>
-          <div class="facility-check-list ev-facwrap">
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa1" checked="">
-        有氧教室
-        <span class="fx-del" data-facdel="fa1" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa2" checked="">
-        飛輪教室
-        <span class="fx-del" data-facdel="fa2" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa3" checked="">
-        蒸氣室
-        <span class="fx-del" data-facdel="fa3" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa4" checked="">
-        烤箱
-        <span class="fx-del" data-facdel="fa4" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa5" checked="">
-        女性專區
-        <span class="fx-del" data-facdel="fa5" title="從清單中刪除此設施">✕</span>
-      </label>
-    </div>
-          <div class="facility-add-row">
-            <input class="field ev-newfac" placeholder="新增設施類型，例如：拳擊教室">
-            <button class="btn btn-sm btn-ghost ev-newfac-add" type="button">＋新增</button>
-          </div>
-          <span class="field-label">停車位置（可換行）</span><textarea class="field ev-loc">廠館正後方</textarea>
-          <span class="field-label">收費規則（可換行）</span><textarea class="field ev-fee">超時50元/小時；非會員300元/小時</textarea>
-          <span class="field-label">折抵優惠（可換行）</span><textarea class="field ev-discount">不分平假日，每次折抵3小時</textarea>
-          <span class="field-label">注意事項（可換行）</span><textarea class="field ev-notice">折抵後須過繳費機</textarea>
-          <label class="checkbox-row"><input type="checkbox" class="ev-hide-sched"> 此廠館無團體課，不列入「當月團體課表」選單</label>
-          <div class="admin-row-actions">
-            <button class="btn btn-sm btn-danger ev-del">刪除廠館（立即儲存）</button>
-          </div>
-        </div>
-      </div>
-    
-      <div class="admin-card" data-vid="v6">
-        <div class="venue-order-head" data-ev-toggle="v6">
-          <h4>桃園中壢廠</h4>
-          <div class="order-btns">
-            <button class="ev-up">↑</button>
-            <button class="ev-down">↓</button>
-          </div>
-          <span class="ev-chev">▾</span>
-        </div>
-        <div class="meta">03-434-5588｜桃園市中壢區中華路二段330號</div>
-        <div class="ev-detail">
-          <span class="field-label">廠館名稱</span><input class="field ev-name" value="桃園中壢廠">
-          <span class="field-label">電話</span><input class="field ev-phone" value="03-434-5588">
-          <span class="field-label">地址</span><input class="field ev-address" value="桃園市中壢區中華路二段330號">
-          <span class="field-label">Google 地圖商家連結（選填，貼了會優先使用）</span><input class="field ev-mapsurl" value="" placeholder="https://maps.app.goo.gl/...">
-          <span class="field-label">設施</span>
-          <div class="facility-check-list ev-facwrap">
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa1" checked="">
-        有氧教室
-        <span class="fx-del" data-facdel="fa1" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa2" checked="">
-        飛輪教室
-        <span class="fx-del" data-facdel="fa2" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa3" checked="">
-        蒸氣室
-        <span class="fx-del" data-facdel="fa3" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa4" checked="">
-        烤箱
-        <span class="fx-del" data-facdel="fa4" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa5" checked="">
-        女性專區
-        <span class="fx-del" data-facdel="fa5" title="從清單中刪除此設施">✕</span>
-      </label>
-    </div>
-          <div class="facility-add-row">
-            <input class="field ev-newfac" placeholder="新增設施類型，例如：拳擊教室">
-            <button class="btn btn-sm btn-ghost ev-newfac-add" type="button">＋新增</button>
-          </div>
-          <span class="field-label">停車位置（可換行）</span><textarea class="field ev-loc">B3室內停車場（汽車）／FF對面人行道及中園路劃位機車格（機車）</textarea>
-          <span class="field-label">收費規則（可換行）</span><textarea class="field ev-fee">汽車50元/時</textarea>
-          <span class="field-label">折抵優惠（可換行）</span><textarea class="field ev-discount">不分平假日會員運動享3小時免費停車</textarea>
-          <span class="field-label">注意事項（可換行）</span><textarea class="field ev-notice">折抵後仍須插卡過繳費機消磁；B3需停放於FF停車牌格內</textarea>
-          <label class="checkbox-row"><input type="checkbox" class="ev-hide-sched"> 此廠館無團體課，不列入「當月團體課表」選單</label>
-          <div class="admin-row-actions">
-            <button class="btn btn-sm btn-danger ev-del">刪除廠館（立即儲存）</button>
-          </div>
-        </div>
-      </div>
-    
-      <div class="admin-card" data-vid="v8">
-        <div class="venue-order-head" data-ev-toggle="v8">
-          <h4>桃園桃鶯廠</h4>
-          <div class="order-btns">
-            <button class="ev-up">↑</button>
-            <button class="ev-down">↓</button>
-          </div>
-          <span class="ev-chev">▾</span>
-        </div>
-        <div class="meta">03-3642-999｜桃園市桃園區桃鶯路196號3樓</div>
-        <div class="ev-detail">
-          <span class="field-label">廠館名稱</span><input class="field ev-name" value="桃園桃鶯廠">
-          <span class="field-label">電話</span><input class="field ev-phone" value="03-3642-999">
-          <span class="field-label">地址</span><input class="field ev-address" value="桃園市桃園區桃鶯路196號3樓">
-          <span class="field-label">Google 地圖商家連結（選填，貼了會優先使用）</span><input class="field ev-mapsurl" value="" placeholder="https://maps.app.goo.gl/...">
-          <span class="field-label">設施</span>
-          <div class="facility-check-list ev-facwrap">
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa1" checked="">
-        有氧教室
-        <span class="fx-del" data-facdel="fa1" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa2" checked="">
-        飛輪教室
-        <span class="fx-del" data-facdel="fa2" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa3" checked="">
-        蒸氣室
-        <span class="fx-del" data-facdel="fa3" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa4" checked="">
-        烤箱
-        <span class="fx-del" data-facdel="fa4" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa5">
-        女性專區
-        <span class="fx-del" data-facdel="fa5" title="從清單中刪除此設施">✕</span>
-      </label>
-    </div>
-          <div class="facility-add-row">
-            <input class="field ev-newfac" placeholder="新增設施類型，例如：拳擊教室">
-            <button class="btn btn-sm btn-ghost ev-newfac-add" type="button">＋新增</button>
-          </div>
-          <span class="field-label">停車位置（可換行）</span><textarea class="field ev-loc">桃園桃鶯停車場／多多停（大豐場）（汽車）；全聯、星巴克周邊空白停車格（機車）</textarea>
-          <span class="field-label">收費規則（可換行）</span><textarea class="field ev-fee">桃鶯停車場每半小時40元（最高12hr/180元）；多多停平日每半小時15元、例假日20元（24hr內160元）</textarea>
-          <span class="field-label">折抵優惠（可換行）</span><textarea class="field ev-discount">無折抵</textarea>
-          <span class="field-label">注意事項（可換行）</span><textarea class="field ev-notice">桃鶯停車場僅電子支付；多多停可用現金／LINE PAY／悠遊卡／街口支付</textarea>
-          <label class="checkbox-row"><input type="checkbox" class="ev-hide-sched"> 此廠館無團體課，不列入「當月團體課表」選單</label>
-          <div class="admin-row-actions">
-            <button class="btn btn-sm btn-danger ev-del">刪除廠館（立即儲存）</button>
-          </div>
-        </div>
-      </div>
-    
-      <div class="admin-card" data-vid="v5">
-        <div class="venue-order-head" data-ev-toggle="v5">
-          <h4>桃園正光廠</h4>
-          <div class="order-btns">
-            <button class="ev-up">↑</button>
-            <button class="ev-down">↓</button>
-          </div>
-          <span class="ev-chev">▾</span>
-        </div>
-        <div class="meta">03-392-1777｜桃園市桃園區正光路339號</div>
-        <div class="ev-detail">
-          <span class="field-label">廠館名稱</span><input class="field ev-name" value="桃園正光廠">
-          <span class="field-label">電話</span><input class="field ev-phone" value="03-392-1777">
-          <span class="field-label">地址</span><input class="field ev-address" value="桃園市桃園區正光路339號">
-          <span class="field-label">Google 地圖商家連結（選填，貼了會優先使用）</span><input class="field ev-mapsurl" value="" placeholder="https://maps.app.goo.gl/...">
-          <span class="field-label">設施</span>
-          <div class="facility-check-list ev-facwrap">
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa1" checked="">
-        有氧教室
-        <span class="fx-del" data-facdel="fa1" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa2" checked="">
-        飛輪教室
-        <span class="fx-del" data-facdel="fa2" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa3" checked="">
-        蒸氣室
-        <span class="fx-del" data-facdel="fa3" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa4" checked="">
-        烤箱
-        <span class="fx-del" data-facdel="fa4" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa5" checked="">
-        女性專區
-        <span class="fx-del" data-facdel="fa5" title="從清單中刪除此設施">✕</span>
-      </label>
-    </div>
-          <div class="facility-add-row">
-            <input class="field ev-newfac" placeholder="新增設施類型，例如：拳擊教室">
-            <button class="btn btn-sm btn-ghost ev-newfac-add" type="button">＋新增</button>
-          </div>
-          <span class="field-label">停車位置（可換行）</span><textarea class="field ev-loc">廠館正後方（力行路右轉再右轉正光一街）</textarea>
-          <span class="field-label">收費規則（可換行）</span><textarea class="field ev-fee">逾時1小時50元，未滿1小時以1小時計</textarea>
-          <span class="field-label">折抵優惠（可換行）</span><textarea class="field ev-discount">不分平假日，每次折抵3小時</textarea>
-          <span class="field-label">注意事項（可換行）</span><textarea class="field ev-notice">離場前須至繳費機消磁；車輛不得停放超過晚上12點；不開放重機停放</textarea>
-          <label class="checkbox-row"><input type="checkbox" class="ev-hide-sched"> 此廠館無團體課，不列入「當月團體課表」選單</label>
-          <div class="admin-row-actions">
-            <button class="btn btn-sm btn-danger ev-del">刪除廠館（立即儲存）</button>
-          </div>
-        </div>
-      </div>
-    
-      <div class="admin-card" data-vid="v2">
-        <div class="venue-order-head" data-ev-toggle="v2">
-          <h4>桃園經國廠</h4>
-          <div class="order-btns">
-            <button class="ev-up">↑</button>
-            <button class="ev-down">↓</button>
-          </div>
-          <span class="ev-chev">▾</span>
-        </div>
-        <div class="meta">03-355-5333｜桃園市桃園區經國路116號</div>
-        <div class="ev-detail">
-          <span class="field-label">廠館名稱</span><input class="field ev-name" value="桃園經國廠">
-          <span class="field-label">電話</span><input class="field ev-phone" value="03-355-5333">
-          <span class="field-label">地址</span><input class="field ev-address" value="桃園市桃園區經國路116號">
-          <span class="field-label">Google 地圖商家連結（選填，貼了會優先使用）</span><input class="field ev-mapsurl" value="" placeholder="https://maps.app.goo.gl/...">
-          <span class="field-label">設施</span>
-          <div class="facility-check-list ev-facwrap">
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa1">
-        有氧教室
-        <span class="fx-del" data-facdel="fa1" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa2">
-        飛輪教室
-        <span class="fx-del" data-facdel="fa2" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa3" checked="">
-        蒸氣室
-        <span class="fx-del" data-facdel="fa3" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa4" checked="">
-        烤箱
-        <span class="fx-del" data-facdel="fa4" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa5">
-        女性專區
-        <span class="fx-del" data-facdel="fa5" title="從清單中刪除此設施">✕</span>
-      </label>
-    </div>
-          <div class="facility-add-row">
-            <input class="field ev-newfac" placeholder="新增設施類型，例如：拳擊教室">
-            <button class="btn btn-sm btn-ghost ev-newfac-add" type="button">＋新增</button>
-          </div>
-          <span class="field-label">停車位置（可換行）</span><textarea class="field ev-loc">週邊停車格或附近私人停車場（汽車）／週邊停車格（機車）</textarea>
-          <span class="field-label">收費規則（可換行）</span><textarea class="field ev-fee">汽車30元/時（當日最高400元）；機車30元/次</textarea>
-          <span class="field-label">折抵優惠（可換行）</span><textarea class="field ev-discount">-</textarea>
-          <span class="field-label">注意事項（可換行）</span><textarea class="field ev-notice">依該停車場標示收費標準為主</textarea>
-          <label class="checkbox-row"><input type="checkbox" class="ev-hide-sched" checked=""> 此廠館無團體課，不列入「當月團體課表」選單</label>
-          <div class="admin-row-actions">
-            <button class="btn btn-sm btn-danger ev-del">刪除廠館（立即儲存）</button>
-          </div>
-        </div>
-      </div>
-    
-      <div class="admin-card" data-vid="v1">
-        <div class="venue-order-head" data-ev-toggle="v1">
-          <h4>桃園復興廠</h4>
-          <div class="order-btns">
-            <button class="ev-up">↑</button>
-            <button class="ev-down">↓</button>
-          </div>
-          <span class="ev-chev">▾</span>
-        </div>
-        <div class="meta">03-339-3399｜桃園市桃園區復興路207號B1</div>
-        <div class="ev-detail">
-          <span class="field-label">廠館名稱</span><input class="field ev-name" value="桃園復興廠">
-          <span class="field-label">電話</span><input class="field ev-phone" value="03-339-3399">
-          <span class="field-label">地址</span><input class="field ev-address" value="桃園市桃園區復興路207號B1">
-          <span class="field-label">Google 地圖商家連結（選填，貼了會優先使用）</span><input class="field ev-mapsurl" value="" placeholder="https://maps.app.goo.gl/...">
-          <span class="field-label">設施</span>
-          <div class="facility-check-list ev-facwrap">
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa1" checked="">
-        有氧教室
-        <span class="fx-del" data-facdel="fa1" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa2" checked="">
-        飛輪教室
-        <span class="fx-del" data-facdel="fa2" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa3" checked="">
-        蒸氣室
-        <span class="fx-del" data-facdel="fa3" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa4" checked="">
-        烤箱
-        <span class="fx-del" data-facdel="fa4" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa5">
-        女性專區
-        <span class="fx-del" data-facdel="fa5" title="從清單中刪除此設施">✕</span>
-      </label>
-    </div>
-          <div class="facility-add-row">
-            <input class="field ev-newfac" placeholder="新增設施類型，例如：拳擊教室">
-            <button class="btn btn-sm btn-ghost ev-newfac-add" type="button">＋新增</button>
-          </div>
-          <span class="field-label">停車位置（可換行）</span><textarea class="field ev-loc">新光大樓B2~B4</textarea>
-          <span class="field-label">收費規則（可換行）</span><textarea class="field ev-fee">汽車40元/時；機車免費</textarea>
-          <span class="field-label">折抵優惠（可換行）</span><textarea class="field ev-discount">-</textarea>
-          <span class="field-label">注意事項（可換行）</span><textarea class="field ev-notice">24小時營業，當日上限200元</textarea>
-          <label class="checkbox-row"><input type="checkbox" class="ev-hide-sched"> 此廠館無團體課，不列入「當月團體課表」選單</label>
-          <div class="admin-row-actions">
-            <button class="btn btn-sm btn-danger ev-del">刪除廠館（立即儲存）</button>
-          </div>
-        </div>
-      </div>
-    
-      <div class="admin-card" data-vid="v4">
-        <div class="venue-order-head" data-ev-toggle="v4">
-          <h4>桃園大有廠</h4>
-          <div class="order-btns">
-            <button class="ev-up">↑</button>
-            <button class="ev-down">↓</button>
-          </div>
-          <span class="ev-chev">▾</span>
-        </div>
-        <div class="meta">03-335-7575｜桃園市桃園區民光東路81號1樓</div>
-        <div class="ev-detail">
-          <span class="field-label">廠館名稱</span><input class="field ev-name" value="桃園大有廠">
-          <span class="field-label">電話</span><input class="field ev-phone" value="03-335-7575">
-          <span class="field-label">地址</span><input class="field ev-address" value="桃園市桃園區民光東路81號1樓">
-          <span class="field-label">Google 地圖商家連結（選填，貼了會優先使用）</span><input class="field ev-mapsurl" value="" placeholder="https://maps.app.goo.gl/...">
-          <span class="field-label">設施</span>
-          <div class="facility-check-list ev-facwrap">
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa1" checked="">
-        有氧教室
-        <span class="fx-del" data-facdel="fa1" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa2" checked="">
-        飛輪教室
-        <span class="fx-del" data-facdel="fa2" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa3" checked="">
-        蒸氣室
-        <span class="fx-del" data-facdel="fa3" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa4" checked="">
-        烤箱
-        <span class="fx-del" data-facdel="fa4" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa5">
-        女性專區
-        <span class="fx-del" data-facdel="fa5" title="從清單中刪除此設施">✕</span>
-      </label>
-    </div>
-          <div class="facility-add-row">
-            <input class="field ev-newfac" placeholder="新增設施類型，例如：拳擊教室">
-            <button class="btn btn-sm btn-ghost ev-newfac-add" type="button">＋新增</button>
-          </div>
-          <span class="field-label">停車位置（可換行）</span><textarea class="field ev-loc">新光三越（二館）地下B2停車場（汽車室內非機械式／重機可停，一般機車不可）</textarea>
-          <span class="field-label">收費規則（可換行）</span><textarea class="field ev-fee">汽車／重型機車 30元/30分鐘</textarea>
-          <span class="field-label">折抵優惠（可換行）</span><textarea class="field ev-discount">依車牌為單位，平日當日上限3小時、六日及國定假日上限2小時</textarea>
-          <span class="field-label">注意事項（可換行）</span><textarea class="field ev-notice">離場向櫃台報車號折抵，15分鐘內離場；週一至六00:00-06:00、週日00:00-08:00為非營業時間不可折抵；採車牌辨識入場</textarea>
-          <label class="checkbox-row"><input type="checkbox" class="ev-hide-sched"> 此廠館無團體課，不列入「當月團體課表」選單</label>
-          <div class="admin-row-actions">
-            <button class="btn btn-sm btn-danger ev-del">刪除廠館（立即儲存）</button>
-          </div>
-        </div>
-      </div>
-    
-      <div class="admin-card" data-vid="v7">
-        <div class="venue-order-head" data-ev-toggle="v7">
-          <h4>桃園南崁廠</h4>
-          <div class="order-btns">
-            <button class="ev-up">↑</button>
-            <button class="ev-down" disabled="">↓</button>
-          </div>
-          <span class="ev-chev">▾</span>
-        </div>
-        <div class="meta">03-322-7333｜桃園市蘆竹區南平街11號</div>
-        <div class="ev-detail">
-          <span class="field-label">廠館名稱</span><input class="field ev-name" value="桃園南崁廠">
-          <span class="field-label">電話</span><input class="field ev-phone" value="03-322-7333">
-          <span class="field-label">地址</span><input class="field ev-address" value="桃園市蘆竹區南平街11號">
-          <span class="field-label">Google 地圖商家連結（選填，貼了會優先使用）</span><input class="field ev-mapsurl" value="" placeholder="https://maps.app.goo.gl/...">
-          <span class="field-label">設施</span>
-          <div class="facility-check-list ev-facwrap">
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa1" checked="">
-        有氧教室
-        <span class="fx-del" data-facdel="fa1" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa2" checked="">
-        飛輪教室
-        <span class="fx-del" data-facdel="fa2" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa3" checked="">
-        蒸氣室
-        <span class="fx-del" data-facdel="fa3" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa4" checked="">
-        烤箱
-        <span class="fx-del" data-facdel="fa4" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa5">
-        女性專區
-        <span class="fx-del" data-facdel="fa5" title="從清單中刪除此設施">✕</span>
-      </label>
-    </div>
-          <div class="facility-add-row">
-            <input class="field ev-newfac" placeholder="新增設施類型，例如：拳擊教室">
-            <button class="btn btn-sm btn-ghost ev-newfac-add" type="button">＋新增</button>
-          </div>
-          <span class="field-label">停車位置（可換行）</span><textarea class="field ev-loc">廠館對面／側邊停車場（汽車）／附近車格（機車）</textarea>
-          <span class="field-label">收費規則（可換行）</span><textarea class="field ev-fee">汽車50元/時；機車免費</textarea>
-          <span class="field-label">折抵優惠（可換行）</span><textarea class="field ev-discount">不分假日平日，會員運動可抵3小時/次</textarea>
-          <span class="field-label">注意事項（可換行）</span><textarea class="field ev-notice">折抵後至自動繳費機過卡，15分鐘內離場</textarea>
-          <label class="checkbox-row"><input type="checkbox" class="ev-hide-sched"> 此廠館無團體課，不列入「當月團體課表」選單</label>
-          <div class="admin-row-actions">
-            <button class="btn btn-sm btn-danger ev-del">刪除廠館（立即儲存）</button>
-          </div>
-        </div>
-      </div>
-    </div>
+        <div id="a-venue-list"></div>
         <div class="section-title">新增廠館</div>
         <div class="admin-card">
           <span class="field-label">廠館名稱</span><input class="field" id="nv-name" placeholder="例：桃園青埔廠">
@@ -964,246 +339,33 @@
           <span class="field-label">Google 地圖商家連結（選填，貼了會優先使用）</span><input class="field" id="nv-mapsurl" placeholder="https://maps.app.goo.gl/...">
           <div class="hint">在 Google 地圖搜尋該廠館商家頁面，點「分享」複製連結貼上即可；不填的話系統會自動用地址產生搜尋連結。</div>
           <span class="field-label">設施</span>
-          <div class="facility-check-list" id="nv-facility-list">
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa1">
-        有氧教室
-        <span class="fx-del" data-facdel="fa1" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa2">
-        飛輪教室
-        <span class="fx-del" data-facdel="fa2" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa3">
-        蒸氣室
-        <span class="fx-del" data-facdel="fa3" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa4">
-        烤箱
-        <span class="fx-del" data-facdel="fa4" title="從清單中刪除此設施">✕</span>
-      </label>
-    
-      <label class="facility-check">
-        <input type="checkbox" class="fac-cb" value="fa5">
-        女性專區
-        <span class="fx-del" data-facdel="fa5" title="從清單中刪除此設施">✕</span>
-      </label>
-    </div>
+          <div class="facility-check-list" id="nv-facility-list"></div>
           <span class="field-label">停車位置（可換行）</span><textarea class="field" id="nv-park-loc"></textarea>
           <span class="field-label">收費規則（可換行）</span><textarea class="field" id="nv-park-fee"></textarea>
           <span class="field-label">折抵優惠（可換行）</span><textarea class="field" id="nv-park-discount"></textarea>
           <span class="field-label">注意事項（可換行）</span><textarea class="field" id="nv-park-notice"></textarea>
-          <label class="checkbox-row"><input type="checkbox" id="nv-hide-sched"> 此廠館無團體課，不列入「當月團體課表」選單</label>
+          <label class="checkbox-row"><input type="checkbox" id="nv-hide-sched"> 此廠館無團體課，不列入「團體課程表」選單</label>
           <button class="btn btn-yellow btn-wide" style="margin-top:12px;" id="nv-add">新增廠館（立即儲存）</button>
         </div>
       </div>
 
       <div class="admin-panel" data-apanel="sched">
         <div class="section-title">選擇廠館上傳／更新課表圖片</div>
-        <select class="select" id="a-sched-select"><option value="v3">桃園青埔廠</option><option value="v6">桃園中壢廠</option><option value="v8">桃園桃鶯廠</option><option value="v5">桃園正光廠</option><option value="v2">桃園經國廠（未列入前台課表選單）</option><option value="v1">桃園復興廠</option><option value="v4">桃園大有廠</option><option value="v7">桃園南崁廠</option></select>
-        <span class="field-label">飛輪課表圖片網址</span><input class="field" id="a-sched-cycling">
-        <span class="field-label">有氧課表圖片網址</span><input class="field" id="a-sched-aerobics">
-        <div class="hint">圖片請先上傳到雲端相簿或 imgur.com，取得圖片網址後貼上。切換廠館前會自動暫存這裡的修改，記得最後到「設定」分頁按「儲存全部變更」。</div>
+        <select class="select" id="a-sched-select"></select>
+        <span class="field-label">當月課表圖片網址</span><input class="field" id="a-sched-image">
+        <div class="hint">飛輪、有氧課表如果是同一張圖，這裡只要貼一個網址即可。圖片可上傳到 GitHub（跟網站放一起）、雲端相簿或 imgur.com 取得網址後貼上。切換廠館前會自動暫存這裡的修改，記得最後到「設定」分頁按「儲存全部變更」。</div>
       </div>
 
       <div class="admin-panel" data-apanel="roster">
         <div class="section-title">選擇月份並設定每天班別</div>
         <input class="field" type="month" id="a-roster-month">
-        <div id="a-roster-list"><div class="roster-day-row" data-day="1">
-        <span class="dlabel">1 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="2">
-        <span class="dlabel">2 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="3">
-        <span class="dlabel">3 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="4">
-        <span class="dlabel">4 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="5">
-        <span class="dlabel">5 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="6">
-        <span class="dlabel">6 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="7">
-        <span class="dlabel">7 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="8">
-        <span class="dlabel">8 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="9">
-        <span class="dlabel">9 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="10">
-        <span class="dlabel">10 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="11">
-        <span class="dlabel">11 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="12">
-        <span class="dlabel">12 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="13">
-        <span class="dlabel">13 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="14">
-        <span class="dlabel">14 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="15">
-        <span class="dlabel">15 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="16">
-        <span class="dlabel">16 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="17">
-        <span class="dlabel">17 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="18">
-        <span class="dlabel">18 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="19">
-        <span class="dlabel">19 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="20">
-        <span class="dlabel">20 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="21">
-        <span class="dlabel">21 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="22">
-        <span class="dlabel">22 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="23">
-        <span class="dlabel">23 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="24">
-        <span class="dlabel">24 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="25">
-        <span class="dlabel">25 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="26">
-        <span class="dlabel">26 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="27">
-        <span class="dlabel">27 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="28">
-        <span class="dlabel">28 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="29">
-        <span class="dlabel">29 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div><div class="roster-day-row" data-day="30">
-        <span class="dlabel">30 日</span>
-        <select class="roster-day-select">
-          <option value="" selected="">未設定</option><option value="off">休假</option><option value="s1019">10-19</option><option value="s1120">11-20</option><option value="s1221">12-21</option><option value="s1322">13-22</option><option value="s1423">14-23</option>
-        </select>
-      </div></div>
+        <div id="a-roster-list"></div>
         <div class="hint">切換月份前會自動暫存這裡的修改，記得最後到「設定」分頁按「儲存全部變更」。前台「顧問班表」永遠只顯示目前所在月份。</div>
       </div>
 
       <div class="admin-panel" data-apanel="faq">
-        <div class="section-title">現有問答</div>
-        <div id="a-faq-list">
-      <div class="admin-card" data-fid="f1">
-        <span class="field-label">問題</span><input class="field ef-q" value="怎麼辦理入會？">
-        <span class="field-label">答案（可換行）</span><textarea class="field ef-a">直接聯絡 Peter 約時間到廠館參觀，現場說明方案並協助辦理，全程約 20-30 分鐘。</textarea>
-        <div class="admin-row-actions">
-          <button class="btn btn-sm btn-danger ef-del">刪除（立即儲存）</button>
-        </div>
-      </div>
-    
-      <div class="admin-card" data-fid="f2">
-        <span class="field-label">問題</span><input class="field ef-q" value="可以先免費體驗嗎？">
-        <span class="field-label">答案（可換行）</span><textarea class="field ef-a">可以，請透過下方表單或 LINE 聯絡 Peter 預約體驗時段。</textarea>
-        <div class="admin-row-actions">
-          <button class="btn btn-sm btn-danger ef-del">刪除（立即儲存）</button>
-        </div>
-      </div>
-    
-      <div class="admin-card" data-fid="f3">
-        <span class="field-label">問題</span><input class="field ef-q" value="停車真的能折抵嗎？">
-        <span class="field-label">答案（可換行）</span><textarea class="field ef-a">各廠館折抵規則略有不同，詳見各廠館頁面內的停車資訊，離場前記得至櫃台或繳費機辦理折抵。</textarea>
-        <div class="admin-row-actions">
-          <button class="btn btn-sm btn-danger ef-del">刪除（立即儲存）</button>
-        </div>
-      </div>
-    
-      <div class="admin-card" data-fid="f4">
-        <span class="field-label">問題</span><input class="field ef-q" value="可以跨廠館使用嗎？">
-        <span class="field-label">答案（可換行）</span><textarea class="field ef-a">依會籍卡別而定，部分卡別（如區卡）可跨廠館使用，詳細規則可洽詢 Peter。</textarea>
-        <div class="admin-row-actions">
-          <button class="btn btn-sm btn-danger ef-del">刪除（立即儲存）</button>
-        </div>
-      </div>
-    </div>
+        <div class="section-title">現有問答（點問題可展開／收合；用 ⠿ 拖曳或 ↑↓ 調整前台顯示順序，會立即儲存）</div>
+        <div id="a-faq-list"></div>
         <div class="section-title">新增問答</div>
         <div class="admin-card">
           <span class="field-label">問題</span><input class="field" id="nf-q">
@@ -1213,9 +375,6 @@
       </div>
 
       <div class="admin-panel active" data-apanel="settings">
-        <div id="storage-warning" class="hint" style="display:none;color:var(--danger);background:rgba(224,93,93,.1);border:1px solid var(--danger);border-radius:8px;padding:10px 12px;margin-bottom:14px;">
-          ⚠️ 目前開啟這個頁面的環境無法連接雲端儲存，所有修改只會暫時顯示在畫面上，重新整理或離開後會還原成預設內容。請透過 Claude 平台開啟本頁面來編輯並儲存，或使用下方「下載 .html 檔案」搭配直接修改程式碼的方式更新內容。
-        </div>
         <div class="section-title">💾 儲存</div>
         <button class="btn btn-yellow btn-wide" id="save-all">儲存全部變更</button>
         <div class="hint">名片、廠館內容、課表圖片、班表、FAQ 內文與下方設定欄位的修改，都要按這裡才會真的存檔（新增／刪除／排序會立即儲存，不用等這個按鈕）。</div>
@@ -1223,6 +382,10 @@
         <div class="section-title">匯出目前版本</div>
         <button class="btn btn-ghost btn-wide" id="download-html">⬇️ 下載 .html 檔案</button>
         <div class="hint">把目前所有已儲存的資料打包成一個新的 HTML 檔案下載，適合用來備份或放到 GitHub 等平台自行架站。</div>
+
+        <div class="section-title">諮詢按鈕提醒</div>
+        <span class="field-label">顯示在「立即預約參觀」按鈕上方的紅字提醒（留空則不顯示）</span>
+        <textarea class="field" id="a-announce"></textarea>
 
         <div class="section-title">LINE 官方帳號</div>
         <span class="field-label">LINE 官方帳號 ID（不含＠，例：12345）</span>
@@ -1232,8 +395,9 @@
         <div class="hint">可使用替換代碼：{name} 姓名、{phone} 電話、{time} 方便聯絡時段、{note} 需求內容，系統會自動代入客人填寫的資料。</div>
 
         <div class="section-title">分享文字（可換行）</div>
-        <span class="field-label">分享名片時附帶的文字</span>
+        <span class="field-label">分享名片時附帶的文字（請自行包含網址，系統不會再自動加上網址）</span>
         <textarea class="field" id="a-sharetext"></textarea>
+        <div class="hint">若使用短網址（如 reurl.cc），建議在網址後面加上 <code>?openExternalBrowser=1</code>，客人在LINE裡點擊時才會直接跳出到手機瀏覽器開啟，不會卡在LINE內建瀏覽器裡。</div>
 
         <div class="section-title">🔧 系統識別碼</div>
         <span class="field-label">LINE LIFF ID</span>
@@ -1256,69 +420,356 @@
   </div>
 </div>
 
-<script type="application/json" id="ff-seed-data">{"profile": {"name": "Peter 彼得", "title": "健體顧問｜健身工廠 青埔廠", "area": "📍 桃園地區皆可服務", "phone": "", "lineUrl": "", "photo": ""}, "venues": [{"id": "v3", "name": "桃園青埔廠", "phone": "03-287-2799", "address": "桃園市中壢區永信路219號", "mapsUrl": "", "hideFromSchedule": false, "facilities": ["fa1", "fa2", "fa3", "fa4", "fa5"], "park": {"loc": "廠館正後方", "fee": "超時50元/小時；非會員300元/小時", "discount": "不分平假日，每次折抵3小時", "notice": "折抵後須過繳費機"}, "schedCycling": "", "schedAerobics": ""}, {"id": "v6", "name": "桃園中壢廠", "phone": "03-434-5588", "address": "桃園市中壢區中華路二段330號", "mapsUrl": "", "hideFromSchedule": false, "facilities": ["fa1", "fa2", "fa3", "fa4", "fa5"], "park": {"loc": "B3室內停車場（汽車）／FF對面人行道及中園路劃位機車格（機車）", "fee": "汽車50元/時", "discount": "不分平假日會員運動享3小時免費停車", "notice": "折抵後仍須插卡過繳費機消磁；B3需停放於FF停車牌格內"}, "schedCycling": "", "schedAerobics": ""}, {"id": "v8", "name": "桃園桃鶯廠", "phone": "03-3642-999", "address": "桃園市桃園區桃鶯路196號3樓", "mapsUrl": "", "hideFromSchedule": false, "facilities": ["fa1", "fa2", "fa3", "fa4"], "park": {"loc": "桃園桃鶯停車場／多多停（大豐場）（汽車）；全聯、星巴克周邊空白停車格（機車）", "fee": "桃鶯停車場每半小時40元（最高12hr/180元）；多多停平日每半小時15元、例假日20元（24hr內160元）", "discount": "無折抵", "notice": "桃鶯停車場僅電子支付；多多停可用現金／LINE PAY／悠遊卡／街口支付"}, "schedCycling": "", "schedAerobics": ""}, {"id": "v5", "name": "桃園正光廠", "phone": "03-392-1777", "address": "桃園市桃園區正光路339號", "mapsUrl": "", "hideFromSchedule": false, "facilities": ["fa1", "fa2", "fa3", "fa4", "fa5"], "park": {"loc": "廠館正後方（力行路右轉再右轉正光一街）", "fee": "逾時1小時50元，未滿1小時以1小時計", "discount": "不分平假日，每次折抵3小時", "notice": "離場前須至繳費機消磁；車輛不得停放超過晚上12點；不開放重機停放"}, "schedCycling": "", "schedAerobics": ""}, {"id": "v2", "name": "桃園經國廠", "phone": "03-355-5333", "address": "桃園市桃園區經國路116號", "mapsUrl": "", "hideFromSchedule": true, "facilities": ["fa3", "fa4"], "park": {"loc": "週邊停車格或附近私人停車場（汽車）／週邊停車格（機車）", "fee": "汽車30元/時（當日最高400元）；機車30元/次", "discount": "-", "notice": "依該停車場標示收費標準為主"}, "schedCycling": "", "schedAerobics": ""}, {"id": "v1", "name": "桃園復興廠", "phone": "03-339-3399", "address": "桃園市桃園區復興路207號B1", "mapsUrl": "", "hideFromSchedule": false, "facilities": ["fa1", "fa2", "fa3", "fa4"], "park": {"loc": "新光大樓B2~B4", "fee": "汽車40元/時；機車免費", "discount": "-", "notice": "24小時營業，當日上限200元"}, "schedCycling": "", "schedAerobics": ""}, {"id": "v4", "name": "桃園大有廠", "phone": "03-335-7575", "address": "桃園市桃園區民光東路81號1樓", "mapsUrl": "", "hideFromSchedule": false, "facilities": ["fa1", "fa2", "fa3", "fa4"], "park": {"loc": "新光三越（二館）地下B2停車場（汽車室內非機械式／重機可停，一般機車不可）", "fee": "汽車／重型機車 30元/30分鐘", "discount": "依車牌為單位，平日當日上限3小時、六日及國定假日上限2小時", "notice": "離場向櫃台報車號折抵，15分鐘內離場；週一至六00:00-06:00、週日00:00-08:00為非營業時間不可折抵；採車牌辨識入場"}, "schedCycling": "", "schedAerobics": ""}, {"id": "v7", "name": "桃園南崁廠", "phone": "03-322-7333", "address": "桃園市蘆竹區南平街11號", "mapsUrl": "", "hideFromSchedule": false, "facilities": ["fa1", "fa2", "fa3", "fa4"], "park": {"loc": "廠館對面／側邊停車場（汽車）／附近車格（機車）", "fee": "汽車50元/時；機車免費", "discount": "不分假日平日，會員運動可抵3小時/次", "notice": "折抵後至自動繳費機過卡，15分鐘內離場"}, "schedCycling": "", "schedAerobics": ""}], "faqs": [{"id": "f1", "q": "怎麼辦理入會？", "a": "直接聯絡 Peter 約時間到廠館參觀，現場說明方案並協助辦理，全程約 20-30 分鐘。"}, {"id": "f2", "q": "可以先免費體驗嗎？", "a": "可以，請透過下方表單或 LINE 聯絡 Peter 預約體驗時段。"}, {"id": "f3", "q": "停車真的能折抵嗎？", "a": "各廠館折抵規則略有不同，詳見各廠館頁面內的停車資訊，離場前記得至櫃台或繳費機辦理折抵。"}, {"id": "f4", "q": "可以跨廠館使用嗎？", "a": "依會籍卡別而定，部分卡別（如區卡）可跨廠館使用，詳細規則可洽詢 Peter。"}], "settings": {"adminPassword": "233009", "shareText": "我是健身工廠 Peter，桃園地區入會諮詢找我最快！", "lineOaId": "247dlvxp", "leadMessageTemplate": "【入會諮詢】\n姓名：{name}\n電話：{phone}\n方便聯絡時段：{time}\n需求：{note}", "liffId": "2011406415-bO24WvOi", "githubRawUrl": "https://xiangpin666.github.io/ff_peter/"}, "roster": {"2026-09": {}}, "facilities": [{"id": "fa1", "name": "有氧教室"}, {"id": "fa2", "name": "飛輪教室"}, {"id": "fa3", "name": "蒸氣室"}, {"id": "fa4", "name": "烤箱"}, {"id": "fa5", "name": "女性專區"}]}</script>
+<!--
+  這個標籤本身留空即可，不需要手動編輯。
+  它是給「後台 → 設定 → 下載 .html 檔案」功能使用的：
+  當你在後台編輯完內容並下載新檔案時，系統會把當下的完整資料寫進這裡，
+  讓下載出來的新檔案優先使用你編輯過的內容，而不是下面 SITE_CONFIG 裡的內建預設值。
+-->
+<script type="application/json" id="ff-seed-data">{}</script>
 
 <script>
 (function(){
+  // ============================================================
+  // 以下是儲存用的「鍵名」，對應到 window.storage 裡的資料格。
+  // 一般不需要更動。
+  // ============================================================
   const K = { profile:'ff-profile', venues:'ff-venues', faqs:'ff-faqs', settings:'ff-settings', roster:'ff-roster', facilities:'ff-facilities' };
 
-  const DEFAULT_PROFILE = {
-    name:'Peter 彼得', title:'健體顧問｜健身工廠 青埔廠', area:'📍 桃園地區皆可服務',
-    phone:'', lineUrl:'', photo:''
+  // ============================================================
+  // 🔧 網站資料設定區（SITE_CONFIG）
+  // ------------------------------------------------------------
+  // 新手主要只需要修改「這一個」物件裡的內容，就能改到前台顯示的
+  // 名片資訊、廠館列表、常見問答、設施標籤、以及各種系統設定。
+  // 下面所有渲染畫面的程式（renderProfile、renderVenues...）都是
+  // 讀取這裡的資料自動產生 HTML，不需要另外去 <body> 裡找地方改。
+  //
+  // 小提醒：
+  // ・文字裡要換行，請用 \n（例如 "第一行\n第二行"）
+  // ・新增/刪除一筆資料時，記得逗號 , 也要跟著調整，才不會有語法錯誤
+  // ・改完後直接存檔重新整理頁面即可看到效果
+  // ============================================================
+  const SITE_CONFIG = {
+    // 【個人名片】顯示在頁面最上方的大頭照、姓名、職稱、服務區域、以及四個按鈕的連結
+    "profile": {
+      "name": "Peter 彼得",
+      "title": "健體顧問｜健身工廠 青埔廠",
+      "area": "✨ 桃園全區廠館皆可為您服務 🔥\n🛠️ 當月優惠、方案諮詢、預約參觀，找我就對啦！",
+      "phone": "0916550855",
+      "lineUrl": "https://lin.ee/PmRNwlH",
+      "fbUrl": "666",
+      "igUrl": "666",
+      "photo": "https://github.com/xiangpin666/ff_peter/blob/main/Photo.jpg?raw=true"
+    },
+
+    // 【廠館列表】每一個 { ... } 代表一個廠館，可以直接複製一整組貼上、修改內容來新增廠館，
+    // 或整組刪除來移除廠館。順序就是「廠館據點」頁籤內顯示的順序。
+    // facilities 陣列要填設施的 id（對照下面 facilities 清單），mapsUrl 留空會自動用地址產生地圖連結。
+    "venues": [
+      {
+        "id": "v3",
+        "name": "桃園青埔廠",
+        "phone": "03-2872799",
+        "address": "桃園市中壢區永信路219號",
+        "mapsUrl": "https://reurl.cc/1lK8lW",
+        "hideFromSchedule": false,
+        "facilities": [
+          "fa1",
+          "fa2",
+          "fa3",
+          "fa4",
+          "fa5"
+        ],
+        "park": {
+          "loc": "廠館正後方",
+          "fee": "超時50元/小時；非會員300元/小時。",
+          "discount": "1、不分平假日，每次折抵3小時。\n2、離場前至櫃台報車牌數字。",
+          "notice": "折抵後須過繳費機。"
+        },
+        "schedImage": "https://raw.githubusercontent.com/xiangpin666/ff_peter/main/Qingpu.jpg.JPG"
+      },
+      {
+        "id": "v6",
+        "name": "桃園中壢廠",
+        "phone": "03-4345588",
+        "address": "桃園市中壢區中華路二段330號",
+        "mapsUrl": "https://reurl.cc/qaGpon",
+        "hideFromSchedule": false,
+        "facilities": [
+          "fa1",
+          "fa2",
+          "fa3",
+          "fa4",
+          "fa5"
+        ],
+        "park": {
+          "loc": "汽車 - B3室內停車場\n機車 - FF對面人行道及中園路劃位機車格",
+          "fee": "汽車50元/時",
+          "discount": "1、汽車：不分平假日，會員運動享3小時免費停車。\n2、折抵後至自動繳費機過卡，15分鐘內離場。",
+          "notice": "1、車卡至櫃台折抵後仍須插卡過繳費機消磁。\n2、B3 汽車停車場，需停放於FF停車牌格內，避免誤停社區住戶車位。"
+        },
+        "schedImage": "https://raw.githubusercontent.com/xiangpin666/ff_peter/main/Zhongli.jpg.JPG"
+      },
+      {
+        "id": "v1",
+        "name": "桃園復興廠",
+        "phone": "03-3393399",
+        "address": "桃園市桃園區復興路207號B1",
+        "mapsUrl": "https://reurl.cc/OQY6ny",
+        "hideFromSchedule": false,
+        "facilities": [
+          "fa1",
+          "fa2",
+          "fa3",
+          "fa4"
+        ],
+        "park": {
+          "loc": "新光大樓B2~B4",
+          "fee": "汽車40元/時；機車免費",
+          "discount": "-",
+          "notice": "24小時營業，當日上限200元。"
+        },
+        "schedImage": "https://raw.githubusercontent.com/xiangpin666/ff_peter/main/Fuxing.jpg.JPG"
+      },
+      {
+        "id": "v4",
+        "name": "桃園大有廠",
+        "phone": "03-3357575",
+        "address": "桃園市桃園區民光東路81號1樓",
+        "mapsUrl": "https://reurl.cc/8YDeRy",
+        "hideFromSchedule": false,
+        "facilities": [
+          "fa1",
+          "fa2",
+          "fa3",
+          "fa4"
+        ],
+        "park": {
+          "loc": "新光三越(二館)地下B2停車場\n- 汽車：室內(非機械式)\n- 機車： 重型機車可停放；一般機車不可停放",
+          "fee": "汽車/重型機車：30元/30分鐘",
+          "discount": "1、依車牌為單位，平日當日上限3小時、六日及國定假日上限2小時。\n2、離場時向櫃台報車號全碼(英文及數字)折抵。\n3、折抵完後須於15分鐘內離場。",
+          "notice": "1、健身工廠營業時間可搭乘電梯直達新光三越二館一樓後門(民有六街側)。\n2、非健身工廠營業時間及非入館運動不可折抵。(周一至六00時至06時、週日00時至08時為非營業時間)\n3、採取票車牌辨識方式入場，離場前須至繳費機過號。\n4、行駛重機者須按對講機連接客服，由客服協助輸入車牌號碼，離場前再按對講機由客服確認無誤後遠端開啟柵欄機即可駛離。"
+        },
+        "schedImage": "https://raw.githubusercontent.com/xiangpin666/ff_peter/main/Dayou.jpg.JPG"
+      },
+      {
+        "id": "v2",
+        "name": "桃園經國廠",
+        "phone": "03-3555333",
+        "address": "桃園市桃園區經國路116號",
+        "mapsUrl": "https://reurl.cc/Z842dM",
+        "hideFromSchedule": true,
+        "facilities": [
+          "fa3",
+          "fa4"
+        ],
+        "park": {
+          "loc": "- 汽車：週邊停車格或附近私人停車場\n- 機車：週邊停車格",
+          "fee": "- 汽車：30元/時 (當日最高400元)\n- 機車：30元/次",
+          "discount": "-",
+          "notice": "依該停車場標示收費標準為主。"
+        },
+        "schedImage": ""
+      },
+      {
+        "id": "v5",
+        "name": "桃園正光廠",
+        "phone": "03-3921777",
+        "address": "桃園市桃園區正光路339號",
+        "mapsUrl": "https://reurl.cc/1lK8aV",
+        "hideFromSchedule": false,
+        "facilities": [
+          "fa1",
+          "fa2",
+          "fa3",
+          "fa4",
+          "fa5"
+        ],
+        "park": {
+          "loc": "廠館正後方(力行路右轉再右轉正光一街)",
+          "fee": "逾時1小時收取50元，未滿1小時者，以1小時50元計算，以此類推。",
+          "discount": "1、不分平假日，每次折抵3小時。\n2、離廠前至櫃台報車牌數字折抵。",
+          "notice": "1、離場前須至繳費機消磁後再行出場。\n2、所有車輛停放，均不得超過閉店時間晚上12點，違者一律依法拖離，不得有異議。\n3、不開放重機停放，請至周圍路邊機車格或機車停車場。"
+        },
+        "schedImage": "https://raw.githubusercontent.com/xiangpin666/ff_peter/main/Zhengguang.jpg.JPG"
+      },
+      {
+        "id": "v7",
+        "name": "桃園南崁廠",
+        "phone": "03-3227333",
+        "address": "桃園市蘆竹區南平街11號",
+        "mapsUrl": "https://reurl.cc/Lea2zy",
+        "hideFromSchedule": false,
+        "facilities": [
+          "fa1",
+          "fa2",
+          "fa3",
+          "fa4"
+        ],
+        "park": {
+          "loc": "汽車 - 廠館對面 / 側邊停車場\n機車 - 附近停車格",
+          "fee": "汽車 - 50元/時\n機車 - 免費",
+          "discount": "1、不分假日平日，會員運動可抵3小時/次。\n2、折抵後至自動繳費機過卡，15分鐘內離場。",
+          "notice": "-"
+        },
+        "schedImage": "https://raw.githubusercontent.com/xiangpin666/ff_peter/main/Nankan.jpg.JPG"
+      },
+      {
+        "id": "v8",
+        "name": "桃園桃鶯廠",
+        "phone": "03-3642-999",
+        "address": "桃園市桃園區桃鶯路196號3樓",
+        "mapsUrl": "https://reurl.cc/7YKEQQ",
+        "hideFromSchedule": false,
+        "facilities": [
+          "fa3",
+          "fa4"
+        ],
+        "park": {
+          "loc": "汽車 - 桃鶯停車場 / 多多停(大豐場)\n機車 - 全聯、星巴克周邊空白停車格",
+          "fee": "- 桃鶯停車場：每半小時40元(最高12hr/180元)\n   付款方式：僅電子支付\n\n- 多多停(大豐場)：平日每半小時/15元、例假日每半小時/20元 (24HR內/160元)\n   付款方式：現金、LINE PAY、悠遊卡、街口支付",
+          "discount": "無折抵",
+          "notice": ""
+        },
+        "schedImage": ""
+      }
+    ],
+
+    // 【常見問題】每一個 { ... } 是一組問答，q 是問題、a 是答案（答案內用 \n 換行）
+    // 這裡的順序就是前台顯示的順序，也可以直接在後台「常見問題」頁籤裡用拖曳或上下鍵調整順序
+    "faqs": [
+      {
+        "id": "f1",
+        "q": "廠館營業時間？",
+        "a": "週一至週六 AM06:00-PM24:00；週日 AM08:00-PM24:00 (不分國定假日)。"
+      },
+      {
+        "id": "ideza5m4d",
+        "q": "請問銀卡/鈦銀卡會員的限制時段？",
+        "a": "• 銀卡會員：週一至週五 17:00 ~ 21:00、週六至週日 13:00 ~ 17:00\n• 鈦銀卡會員：週一至週五 17:00 ~ 24:00、週六至週日 無限制 \n(以上均不分國定假日)"
+      },
+      {
+        "id": "idt6v66it",
+        "q": "請問如何預約體驗？",
+        "a": "填寫下方表單並點擊「立即預約參觀」，我會盡快跟您聯絡！"
+      },
+      {
+        "id": "idix15r46",
+        "q": "請問你們費用怎麼算？有甚麼優惠？",
+        "a": "每個月的優惠活動都不太一樣，直接加我的 Line 官方帳號，讓我來為您詳細解答！"
+      },
+      {
+        "id": "idoyncl4p",
+        "q": "入會 / 體驗 年齡限制？",
+        "a": "13歲以上即可入會，但13~18歲之間使用「體驗券」、「單日券」或「簽約」，需要有監護人陪同！※若僅單純參觀不需監護人陪同"
+      },
+      {
+        "id": "idoalc0x6",
+        "q": "我想帶朋友來體驗，但我的健體顧問在其他廠有關係嗎？",
+        "a": "直接找我洽詢就可以囉！一樣可以為您服務，最晚請於體驗日前一天先做預約。"
+      },
+      {
+        "id": "ids7c2793",
+        "q": "如何續約？",
+        "a": "直接找我協助您辦理就可以囉！"
+      },
+      {
+        "id": "f3",
+        "q": "廠館內可以拍照嗎？",
+        "a": "廠館內並無特別規範，但基於個資法及個人隱私問題，請勿拍攝到其他會員，或在更衣間內、有氧/飛輪團課教室進行中，皆禁止拍照/攝影/視訊等行為。"
+      },
+      {
+        "id": "f4",
+        "q": "廠館內是否可以飲食？",
+        "a": "廠館運動區域內皆禁止飲食，感謝您的配合，也提醒您，切勿空腹運動，避免血糖過低，造成危險；另外為避免影響消化，建議您用餐後休息1小時再運動。"
+      },
+      {
+        "id": "f2",
+        "q": "颱風天有營業嗎？",
+        "a": "颱風天基本上廠館均正常營業，但建議您可先致電廠館確認營業時間，另若遇政府公告停班停課，當天自公告時間後之有氧課程將全部暫停。"
+      },
+      {
+        "id": "idgd2cavc",
+        "q": "線上「會員服務中心」服務資訊",
+        "a": "為維護及確保會員權益，若有任何問題，您可以洽詢會員APP的線上會員服務中心處理，如遇APP會員服務中心等候較久的情形，歡迎撥打專線0800-303030(手機請撥07-2620009)，服務時間為09:00~18:00。也歡迎來信至mscpwind@qbicloud.com，將由專人為您服務，謝謝您。\n\n會員服務中心E-Mail申辦方式如下:\n 來信內容請附上個人資料以查詢會員資訊\n一、信件標題：會員姓名/身分證字號/申請事項\n二、信件內容：申辦項目/事由、日期或相關申請期間(年/月/日~年/月/日)並檢附相關證明文件\n\n來信後七日內將由客服專員為您服務，郵件寄出申請日等同會員提出申請日，感謝您的耐心等候。"
+      },
+      {
+        "id": "idpfijth4",
+        "q": "如何查詢會籍合約到期日？",
+        "a": "有會員相關的問題，都可以直接到 健身工廠APP 的會員服務中心查詢。"
+      },
+      {
+        "id": "id6aogx2o",
+        "q": "如何查詢合約的每月扣款日幾號？",
+        "a": "每月扣款日跟與您的會籍開啟日為同一天，除非遇到特殊狀況，需配合銀行端作業才會調整。"
+      },
+      {
+        "id": "idjh8ec93",
+        "q": "如何辦理會籍暫停？需要親自辦理嗎？",
+        "a": "請備妥相關文件，以會員APP的「會員服務中心」申請，如遇「會員服務中心」等候較久的情形，可致電專線0800-303030(手機請撥07-2620009)，服務時間為09:00~18:00。或將相關文件寄至E-Mail：mscpwind@qbicloud.com。\n\n來信內容如下\n一、信件標題：會員姓名/身分證字號/申請事項\n二、信件內容：申辦項目/事由、日期或相關申請期間(年/月/日~年/月/日)並檢附相關證明文件。\n\n來信後七日內將由客服專員為您服務，郵件寄出申請日等同會員提出申請日，感謝您的耐心等候。"
+      },
+      {
+        "id": "id8lhv5bq",
+        "q": "會籍請假中，可以提早回來運動嗎？",
+        "a": "可以，您可以選擇辦理足月開啟會籍或支付暫停期間使用費，詳情歡迎洽詢各廠館櫃檯或線上「會員服務中心」。"
+      },
+      {
+        "id": "idipw9pnx",
+        "q": "請問如何辦理會籍轉館？",
+        "a": "建議您先至未來欲使用廠館參觀確認環境後，轉館手續詳情歡迎洽詢線上「會員服務中心」；提醒您合約首次轉館免收取手續費，自第二次起手續費1,000元；轉館後之月費以原廠及新廠月費高者為據，若以當月月費週期計算，則須補足月費差額。"
+      },
+      {
+        "id": "idiu0xlzk",
+        "q": "我想要增加廠館使用/無時段限制？",
+        "a": "您可辦理會籍升等，詳情歡迎洽詢線上「會員服務中心」。"
+      }
+    ],
+
+    // 【設施標籤庫】所有廠館可選用的設施種類，每個設施有唯一的 id，
+    // 上面廠館資料裡的 "facilities" 陣列就是用這裡的 id 來勾選要顯示哪些標籤
+    "facilities": [
+      {
+        "id": "fa1",
+        "name": "有氧教室"
+      },
+      {
+        "id": "fa2",
+        "name": "飛輪教室"
+      },
+      {
+        "id": "fa3",
+        "name": "蒸氣室"
+      },
+      {
+        "id": "fa4",
+        "name": "烤箱"
+      },
+      {
+        "id": "fa5",
+        "name": "女性專區"
+      }
+    ],
+
+    // 【系統設定】後台密碼、分享文字、LINE 官方帳號、諮詢訊息範本、LIFF ID 等
+    "settings": {
+      "adminPassword": "233009",
+      "shareText": "💪 健身工廠 健體顧問｜Peter 彼得 🎯\n\n✨ 桃園全區廠館皆可服務 🔥\n📍 經國廠 ｜ 中壢廠 ｜ 南崁廠 ｜ 青埔廠 \n       大有廠 ｜ 正光廠 ｜ 復興廠 ｜ 桃鶯廠\n\n✨ 專屬服務項目：\n🏷️ 入會優惠與方案規劃\n🏃‍♂️ 免費預約環境參觀與體驗\n💡 健身疑難雜症諮詢\n\n✨ 想預約參觀、諮詢專屬優惠\n📲 點擊下方加入 Line 官方👇\n🔗 https://reurl.cc/NOYxy9",
+      "lineOaId": "247dlvxp",
+      "leadMessageTemplate": "📋【 預約參觀及諮詢 】📝\n\n✨ 姓名：{name}\n📞 電話：{phone}\n⏰ 方便聯絡時段：{time}\n💬 需求備註：{note}\n🎯 指定預約：Peter 彼得\n\n💡感謝您的填寫，我會盡快與您聯繫！💪",
+      "liffId": "2011406415-bO24WvOi",
+      "githubRawUrl": "https://xiangpin666.github.io/ff_peter/",
+      "announcementText": "💡 溫馨提醒：為了能親自帶您參觀解說，預約參觀都會安排在上班日唷🙏"
+    }
   };
-  const DEFAULT_LEAD_TEMPLATE = '【入會諮詢】\n姓名：{name}\n電話：{phone}\n方便聯絡時段：{time}\n需求：{note}';
-  const DEFAULT_SETTINGS = {
-    adminPassword:'233009',
-    shareText:'我是健身工廠 Peter，桃園地區入會諮詢找我最快！',
-    lineOaId:'247dlvxp',
-    leadMessageTemplate: DEFAULT_LEAD_TEMPLATE,
-    liffId:'2011406415-bO24WvOi',
-    githubRawUrl:''
-  };
-  const DEFAULT_FAQS = [
-    {id:'f1', q:'怎麼辦理入會？', a:'直接聯絡 Peter 約時間到廠館參觀，現場說明方案並協助辦理，全程約 20-30 分鐘。'},
-    {id:'f2', q:'可以先免費體驗嗎？', a:'可以，請透過下方表單或 LINE 聯絡 Peter 預約體驗時段。'},
-    {id:'f3', q:'停車真的能折抵嗎？', a:'各廠館折抵規則略有不同，詳見各廠館頁面內的停車資訊，離場前記得至櫃台或繳費機辦理折抵。'},
-    {id:'f4', q:'可以跨廠館使用嗎？', a:'依會籍卡別而定，部分卡別（如區卡）可跨廠館使用，詳細規則可洽詢 Peter。'}
-  ];
-  const DEFAULT_FACILITIES = [
-    {id:'fa1', name:'有氧教室'}, {id:'fa2', name:'飛輪教室'}, {id:'fa3', name:'蒸氣室'},
-    {id:'fa4', name:'烤箱'}, {id:'fa5', name:'女性專區'}
-  ];
-  const DEFAULT_VENUES = [
-    {id:'v3', name:'桃園青埔廠', phone:'03-287-2799', address:'桃園市中壢區永信路219號', mapsUrl:'', hideFromSchedule:false,
-      facilities:['fa1','fa2','fa3','fa4','fa5'],
-      park:{loc:'廠館正後方', fee:'超時50元/小時；非會員300元/小時', discount:'不分平假日，每次折抵3小時', notice:'折抵後須過繳費機'},
-      schedCycling:'', schedAerobics:''},
-    {id:'v6', name:'桃園中壢廠', phone:'03-434-5588', address:'桃園市中壢區中華路二段330號', mapsUrl:'', hideFromSchedule:false,
-      facilities:['fa1','fa2','fa3','fa4','fa5'],
-      park:{loc:'B3室內停車場（汽車）／FF對面人行道及中園路劃位機車格（機車）', fee:'汽車50元/時', discount:'不分平假日會員運動享3小時免費停車', notice:'折抵後仍須插卡過繳費機消磁；B3需停放於FF停車牌格內'},
-      schedCycling:'', schedAerobics:''},
-    {id:'v8', name:'桃園桃鶯廠', phone:'03-3642-999', address:'桃園市桃園區桃鶯路196號3樓', mapsUrl:'', hideFromSchedule:false,
-      facilities:['fa1','fa2','fa3','fa4'],
-      park:{loc:'桃園桃鶯停車場／多多停（大豐場）（汽車）；全聯、星巴克周邊空白停車格（機車）', fee:'桃鶯停車場每半小時40元（最高12hr/180元）；多多停平日每半小時15元、例假日20元（24hr內160元）', discount:'無折抵', notice:'桃鶯停車場僅電子支付；多多停可用現金／LINE PAY／悠遊卡／街口支付'},
-      schedCycling:'', schedAerobics:''},
-    {id:'v5', name:'桃園正光廠', phone:'03-392-1777', address:'桃園市桃園區正光路339號', mapsUrl:'', hideFromSchedule:false,
-      facilities:['fa1','fa2','fa3','fa4','fa5'],
-      park:{loc:'廠館正後方（力行路右轉再右轉正光一街）', fee:'逾時1小時50元，未滿1小時以1小時計', discount:'不分平假日，每次折抵3小時', notice:'離場前須至繳費機消磁；車輛不得停放超過晚上12點；不開放重機停放'},
-      schedCycling:'', schedAerobics:''},
-    {id:'v2', name:'桃園經國廠', phone:'03-355-5333', address:'桃園市桃園區經國路116號', mapsUrl:'', hideFromSchedule:true,
-      facilities:['fa3','fa4'],
-      park:{loc:'週邊停車格或附近私人停車場（汽車）／週邊停車格（機車）', fee:'汽車30元/時（當日最高400元）；機車30元/次', discount:'-', notice:'依該停車場標示收費標準為主'},
-      schedCycling:'', schedAerobics:''},
-    {id:'v1', name:'桃園復興廠', phone:'03-339-3399', address:'桃園市桃園區復興路207號B1', mapsUrl:'', hideFromSchedule:false,
-      facilities:['fa1','fa2','fa3','fa4'],
-      park:{loc:'新光大樓B2~B4', fee:'汽車40元/時；機車免費', discount:'-', notice:'24小時營業，當日上限200元'},
-      schedCycling:'', schedAerobics:''},
-    {id:'v4', name:'桃園大有廠', phone:'03-335-7575', address:'桃園市桃園區民光東路81號1樓', mapsUrl:'', hideFromSchedule:false,
-      facilities:['fa1','fa2','fa3','fa4'],
-      park:{loc:'新光三越（二館）地下B2停車場（汽車室內非機械式／重機可停，一般機車不可）', fee:'汽車／重型機車 30元/30分鐘', discount:'依車牌為單位，平日當日上限3小時、六日及國定假日上限2小時', notice:'離場向櫃台報車號折抵，15分鐘內離場；週一至六00:00-06:00、週日00:00-08:00為非營業時間不可折抵；採車牌辨識入場'},
-      schedCycling:'', schedAerobics:''},
-    {id:'v7', name:'桃園南崁廠', phone:'03-322-7333', address:'桃園市蘆竹區南平街11號', mapsUrl:'', hideFromSchedule:false,
-      facilities:['fa1','fa2','fa3','fa4'],
-      park:{loc:'廠館對面／側邊停車場（汽車）／附近車格（機車）', fee:'汽車50元/時；機車免費', discount:'不分假日平日，會員運動可抵3小時/次', notice:'折抵後至自動繳費機過卡，15分鐘內離場'},
-      schedCycling:'', schedAerobics:''}
-  ];
+
+  // 以下這幾行只是把 SITE_CONFIG 各區塊，接到程式後面實際使用的變數名稱，
+  // 通常不需要更動。
+  const DEFAULT_PROFILE = SITE_CONFIG.profile;
+  const DEFAULT_SETTINGS = SITE_CONFIG.settings;
+  const DEFAULT_LEAD_TEMPLATE = SITE_CONFIG.settings.leadMessageTemplate;
+  const DEFAULT_FAQS = SITE_CONFIG.faqs;
+  const DEFAULT_FACILITIES = SITE_CONFIG.facilities;
+  const DEFAULT_VENUES = SITE_CONFIG.venues;
 
   const SHIFTS = [
     { v:'', label:'未設定' },
@@ -1379,6 +830,10 @@
     document.getElementById('dirty-banner').classList.toggle('show', isAnyDirty());
   }
 
+  // ============================================================
+  // 🚀 初始化：頁面載入時會先跑這裡，決定資料要從哪裡讀
+  // 優先順序：window.storage（後台曾編輯過）> ff-seed-data（下載匯出時寫入）> SITE_CONFIG（內建預設值）
+  // ============================================================
   async function init(){
     state.profile = await sget(K.profile, true);
     if(!state.profile){ state.profile = SEED.profile || DEFAULT_PROFILE; await sset(K.profile, state.profile, true); }
@@ -1389,6 +844,7 @@
     if(!state.settings.leadMessageTemplate) state.settings.leadMessageTemplate = DEFAULT_LEAD_TEMPLATE;
     if(state.settings.liffId === undefined) state.settings.liffId = '';
     if(state.settings.githubRawUrl === undefined) state.settings.githubRawUrl = '';
+    if(state.settings.announcementText === undefined) state.settings.announcementText = DEFAULT_SETTINGS.announcementText;
 
     state.facilities = await sget(K.facilities, true);
     if(!state.facilities){ state.facilities = SEED.facilities || DEFAULT_FACILITIES; await sset(K.facilities, state.facilities, true); }
@@ -1402,9 +858,23 @@
     state.roster = await sget(K.roster, true);
     if(!state.roster){ state.roster = SEED.roster || {}; }
 
+    /* 不管這個 HTML 檔案裡原本寫死哪個分頁是 active（例如下載存檔時剛好停在別的分頁），
+       頁面一開啟一律強制回到最前面的「廠館據點」分頁，避免每次重新打開檔案畫面卻停在別處 */
+    resetToDefaultTab();
+
     renderAll();
     setupUpdateChecker();
     setupLiff();
+  }
+
+  /* 強制回到預設分頁（廠館據點），開啟頁面時一定會呼叫一次 */
+  function resetToDefaultTab(){
+    document.querySelectorAll('.tab').forEach(x=> x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(x=> x.classList.remove('active'));
+    const defaultTab = document.querySelector('.tab[data-tab="venues"]');
+    const defaultPanel = document.getElementById('panel-venues');
+    if(defaultTab) defaultTab.classList.add('active');
+    if(defaultPanel) defaultPanel.classList.add('active');
   }
 
   /* ---------- LIFF (LINE Front-end Framework) ---------- */
@@ -1422,12 +892,23 @@
     }
   }
 
+  // ============================================================
+  // 🖼️ 以下是「前台」畫面渲染邏輯：把 state 裡的資料轉成 HTML 顯示出來
+  // ============================================================
   function renderAll(){
     renderProfile();
     renderVenues();
     renderSchedSelect();
     renderFaqs();
     renderRoster();
+    renderAnnouncement();
+  }
+
+  function renderAnnouncement(){
+    const el = document.getElementById('lead-reminder');
+    const text = (state.settings && state.settings.announcementText) || '';
+    el.textContent = text;
+    el.classList.toggle('show', !!text.trim());
   }
 
   /* ---------- PROFILE ---------- */
@@ -1446,10 +927,14 @@
     const callBtn = document.getElementById('p-call');
     callBtn.href = p.phone ? ('tel:'+p.phone.replace(/[^\d+]/g,'')) : '#';
     callBtn.onclick = p.phone ? null : (e)=>{e.preventDefault(); showToast('尚未設定電話');};
+    const fbBtn = document.getElementById('p-fb');
+    if(p.fbUrl){ fbBtn.href = p.fbUrl; fbBtn.style.display='flex'; } else { fbBtn.style.display='none'; }
+    const igBtn = document.getElementById('p-ig');
+    if(p.igUrl){ igBtn.href = p.igUrl; igBtn.style.display='flex'; } else { igBtn.style.display='none'; }
   }
 
   document.getElementById('p-share').addEventListener('click', ()=>{
-    const text = ((state.settings && state.settings.shareText) || '') + '\n' + location.href;
+    const text = (state.settings && state.settings.shareText) || location.href;
     window.open('https://line.me/R/msg/text/?' + encodeURIComponent(text), '_blank');
   });
 
@@ -1477,10 +962,10 @@
           <a class="row-link" href="${telUrl(v.phone)}"><span class="row-ic">📞</span>${escHtml(v.phone)}</a>
           <a class="row-link" href="${mapHref}" target="_blank" rel="noopener"><span class="row-ic">📍</span>${escHtml(v.address)}</a>
           <div class="park-block">
-            <div class="park-item"><b>🚗 停車位置：</b>${escHtml(v.park.loc)}</div>
-            <div class="park-item"><b>💰 收費規則：</b>${escHtml(v.park.fee)}</div>
-            <div class="park-item"><b>🎫 折抵優惠：</b>${escHtml(v.park.discount)}</div>
-            <div class="park-item"><b>⚠️ 注意事項：</b>${escHtml(v.park.notice)}</div>
+            <div class="park-item"><b>🚗 停車位置：</b>${formatMultiline(v.park.loc)}</div>
+            <div class="park-item"><b>💰 收費規則：</b>${formatMultiline(v.park.fee)}</div>
+            <div class="park-item"><b>🎫 折抵優惠：</b>${formatMultiline(v.park.discount)}</div>
+            <div class="park-item"><b>⚠️ 注意事項：</b>${formatMultiline(v.park.notice)}</div>
           </div>
         </div>
       </div>
@@ -1506,8 +991,7 @@
     const wrap = document.getElementById('sched-imgs');
     if(!v){ wrap.innerHTML=''; return; }
     wrap.innerHTML = `
-      <div class="sched-block"><h3>🚴 飛輪課表</h3>${v.schedCycling ? `<img src="${v.schedCycling}">` : `<div class="sched-empty">本廠館尚未上傳飛輪課表</div>`}</div>
-      <div class="sched-block"><h3>🔥 有氧課表</h3>${v.schedAerobics ? `<img src="${v.schedAerobics}">` : `<div class="sched-empty">本廠館尚未上傳有氧課表</div>`}</div>
+      <div class="sched-block"><h3>🗓️ ${escHtml(v.name)} 有氧/飛輪 課程表</h3>${v.schedImage ? `<img src="${v.schedImage}">` : `<div class="sched-empty">本廠館尚未上傳當月課表</div>`}</div>
     `;
   }
 
@@ -1534,7 +1018,7 @@
     }
     grid.innerHTML = html;
     document.getElementById('roster-legend').innerHTML =
-      `<span><span class="legend-dot" style="background:var(--yellow)"></span>上班時段</span>
+      `<span><span class="legend-dot" style="background:var(--yellow)"></span>上班(上班時段)</span>
        <span><span class="legend-dot" style="background:#555"></span>休假</span>`;
   }
 
@@ -1553,7 +1037,7 @@
     });
   }
 
-  /* ---------- TABS ---------- */
+  /* ---------- 分頁切換（廠館／課表／班表／FAQ） ---------- */
   document.querySelectorAll('.tab').forEach(t=>{
     t.addEventListener('click', ()=>{
       document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
@@ -1563,7 +1047,7 @@
     });
   });
 
-  /* ---------- LEAD FORM ---------- */
+  /* ---------- 底部諮詢表單送出邏輯 ---------- */
   const leadPhoneInput = document.getElementById('lead-phone');
   leadPhoneInput.addEventListener('input', ()=>{
     leadPhoneInput.value = leadPhoneInput.value.replace(/\D/g,'').slice(0,8);
@@ -1597,7 +1081,7 @@
         if(canSend){
           await liff.sendMessages([{ type:'text', text: msg }]);
           sentViaLiff = true;
-          showToast('已自動送出諮詢給 Peter(彼得)！');
+          showToast('已自動送出諮詢給 Peter 彼得！');
         }
       }catch(e){
         console.error('liff.sendMessages failed', e);
@@ -1612,12 +1096,12 @@
         showToast('正在為您開啟 LINE…');
         window.open('https://line.me/R/oaMessage/@' + oaId + '/?' + encodeURIComponent(msg), '_blank');
       } else {
-        showToast('尚未設定 LINE 官方帳號，請聯繫 Peter(彼得)');
+        showToast('尚未設定 LINE 官方帳號，請聯繫 Peter 彼得');
       }
     }
   });
 
-  /* ---------- UPDATE CHECK ---------- */
+  /* ---------- 自動偵測新版本（比對 GitHub Raw 網址） ---------- */
   function setupUpdateChecker(){
     if(updateCheckTimer){ clearInterval(updateCheckTimer); updateCheckTimer = null; }
     const url = state.settings.githubRawUrl;
@@ -1650,7 +1134,7 @@
     }catch(e){ /* silent — likely offline or CORS restricted in this preview */ }
   }
 
-  /* ---------- DOWNLOAD HTML SNAPSHOT ---------- */
+  /* ---------- 「下載 .html 檔案」：把目前資料打包匯出成新檔案 ---------- */
   document.getElementById('download-html').addEventListener('click', (e)=>{
     e.preventDefault();
     const seedObj = {
@@ -1659,18 +1143,33 @@
     };
     document.getElementById('ff-seed-data').textContent = JSON.stringify(seedObj);
     const newVersion = 'v' + Date.now().toString(36);
-    let htmlText = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
-    htmlText = htmlText.replace(/<meta name="ff-version" content="[^"]*">/, `<meta name="ff-version" content="${newVersion}">`);
-    /* 清除目前畫面上的暫時性UI狀態（後台開啟、手風琴展開等），確保下載後的檔案一律以前台畫面開啟 */
-    htmlText = htmlText
-      .replace(/class="overlay show"/g, 'class="overlay"')
-      .replace(/class="dirty-banner show"/g, 'class="dirty-banner"')
-      .replace(/class="toast show"/g, 'class="toast"')
-      .replace(/id="admin-login" class="login-box" style="display:\s*none;?"/g, 'id="admin-login" class="login-box"')
-      .replace(/id="admin-main" style="display:\s*block;?"/g, 'id="admin-main" style="display:none;"')
-      .replace(/class="venue open"/g, 'class="venue"')
-      .replace(/class="faq open"/g, 'class="faq"')
-      .replace(/class="admin-card open"/g, 'class="admin-card"');
+    document.querySelector('meta[name="ff-version"]').setAttribute('content', newVersion);
+
+    /* 用「畫面副本」而非文字比對來清除暫時性UI狀態，避免修改到程式碼本身的文字內容 */
+    const clone = document.documentElement.cloneNode(true);
+    const q = (sel)=> clone.querySelector(sel);
+    const qa = (sel)=> clone.querySelectorAll(sel);
+    if(q('#admin-overlay')) q('#admin-overlay').classList.remove('show');
+    if(q('#admin-login')) q('#admin-login').removeAttribute('style');
+    if(q('#admin-main')) q('#admin-main').style.display = 'none';
+    if(q('#toast')) q('#toast').classList.remove('show');
+    if(q('#dirty-banner')) q('#dirty-banner').classList.remove('show');
+    qa('.venue.open').forEach(el=> el.classList.remove('open'));
+    /* 清除 LIFF SDK 執行時動態注入的輔助腳本，避免每次下載都把它們一起存進檔案、越存越多 */
+    qa('script[src*="static.line-scdn.net/liff/edge"]').forEach(el=>{
+      const src = el.getAttribute('src') || '';
+      if(!/\/sdk\.js(\?|$)/.test(src)) el.remove();
+    });
+    qa('.faq.open').forEach(el=> el.classList.remove('open'));
+    qa('.admin-card.open').forEach(el=> el.classList.remove('open'));
+    /* 前台分頁一律存成「廠館據點」為預設，避免下載當下剛好停在別的分頁，
+       之後打開檔案時卻沒有顯示在最前面的廠館據點畫面 */
+    qa('.tab').forEach(el=> el.classList.remove('active'));
+    qa('.panel').forEach(el=> el.classList.remove('active'));
+    if(q('.tab[data-tab="venues"]')) q('.tab[data-tab="venues"]').classList.add('active');
+    if(q('#panel-venues')) q('#panel-venues').classList.add('active');
+
+    const htmlText = '<!DOCTYPE html>\n' + clone.outerHTML;
     const blob = new Blob([htmlText], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -1684,6 +1183,9 @@
     showToast('已下載目前版本的 .html 檔案');
   });
 
+  // ============================================================
+  // 🔐 以下是「後台管理」的邏輯：登入、各分頁表單、以及各種新增/刪除/排序
+  // ============================================================
   /* ================= ADMIN ================= */
   const overlay = document.getElementById('admin-overlay');
   document.getElementById('admin-open').addEventListener('click', e=>{
@@ -1735,12 +1237,14 @@
   });
 
   function fillAdminForms(){
-    document.getElementById('storage-warning').style.display = STORAGE_AVAILABLE ? 'none' : 'block';
     document.getElementById('a-name').value = state.profile.name || '';
     document.getElementById('a-title').value = state.profile.title || '';
     document.getElementById('a-area').value = state.profile.area || '';
     document.getElementById('a-phone').value = state.profile.phone || '';
     document.getElementById('a-line').value = state.profile.lineUrl || '';
+    document.getElementById('a-fb').value = state.profile.fbUrl || '';
+    document.getElementById('a-ig').value = state.profile.igUrl || '';
+    document.getElementById('a-photo-url').value = state.profile.photo || '';
     const prev = document.getElementById('a-photo-preview');
     if(state.profile.photo){ prev.src = state.profile.photo; prev.style.display='block'; } else prev.style.display='none';
     document.getElementById('a-sharetext').value = state.settings.shareText || '';
@@ -1748,6 +1252,7 @@
     document.getElementById('a-lead-template').value = state.settings.leadMessageTemplate || DEFAULT_LEAD_TEMPLATE;
     document.getElementById('a-liffid').value = state.settings.liffId || '';
     document.getElementById('a-rawurl').value = state.settings.githubRawUrl || '';
+    document.getElementById('a-announce').value = state.settings.announcementText || '';
     document.getElementById('a-roster-month').value = ymNow();
     curSchedVenueId = null; curRosterYm = null;
     renderAdminVenueList();
@@ -1760,62 +1265,43 @@
   }
 
   function wireProfileDirtyTracking(){
-    ['a-name','a-title','a-area','a-phone','a-line'].forEach(id=>{
+    ['a-name','a-title','a-area','a-phone','a-line','a-fb','a-ig'].forEach(id=>{
       document.getElementById(id).oninput = ()=> setDirty('profile');
     });
   }
   function wireSettingsDirtyTracking(){
-    ['a-oaid','a-lead-template','a-sharetext','a-liffid','a-rawurl'].forEach(id=>{
+    ['a-oaid','a-lead-template','a-sharetext','a-liffid','a-rawurl','a-announce'].forEach(id=>{
       document.getElementById(id).oninput = ()=> setDirty('settings');
     });
   }
 
-  /* photo upload + compress (banner style) */
-  document.getElementById('a-photo-file').addEventListener('change', (e)=>{
-    const file = e.target.files[0];
-    if(!file) return;
-    const reader = new FileReader();
-    reader.onload = (ev)=>{
-      const img = new Image();
-      img.onload = ()=>{
-        const maxDim = 600;
-        let w = img.width, h = img.height;
-        if(w > h && w > maxDim){ h = Math.round(h * maxDim / w); w = maxDim; }
-        else if(h > maxDim){ w = Math.round(w * maxDim / h); h = maxDim; }
-        const canvas = document.createElement('canvas');
-        canvas.width = w; canvas.height = h;
-        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-        const dataUrl = canvas.toDataURL('image/jpeg', 0.75);
-        document.getElementById('a-photo-preview').src = dataUrl;
-        document.getElementById('a-photo-preview').style.display = 'block';
-        document.getElementById('a-photo-preview').dataset.pending = dataUrl;
-        setDirty('profile');
-      };
-      img.src = ev.target.result;
-    };
-    reader.readAsDataURL(file);
+  /* photo: paste URL, same approach as schedule images */
+  document.getElementById('a-photo-url').addEventListener('input', ()=>{
+    const url = document.getElementById('a-photo-url').value.trim();
+    const prev = document.getElementById('a-photo-preview');
+    if(url){ prev.src = url; prev.style.display = 'block'; }
+    else { prev.style.display = 'none'; prev.src = ''; }
+    setDirty('profile');
   });
   document.getElementById('a-photo-remove').addEventListener('click', ()=>{
+    document.getElementById('a-photo-url').value = '';
     const prev = document.getElementById('a-photo-preview');
-    prev.style.display='none'; prev.src=''; prev.dataset.pending = '__remove__';
-    document.getElementById('a-photo-file').value = '';
+    prev.style.display='none'; prev.src='';
     setDirty('profile');
   });
 
   function commitProfileFromDom(){
-    const prev = document.getElementById('a-photo-preview');
-    let photo = state.profile.photo || '';
-    if(prev.dataset.pending === '__remove__') photo = '';
-    else if(prev.dataset.pending) photo = prev.dataset.pending;
+    const photo = document.getElementById('a-photo-url').value.trim();
     state.profile = {
       name: document.getElementById('a-name').value.trim(),
       title: document.getElementById('a-title').value.trim(),
       area: document.getElementById('a-area').value.trim(),
       phone: document.getElementById('a-phone').value.trim(),
       lineUrl: document.getElementById('a-line').value.trim(),
+      fbUrl: document.getElementById('a-fb').value.trim(),
+      igUrl: document.getElementById('a-ig').value.trim(),
       photo: photo
     };
-    delete prev.dataset.pending;
   }
   function commitSettingsFromDom(){
     state.settings.lineOaId = document.getElementById('a-oaid').value.trim().replace(/^@/,'');
@@ -1823,6 +1309,7 @@
     state.settings.shareText = document.getElementById('a-sharetext').value.trim();
     state.settings.liffId = document.getElementById('a-liffid').value.trim();
     state.settings.githubRawUrl = document.getElementById('a-rawurl').value.trim();
+    state.settings.announcementText = document.getElementById('a-announce').value.trim();
   }
 
   function facilityChecklistHtml(selectedIds){
@@ -1887,7 +1374,7 @@
           <span class="field-label">收費規則（可換行）</span><textarea class="field ev-fee">${escHtml(v.park.fee)}</textarea>
           <span class="field-label">折抵優惠（可換行）</span><textarea class="field ev-discount">${escHtml(v.park.discount)}</textarea>
           <span class="field-label">注意事項（可換行）</span><textarea class="field ev-notice">${escHtml(v.park.notice)}</textarea>
-          <label class="checkbox-row"><input type="checkbox" class="ev-hide-sched" ${v.hideFromSchedule?'checked':''}> 此廠館無團體課，不列入「當月團體課表」選單</label>
+          <label class="checkbox-row"><input type="checkbox" class="ev-hide-sched" ${v.hideFromSchedule?'checked':''}> 此廠館無團體課，不列入「團體課程表」選單</label>
           <div class="admin-row-actions">
             <button class="btn btn-sm btn-danger ev-del">刪除廠館（立即儲存）</button>
           </div>
@@ -1992,7 +1479,7 @@
         discount: document.getElementById('nv-park-discount').value.trim(),
         notice: document.getElementById('nv-park-notice').value.trim()
       },
-      schedCycling:'', schedAerobics:''
+      schedImage:''
     };
     state.venues.push(v);
     await sset(K.venues, state.venues, true);
@@ -2017,17 +1504,14 @@
     const sel = document.getElementById('a-sched-select');
     const v = state.venues.find(x=>x.id===sel.value);
     curSchedVenueId = v ? v.id : null;
-    document.getElementById('a-sched-cycling').value = v ? (v.schedCycling||'') : '';
-    document.getElementById('a-sched-aerobics').value = v ? (v.schedAerobics||'') : '';
-    document.getElementById('a-sched-cycling').oninput = ()=> setDirty('sched');
-    document.getElementById('a-sched-aerobics').oninput = ()=> setDirty('sched');
+    document.getElementById('a-sched-image').value = v ? (v.schedImage||'') : '';
+    document.getElementById('a-sched-image').oninput = ()=> setDirty('sched');
   }
   function commitCurrentScheduleSelection(){
     if(!curSchedVenueId) return;
     const v = state.venues.find(x=>x.id===curSchedVenueId);
     if(!v) return;
-    v.schedCycling = document.getElementById('a-sched-cycling').value.trim();
-    v.schedAerobics = document.getElementById('a-sched-aerobics').value.trim();
+    v.schedImage = document.getElementById('a-sched-image').value.trim();
   }
 
   /* roster admin (in-memory commit on switch) */
@@ -2066,23 +1550,49 @@
     state.roster[curRosterYm] = monthData;
   }
 
-  /* faq admin */
+  /* faq admin（可展開／收合、↑↓ 按鈕、拖曳，三種方式都能調整順序） */
   function renderAdminFaqList(){
     const wrap = document.getElementById('a-faq-list');
     if(!state.faqs.length){ wrap.innerHTML = '<div class="empty-note">尚無問答</div>'; return; }
-    wrap.innerHTML = state.faqs.map(f=>`
+    wrap.innerHTML = state.faqs.map((f,idx)=>`
       <div class="admin-card" data-fid="${f.id}">
-        <span class="field-label">問題</span><input class="field ef-q" value="${escAttr(f.q)}">
-        <span class="field-label">答案（可換行）</span><textarea class="field ef-a">${escHtml(f.a)}</textarea>
-        <div class="admin-row-actions">
-          <button class="btn btn-sm btn-danger ef-del">刪除（立即儲存）</button>
+        <div class="venue-order-head faq-order-head" data-ev-toggle="${f.id}">
+          <span class="drag-handle" title="按住拖曳調整順序">⠿</span>
+          <h4>${escHtml(f.q) || '（未填寫問題）'}</h4>
+          <div class="order-btns">
+            <button class="ev-up" ${idx===0?'disabled':''} title="上移">↑</button>
+            <button class="ev-down" ${idx===state.faqs.length-1?'disabled':''} title="下移">↓</button>
+          </div>
+          <span class="ev-chev">▾</span>
+        </div>
+        <div class="ev-detail">
+          <span class="field-label">問題</span><input class="field ef-q" value="${escAttr(f.q)}">
+          <span class="field-label">答案（可換行）</span><textarea class="field ef-a">${escHtml(f.a)}</textarea>
+          <div class="admin-row-actions">
+            <button class="btn btn-sm btn-danger ef-del">刪除（立即儲存）</button>
+          </div>
         </div>
       </div>
     `).join('');
+
+    /* 點問題列（排除按鈕與拖曳把手）展開／收合編輯區塊 */
+    wrap.querySelectorAll('[data-ev-toggle]').forEach(el=>{
+      el.addEventListener('click', (e)=>{
+        if(e.target.closest('.order-btns') || e.target.closest('.drag-handle')) return;
+        el.closest('.admin-card').classList.toggle('open');
+      });
+    });
+
     wrap.querySelectorAll('.admin-card').forEach(card=>{
-      card.querySelector('.ef-q').addEventListener('input', ()=> setDirty('faqs'));
+      const qInput = card.querySelector('.ef-q');
+      qInput.addEventListener('input', ()=>{
+        setDirty('faqs');
+        const h4 = card.querySelector('.faq-order-head h4');
+        if(h4) h4.textContent = qInput.value.trim() || '（未填寫問題）';
+      });
       card.querySelector('.ef-a').addEventListener('input', ()=> setDirty('faqs'));
     });
+
     wrap.querySelectorAll('.ef-del').forEach(btn=>{
       btn.addEventListener('click', async ()=>{
         const id = btn.closest('.admin-card').dataset.fid;
@@ -2092,6 +1602,84 @@
         await sset(K.faqs, state.faqs, true);
         renderFaqs(); renderAdminFaqList();
         showToast('已刪除');
+      });
+    });
+
+    /* ↑↓ 按鈕調整順序（跟廠館排序一樣，立即儲存） */
+    wrap.querySelectorAll('.ev-up').forEach(btn=>{
+      btn.addEventListener('click', async (e)=>{
+        e.stopPropagation();
+        commitFaqFieldsFromDom();
+        const id = btn.closest('.admin-card').dataset.fid;
+        const idx = state.faqs.findIndex(x=>x.id===id);
+        if(idx>0){ [state.faqs[idx-1],state.faqs[idx]]=[state.faqs[idx],state.faqs[idx-1]]; await sset(K.faqs, state.faqs, true); renderFaqs(); renderAdminFaqList(); }
+      });
+    });
+    wrap.querySelectorAll('.ev-down').forEach(btn=>{
+      btn.addEventListener('click', async (e)=>{
+        e.stopPropagation();
+        commitFaqFieldsFromDom();
+        const id = btn.closest('.admin-card').dataset.fid;
+        const idx = state.faqs.findIndex(x=>x.id===id);
+        if(idx<state.faqs.length-1){ [state.faqs[idx+1],state.faqs[idx]]=[state.faqs[idx],state.faqs[idx+1]]; await sset(K.faqs, state.faqs, true); renderFaqs(); renderAdminFaqList(); }
+      });
+    });
+
+    /* 拖曳排序（滑鼠／觸控皆可，用 Pointer Events 實作，適合手機上的 LINE 內建瀏覽器） */
+    wireFaqDragHandles(wrap);
+  }
+
+  function wireFaqDragHandles(wrap){
+    let dragId = null, overId = null, overBefore = true;
+    wrap.querySelectorAll('.admin-card').forEach(card=>{
+      const handle = card.querySelector('.drag-handle');
+      if(!handle) return;
+      handle.addEventListener('pointerdown', (e)=>{
+        e.preventDefault();
+        dragId = card.dataset.fid;
+        card.classList.add('dragging');
+        try{ handle.setPointerCapture(e.pointerId); }catch(err){}
+      });
+      handle.addEventListener('pointermove', (e)=>{
+        if(!dragId || dragId !== card.dataset.fid) return;
+        wrap.querySelectorAll('.admin-card').forEach(c=>c.classList.remove('drag-over-top','drag-over-bottom'));
+        const el = document.elementFromPoint(e.clientX, e.clientY);
+        const target = el ? el.closest('.admin-card') : null;
+        if(target && target !== card && wrap.contains(target)){
+          const rect = target.getBoundingClientRect();
+          overBefore = (e.clientY - rect.top) < rect.height/2;
+          target.classList.toggle('drag-over-top', overBefore);
+          target.classList.toggle('drag-over-bottom', !overBefore);
+          overId = target.dataset.fid;
+        } else {
+          overId = null;
+        }
+      });
+      const finishDrag = async ()=>{
+        if(!dragId || dragId !== card.dataset.fid) return;
+        card.classList.remove('dragging');
+        wrap.querySelectorAll('.admin-card').forEach(c=>c.classList.remove('drag-over-top','drag-over-bottom'));
+        const fromId = dragId, toId = overId, before = overBefore;
+        dragId = null; overId = null;
+        if(toId && toId !== fromId){
+          commitFaqFieldsFromDom();
+          const fromIdx = state.faqs.findIndex(x=>x.id===fromId);
+          let toIdx = state.faqs.findIndex(x=>x.id===toId);
+          if(fromIdx > -1 && toIdx > -1){
+            const [moved] = state.faqs.splice(fromIdx, 1);
+            toIdx = state.faqs.findIndex(x=>x.id===toId);
+            state.faqs.splice(before ? toIdx : toIdx + 1, 0, moved);
+            await sset(K.faqs, state.faqs, true);
+            renderFaqs(); renderAdminFaqList();
+            showToast('已調整順序');
+          }
+        }
+      };
+      handle.addEventListener('pointerup', finishDrag);
+      handle.addEventListener('pointercancel', ()=>{
+        dragId = null; overId = null;
+        card.classList.remove('dragging');
+        wrap.querySelectorAll('.admin-card').forEach(c=>c.classList.remove('drag-over-top','drag-over-bottom'));
       });
     });
   }
@@ -2152,6 +1740,10 @@
   });
 
   function escHtml(s){ return (s||'').replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+  function formatMultiline(s){
+    const lines = (s||'').split('\n');
+    return lines.map((line,i)=> i===0 ? escHtml(line) : `<span style="display:block;padding-left:1.15em;">${escHtml(line)}</span>`).join('');
+  }
   function escAttr(s){ return escHtml(s).replace(/"/g,'&quot;'); }
 
   init();
