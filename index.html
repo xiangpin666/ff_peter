@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant" style="color-scheme: light; --liff-base-background-color: #FFFFFF; --liff-base-text-color: #000000; --liff-base-background-rgb-color: 255, 255, 255; --liff-base-text-rgb-color: 0, 0, 0; --liff-light-button-border-color: rgba(0, 0, 0, 0.15); --liff-title-text-color: #111111; --liff-title-background-color: #FFFFFF; --liff-title-button-color: #111111; --liff-icon-color: #111111; --liff-status-bar-color: black; --liff-title-subtext-color: #B7B7B7; --liff-progress-bar-color: #06C755; --liff-progress-background-color: #FFFFFF; --liff-title-button-area-background-color: rgba(255, 255, 255, 0.12); --liff-title-button-area-border-color: rgba(0, 0, 0, 0.15);"><head>
+<html lang="zh-Hant"><head>
 <!--
   ============================================================
   這個檔案是「健身工廠｜Peter 彼得」的個人名片網頁（LINE LIFF 頁面）。
@@ -17,6 +17,29 @@
   ============================================================
 -->
 <meta charset="UTF-8">
+<script>
+  /*
+    如果偵測到目前是在 LINE App 內建瀏覽器裡打開這個網頁，
+    就自動幫使用者跳出去用手機原本的瀏覽器（Safari／Chrome）開啟，
+    不要卡在 LINE 裡面。放在 <head> 最上面，趁畫面還沒開始畫就先跳轉。
+
+    原理：LINE 內建瀏覽器只要偵測到網址帶有 ?openExternalBrowser=1，
+    就會自動改用手機系統瀏覽器開啟，這是 LINE 官方支援的行為，
+    不需要額外安裝套件。之前是要記得自己在分享的網址後面加這串參數，
+    現在改成頁面自己判斷、自己補上，不管網址是怎麼被分享出去的都會生效。
+  */
+  (function(){
+    try{
+      var ua = navigator.userAgent || '';
+      var inLineApp = /\bLine\//i.test(ua);
+      if(!inLineApp) return;
+      var url = new URL(location.href);
+      if(url.searchParams.has('openExternalBrowser')) return; /* 已經帶過參數了，避免重複跳轉 */
+      url.searchParams.set('openExternalBrowser', '1');
+      location.replace(url.toString());
+    }catch(e){ /* 極舊瀏覽器不支援 URL API 時，安靜略過，不影響頁面正常開啟 */ }
+  })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="ff-version" content="vmtlqrgk0">
 <title>健身工廠 桃園｜Peter 彼得 健體顧問</title>
@@ -62,11 +85,12 @@
   .profile-name{font-size:24px;font-weight:700;}
   .profile-title{color:var(--yellow);font-size:14px;font-weight:600;margin-top:2px;}
   .profile-area{color:var(--grey);font-size:13px;margin-top:4px;white-space:pre-line;}
-  .profile-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .profile-actions{display:flex;flex-wrap:wrap;gap:6px;}
   .btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:12px 10px;border-radius:10px;font-size:14px;font-weight:700;font-family:'Noto Sans TC',sans-serif;}
   .btn-primary{background:var(--yellow);color:#000;}
   .btn-outline{background:transparent;border:1px solid var(--border);color:var(--white);}
-  .btn-full{grid-column:1/-1;}
+  .btn-full{flex:1 1 100%;}
+  .btn-compact{flex:1 1 0;min-width:0;padding:10px 4px;font-size:12px;gap:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .btn-wide{width:100%;}
   .btn:active{transform:scale(.98);}
   .btn:disabled{opacity:.5;}
@@ -78,9 +102,9 @@
   .panel.active{display:block;}
 
   .venue{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden;}
-  .venue-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;}
+  .venue-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px 6px;}
   .venue-name{font-size:16px;font-weight:700;}
-  .venue-tags{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px;}
+  .venue-tags{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px;margin-top:2px;}
   .tag{font-size:11px;color:var(--yellow);border:1px solid var(--yellow-dim);border-radius:20px;padding:3px 9px;}
   .chev{color:var(--grey);font-size:13px;transition:transform .2s;}
   .venue.open .chev{transform:rotate(180deg);}
@@ -97,6 +121,7 @@
   .sched-imgs{display:flex;flex-direction:column;gap:14px;}
   .sched-block h3{font-size:14px;color:var(--grey);margin-bottom:8px;font-weight:500;font-family:'Noto Sans TC',sans-serif;}
   .sched-block img{width:100%;border-radius:12px;border:1px solid var(--border);display:block;}
+  .sched-hint{color:var(--grey);font-size:12px;margin-top:6px;text-align:center;}
   .sched-empty{background:var(--bg-card);border:1px dashed var(--border);border-radius:12px;padding:30px 16px;text-align:center;color:var(--grey);font-size:13px;}
 
   .faq{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;overflow:hidden;}
@@ -221,10 +246,10 @@
       </div>
       <div class="hero-actions-wrap">
         <div class="profile-actions">
-          <a class="btn btn-primary" id="p-line" href="#">💬 加 LINE 好友</a>
-          <a class="btn btn-outline" id="p-call" href="#">📞 撥打電話</a>
-          <a class="btn btn-outline" id="p-fb" href="#" target="_blank" rel="noopener" style="display:none">📘 Facebook</a>
-          <a class="btn btn-outline" id="p-ig" href="#" target="_blank" rel="noopener" style="display:none">📸 Instagram</a>
+          <a class="btn btn-primary btn-compact" id="p-line" href="#">💬 Line官方</a>
+          <a class="btn btn-outline btn-compact" id="p-call" href="#">📞 電話</a>
+          <a class="btn btn-outline btn-compact" id="p-fb" href="#" target="_blank" rel="noopener" style="display:none">📘 FB</a>
+          <a class="btn btn-outline btn-compact" id="p-ig" href="#" target="_blank" rel="noopener" style="display:none">📸 IG</a>
           <button class="btn btn-outline btn-full" id="p-share">📲 分享我的名片到 LINE</button>
         </div>
       </div>
@@ -264,7 +289,7 @@
   <!-- 諮詢表單：欄位是固定的，文字提示可以直接在這裡修改 -->
   <div class="form-section">
     <h2>💬 免費諮詢 / 預約參觀體驗</h2>
-    <p class="sub">留下您的資料，Peter 彼得 會盡快與您聯繫</p>
+    <p class="sub">留下您的資料，我會盡快與您聯繫</p>
     <input class="field" id="lead-name" placeholder="姓名">
     <div class="phone-group">
       <span class="phone-prefix">09</span>
@@ -620,7 +645,7 @@
         "phone": "03-3642-999",
         "address": "桃園市桃園區桃鶯路196號3樓",
         "mapsUrl": "https://reurl.cc/7YKEQQ",
-        "hideFromSchedule": false,
+        "hideFromSchedule": true,
         "facilities": [
           "fa3",
           "fa4"
@@ -991,7 +1016,7 @@
     const wrap = document.getElementById('sched-imgs');
     if(!v){ wrap.innerHTML=''; return; }
     wrap.innerHTML = `
-      <div class="sched-block"><h3>🗓️ ${escHtml(v.name)} 有氧/飛輪 課程表</h3>${v.schedImage ? `<img src="${v.schedImage}">` : `<div class="sched-empty">本廠館尚未上傳當月課表</div>`}</div>
+      <div class="sched-block"><h3>🗓️ ${escHtml(v.name)} 有氧/飛輪 課程表</h3>${v.schedImage ? `<img src="${v.schedImage}"><div class="sched-hint">📌 長按圖片即可儲存到手機</div>` : `<div class="sched-empty">本廠館尚未上傳當月課表</div>`}</div>
     `;
   }
 
