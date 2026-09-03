@@ -40,8 +40,8 @@
     }catch(e){ /* 極舊瀏覽器不支援 URL API 時，安靜略過，不影響頁面正常開啟 */ }
   })();
 </script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="ff-version" content="vmtlqrgk0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="ff-version" content="vmtlsmja3">
 <title>健身工廠 桃園｜Peter 彼得 健體顧問</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Noto+Sans+TC:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
@@ -61,7 +61,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html,body{background:var(--bg);color:var(--white);font-family:'Noto Sans TC',sans-serif;-webkit-font-smoothing:antialiased;}
-  body{padding-bottom:64px;}
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom, 0px));}
   h1,h2,h3,.brand-font{font-family:'Oswald',sans-serif;letter-spacing:.02em;}
   a{color:inherit;text-decoration:none;}
   button{font-family:inherit;cursor:pointer;border:none;}
@@ -117,7 +117,7 @@
   .park-item{font-size:13px;color:var(--grey);line-height:1.7;white-space:pre-line;}
   .park-item b{color:var(--white);font-weight:600;}
 
-  select.select{width:100%;background:var(--bg-card-2);border:1px solid var(--border);color:var(--white);padding:12px;border-radius:10px;font-size:14px;margin-bottom:14px;}
+  select.select{width:100%;background:var(--bg-card-2);border:1px solid var(--border);color:var(--white);padding:12px;border-radius:10px;font-size:16px;margin-bottom:14px;}
   .sched-imgs{display:flex;flex-direction:column;gap:14px;}
   .sched-block h3{font-size:14px;color:var(--grey);margin-bottom:8px;font-weight:500;font-family:'Noto Sans TC',sans-serif;}
   .sched-block img{width:100%;border-radius:12px;border:1px solid var(--border);display:block;}
@@ -153,7 +153,7 @@
   .form-note{background:rgba(255,199,44,.1);border:1px solid var(--yellow-dim);border-radius:10px;padding:10px 12px;font-size:12.5px;color:var(--yellow);line-height:1.6;margin-bottom:14px;}
   .lead-reminder{display:none;color:var(--danger);font-size:12.5px;line-height:1.6;margin-bottom:10px;}
   .lead-reminder.show{display:block;}
-  input.field, textarea.field{width:100%;background:var(--bg-card-2);border:1px solid var(--border);color:var(--white);padding:12px;border-radius:10px;font-size:14px;margin-bottom:10px;font-family:inherit;}
+  input.field, textarea.field{width:100%;background:var(--bg-card-2);border:1px solid var(--border);color:var(--white);padding:12px;border-radius:10px;font-size:16px;margin-bottom:10px;font-family:inherit;}
   .phone-group{display:flex;align-items:stretch;gap:8px;margin-bottom:10px;}
   .phone-prefix{flex:none;display:flex;align-items:center;justify-content:center;padding:0 14px;background:var(--bg-card-2);border:1px solid var(--border);border-radius:10px;font-size:14px;color:var(--grey);font-weight:700;}
   .phone-suffix{margin-bottom:0;letter-spacing:.03em;}
@@ -169,7 +169,7 @@
 
   .overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:900;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:0;}
   .overlay.show{display:flex;}
-  .admin-box{width:100%;max-width:520px;background:var(--bg);min-height:100vh;}
+  .admin-box{width:100%;max-width:520px;background:var(--bg);min-height:100vh;min-height:100dvh;}
   .admin-header{position:sticky;top:0;background:#000;border-bottom:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:5;}
   .admin-header h2{font-size:16px;}
   .close-x{color:var(--grey);font-size:20px;padding:4px 8px;}
@@ -198,8 +198,8 @@
   .empty-note{color:var(--grey);font-size:13px;padding:20px 0;text-align:center;}
   .venue-order-head{display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:6px;}
   .venue-order-head h4{flex:1;}
-  .order-btns{display:flex;gap:4px;}
-  .order-btns button{width:30px;height:30px;background:var(--bg-card-2);border:1px solid var(--border);color:var(--white);border-radius:7px;font-size:13px;}
+  .order-btns{display:flex;gap:6px;}
+  .order-btns button{width:38px;height:38px;background:var(--bg-card-2);border:1px solid var(--border);color:var(--white);border-radius:8px;font-size:14px;}
   .ev-chev{color:var(--grey);font-size:13px;margin-left:4px;transition:transform .2s;flex:none;}
   .admin-card.open .ev-chev{transform:rotate(180deg);}
   .ev-detail{display:none;}
@@ -217,8 +217,8 @@
   .checkbox-row input{accent-color:var(--yellow);width:16px;height:16px;}
   .roster-day-row{display:flex;align-items:center;justify-content:space-between;background:var(--bg-card-2);border:1px solid var(--border);border-radius:10px;padding:8px 12px;margin-bottom:6px;}
   .roster-day-row .dlabel{font-size:13px;font-weight:700;}
-  .roster-day-row select{background:var(--bg-card);color:var(--white);border:1px solid var(--border);border-radius:8px;padding:6px 8px;font-size:12px;}
-  .drag-handle{cursor:grab;color:var(--grey);font-size:16px;padding:0 4px;flex:none;touch-action:none;user-select:none;}
+  .roster-day-row select{background:var(--bg-card);color:var(--white);border:1px solid var(--border);border-radius:8px;padding:6px 8px;font-size:16px;}
+  .drag-handle{cursor:grab;color:var(--grey);font-size:16px;padding:8px 8px;margin:-8px 0;flex:none;touch-action:none;user-select:none;}
   .drag-handle:active{cursor:grabbing;}
   .admin-card.dragging{opacity:.4;}
   .admin-card.drag-over-top{box-shadow:inset 0 2px 0 var(--yellow);}
@@ -246,7 +246,7 @@
       </div>
       <div class="hero-actions-wrap">
         <div class="profile-actions">
-          <a class="btn btn-primary btn-compact" id="p-line" href="#">💬 Line官方</a>
+          <a class="btn btn-primary btn-compact" id="p-line" href="#" style="flex-grow:1.4">💬 Line官方</a>
           <a class="btn btn-outline btn-compact" id="p-call" href="#">📞 電話</a>
           <a class="btn btn-outline btn-compact" id="p-fb" href="#" target="_blank" rel="noopener" style="display:none">📘 FB</a>
           <a class="btn btn-outline btn-compact" id="p-ig" href="#" target="_blank" rel="noopener" style="display:none">📸 IG</a>
@@ -309,7 +309,7 @@
   </div>
 </div>
 
-<div class="toast" id="toast">已下載目前版本的 .html 檔案</div>
+<div class="toast" id="toast">已儲存全部變更</div>
 
 <div class="overlay" id="admin-overlay">
   <div class="admin-box">
@@ -502,7 +502,6 @@
           "fa1",
           "fa2",
           "fa3",
-          "fa4",
           "fa5"
         ],
         "park": {
@@ -524,7 +523,6 @@
           "fa1",
           "fa2",
           "fa3",
-          "fa4",
           "fa5"
         ],
         "park": {
@@ -545,8 +543,7 @@
         "facilities": [
           "fa1",
           "fa2",
-          "fa3",
-          "fa4"
+          "fa3"
         ],
         "park": {
           "loc": "新光大樓B2~B4",
@@ -566,8 +563,7 @@
         "facilities": [
           "fa1",
           "fa2",
-          "fa3",
-          "fa4"
+          "fa3"
         ],
         "park": {
           "loc": "新光三越(二館)地下B2停車場\n- 汽車：室內(非機械式)\n- 機車： 重型機車可停放；一般機車不可停放",
@@ -585,8 +581,7 @@
         "mapsUrl": "https://reurl.cc/Z842dM",
         "hideFromSchedule": true,
         "facilities": [
-          "fa3",
-          "fa4"
+          "fa3"
         ],
         "park": {
           "loc": "- 汽車：週邊停車格或附近私人停車場\n- 機車：週邊停車格",
@@ -607,7 +602,6 @@
           "fa1",
           "fa2",
           "fa3",
-          "fa4",
           "fa5"
         ],
         "park": {
@@ -628,8 +622,7 @@
         "facilities": [
           "fa1",
           "fa2",
-          "fa3",
-          "fa4"
+          "fa3"
         ],
         "park": {
           "loc": "汽車 - 廠館對面 / 側邊停車場\n機車 - 附近停車格",
@@ -647,8 +640,7 @@
         "mapsUrl": "https://reurl.cc/7YKEQQ",
         "hideFromSchedule": true,
         "facilities": [
-          "fa3",
-          "fa4"
+          "fa3"
         ],
         "park": {
           "loc": "汽車 - 桃鶯停車場 / 多多停(大豐場)\n機車 - 全聯、星巴克周邊空白停車格",
@@ -763,11 +755,7 @@
       },
       {
         "id": "fa3",
-        "name": "蒸氣室"
-      },
-      {
-        "id": "fa4",
-        "name": "烤箱"
+        "name": "蒸氣室／烤箱"
       },
       {
         "id": "fa5",
@@ -778,12 +766,12 @@
     // 【系統設定】後台密碼、分享文字、LINE 官方帳號、諮詢訊息範本、LIFF ID 等
     "settings": {
       "adminPassword": "233009",
-      "shareText": "💪 健身工廠 健體顧問｜Peter 彼得 🎯\n\n✨ 桃園全區廠館皆可服務 🔥\n📍 經國廠 ｜ 中壢廠 ｜ 南崁廠 ｜ 青埔廠 \n       大有廠 ｜ 正光廠 ｜ 復興廠 ｜ 桃鶯廠\n\n✨ 專屬服務項目：\n🏷️ 入會優惠與方案規劃\n🏃‍♂️ 免費預約環境參觀與體驗\n💡 健身疑難雜症諮詢\n\n✨ 想預約參觀、諮詢專屬優惠\n📲 點擊下方加入 Line 官方👇\n🔗 https://reurl.cc/NOYxy9",
+      "shareText": "💪 健身工廠 健體顧問｜Peter 彼得 🎯\n\n✨ 桃園全區廠館皆可服務 🔥\n📍 經國廠 ｜ 中壢廠 ｜ 南崁廠 ｜ 青埔廠｜ 大有廠 ｜ 正光廠 ｜ 復興廠 ｜ 桃鶯廠\n\n✨ 專屬服務項目：\n🏷️ 入會優惠與方案規劃\n🏃‍♂️ 免費預約環境參觀與體驗\n💡 健身疑難雜症諮詢\n\n✨ 想預約參觀、諮詢專屬優惠\n📲 點擊下方加入 Line 官方👇\n🔗 https://reurl.cc/NOYxy9",
       "lineOaId": "247dlvxp",
-      "leadMessageTemplate": "📋【 預約參觀及諮詢 】📝\n\n✨ 姓名：{name}\n📞 電話：{phone}\n⏰ 方便聯絡時段：{time}\n💬 需求備註：{note}\n🎯 指定預約：Peter 彼得\n\n💡感謝您的填寫，我會盡快與您聯繫！💪",
+      "leadMessageTemplate": "📋【預約參觀諮詢】\n\n• 姓名：{name}\n• 電話：{phone}\n• 聯絡時段：{time}\n• 需求備註：{note}\n• 指定預約：Peter 彼得\n\n感謝您，我會盡快與您聯繫！",
       "liffId": "2011406415-bO24WvOi",
       "githubRawUrl": "https://xiangpin666.github.io/ff_peter/",
-      "announcementText": "💡 溫馨提醒：為了能親自帶您參觀解說，預約參觀都會安排在上班日唷🙏"
+      "announcementText": "💡 溫馨提醒：為了能親自帶您參觀解說，預約參觀都會安排在上班日🙏"
     }
   };
 
