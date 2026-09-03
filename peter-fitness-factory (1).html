@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="ff-version" content="v1">
+<title>健身工廠 桃園｜Peter(彼得) 健體顧問</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0a;
+    --bg-card:#161616;
+    --bg-card-2:#1e1e1e;
+    --border:#2b2b2b;
+    --yellow:#FFC72C;
+    --yellow-dim:#a8842a;
+    --white:#f5f5f5;
+    --grey:#9a9a9a;
+    --danger:#e05d5d;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--bg);color:var(--white);font-family:'Noto Sans TC',sans-serif;-webkit-font-smoothing:antialiased;}
+  body{padding-bottom:64px;}
+  h1,h2,h3,.brand-font{font-family:'Oswald',sans-serif;letter-spacing:.02em;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+  .wrap{max-width:520px;margin:0 auto;padding:0 16px;}
+
+  .update-banner{display:none;position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--yellow);color:#000;padding:10px 16px;font-size:13px;font-weight:700;align-items:center;justify-content:center;gap:10px;}
+  .update-banner.show{display:flex;}
+  .update-banner button{background:#000;color:var(--yellow);padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;}
+
+  .brandbar{background:#000;border-bottom:1px solid var(--border);padding:10px 0;}
+  .brandbar .wrap{display:flex;align-items:center;gap:8px;}
+  .brandbar .dot{width:9px;height:9px;background:var(--yellow);transform:rotate(45deg);flex:none;}
+  .brandbar span{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;letter-spacing:.08em;color:var(--yellow);}
+
+  .hero{padding:24px 0 8px;}
+  .card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;}
+  .card-hero{padding:20px;}
+  .profile-top{display:flex;gap:14px;align-items:center;}
+  .avatar{width:104px;height:104px;border-radius:50%;object-fit:cover;border:2px solid var(--yellow);flex:none;background:#222;}
+  .avatar-fallback{width:104px;height:104px;border-radius:50%;border:2px solid var(--yellow);flex:none;background:#222;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:34px;color:var(--yellow);}
+  .hero-text{margin-top:14px;}
+  .hero-actions-wrap{padding:16px 0 0;}
+  .profile-name{font-size:24px;font-weight:700;}
+  .profile-title{color:var(--yellow);font-size:14px;font-weight:600;margin-top:2px;}
+  .profile-area{color:var(--grey);font-size:13px;margin-top:4px;white-space:pre-line;}
+  .hero-actions-wrap{padding:16px 0 0;}
+  .profile-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:12px 10px;border-radius:10px;font-size:14px;font-weight:700;font-family:'Noto Sans TC',sans-serif;}
+  .btn-primary{background:var(--yellow);color:#000;}
+  .btn-outline{background:transparent;border:1px solid var(--border);color:var(--white);}
+  .btn-full{grid-column:1/-1;}
+  .btn-wide{width:100%;}
+  .btn:active{transform:scale(.98);}
+  .btn:disabled{opacity:.5;}
+
+  .tabs{display:flex;gap:4px;margin:22px 0 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:4px;overflow-x:auto;}
+  .tab{flex:1;text-align:center;padding:9px 4px;font-size:12.5px;font-weight:700;border-radius:9px;color:var(--grey);white-space:nowrap;}
+  .tab.active{background:var(--yellow);color:#000;}
+  .panel{display:none;}
+  .panel.active{display:block;}
+
+  .venue{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden;}
+  .venue-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;}
+  .venue-name{font-size:16px;font-weight:700;}
+  .venue-tags{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px;}
+  .tag{font-size:11px;color:var(--yellow);border:1px solid var(--yellow-dim);border-radius:20px;padding:3px 9px;}
+  .chev{color:var(--grey);font-size:13px;transition:transform .2s;}
+  .venue.open .chev{transform:rotate(180deg);}
+  .venue-body{display:none;padding:0 16px 16px;border-top:1px solid var(--border);}
+  .venue.open .venue-body{display:block;padding-top:14px;}
+  .row-link{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;}
+  .row-link:last-of-type{border-bottom:none;}
+  .row-ic{width:20px;text-align:center;flex:none;}
+  .park-block{margin-top:10px;background:var(--bg-card-2);border-radius:10px;padding:12px 14px;}
+  .park-item{font-size:13px;color:var(--grey);line-height:1.7;white-space:pre-line;}
+  .park-item b{color:var(--white);font-weight:600;}
+
+  select.select{width:100%;background:var(--bg-card-2);border:1px solid var(--border);color:var(--white);padding:12px;border-radius:10px;font-size:14px;margin-bottom:14px;}
+  .sched-imgs{display:flex;flex-direction:column;gap:14px;}
+  .sched-block h3{font-size:14px;color:var(--grey);margin-bottom:8px;font-weight:500;font-family:'Noto Sans TC',sans-serif;}
+  .sched-block img{width:100%;border-radius:12px;border:1px solid var(--border);display:block;}
+  .sched-empty{background:var(--bg-card);border:1px dashed var(--border);border-radius:12px;padding:30px 16px;text-align:center;color:var(--grey);font-size:13px;}
+
+  .faq{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;overflow:hidden;}
+  .faq-q{padding:14px 16px;font-size:14px;font-weight:700;display:flex;justify-content:space-between;gap:10px;}
+  .faq-a{display:none;padding:0 16px 14px;color:var(--grey);font-size:13px;line-height:1.7;border-top:1px solid var(--border);padding-top:10px;white-space:pre-line;}
+  .faq.open .faq-a{display:block;}
+  .faq.open .chev{transform:rotate(180deg);}
+
+  .roster-head{margin-bottom:14px;}
+  .roster-head .ym{font-size:16px;font-weight:700;font-family:'Oswald',sans-serif;}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+  .cal-dow{text-align:center;font-size:11px;color:var(--grey);padding-bottom:4px;}
+  .cal-day{aspect-ratio:1;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;background:var(--bg-card);border:1px solid var(--border);}
+  .cal-day.work{background:rgba(255,199,44,.12);border-color:var(--yellow-dim);}
+  .cal-day.work .dnum{color:var(--yellow);}
+  .cal-day.off{background:rgba(255,255,255,.03);}
+  .cal-day.off .dnum{color:#666;}
+  .cal-day.blank{background:transparent;border:none;}
+  .cal-day .dnum{font-weight:700;font-size:13px;}
+  .cal-day .dtag{font-size:11px;font-weight:700;color:var(--grey);margin-top:2px;}
+  .cal-day.work .dtag{color:var(--yellow);}
+  .cal-day.off .dtag{color:#aaa;}
+  .cal-legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px;font-size:12px;color:var(--grey);}
+  .legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;}
+
+  .form-section{margin-top:26px;}
+  .form-section h2{font-size:17px;margin-bottom:4px;}
+  .form-section p.sub{color:var(--grey);font-size:13px;margin-bottom:14px;}
+  input.field, textarea.field{width:100%;background:var(--bg-card-2);border:1px solid var(--border);color:var(--white);padding:12px;border-radius:10px;font-size:14px;margin-bottom:10px;font-family:inherit;}
+  .phone-group{display:flex;align-items:stretch;gap:8px;margin-bottom:10px;}
+  .phone-prefix{flex:none;display:flex;align-items:center;justify-content:center;padding:0 14px;background:var(--bg-card-2);border:1px solid var(--border);border-radius:10px;font-size:14px;color:var(--grey);font-weight:700;}
+  .phone-suffix{margin-bottom:0;letter-spacing:.03em;}
+  textarea.field{resize:vertical;min-height:70px;}
+  input[type="month"].field{color-scheme:dark;}
+
+  .footer{text-align:center;padding:26px 0 10px;color:#555;font-size:12px;}
+  .footer a{color:#555;text-decoration:underline;}
+  .footer .footer-links{display:flex;gap:14px;justify-content:center;margin-top:2px;}
+
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--yellow);color:#000;padding:12px 20px;border-radius:30px;font-size:13px;font-weight:700;z-index:999;opacity:0;pointer-events:none;transition:opacity .25s, bottom .25s;max-width:88%;text-align:center;}
+  .toast.show{opacity:1;bottom:34px;}
+
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:900;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:0;}
+  .overlay.show{display:flex;}
+  .admin-box{width:100%;max-width:520px;background:var(--bg);min-height:100vh;}
+  .admin-header{position:sticky;top:0;background:#000;border-bottom:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;z-index:5;}
+  .admin-header h2{font-size:16px;}
+  .close-x{color:var(--grey);font-size:20px;padding:4px 8px;}
+  .dirty-banner{display:none;position:sticky;top:49px;z-index:4;background:rgba(255,199,44,.14);border-bottom:1px solid var(--yellow-dim);color:var(--yellow);font-size:12.5px;font-weight:700;padding:9px 16px;text-align:center;}
+  .dirty-banner.show{display:block;}
+  .login-box{padding:60px 24px;text-align:center;}
+  .login-box h2{margin-bottom:6px;}
+  .login-box p{color:var(--grey);font-size:13px;margin-bottom:20px;}
+  .admin-tabs{display:flex;gap:4px;padding:10px 12px;overflow-x:auto;border-bottom:1px solid var(--border);}
+  .admin-tab{flex:none;font-size:12px;font-weight:700;padding:8px 12px;border-radius:8px;color:var(--grey);white-space:nowrap;}
+  .admin-tab.active{background:var(--yellow);color:#000;}
+  .admin-panel{display:none;padding:16px;}
+  .admin-panel.active{display:block;}
+  .admin-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:12px;}
+  .admin-card h4{font-size:14px;margin-bottom:2px;}
+  .admin-card .meta{color:var(--grey);font-size:12px;margin-bottom:8px;white-space:pre-line;}
+  .field-label{font-size:12px;color:var(--grey);margin:10px 0 4px;display:block;}
+  .field-label:first-child{margin-top:0;}
+  .admin-row-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+  .btn-sm{padding:8px 12px;font-size:12px;border-radius:8px;font-weight:700;}
+  .btn-danger{background:transparent;border:1px solid var(--danger);color:var(--danger);}
+  .btn-yellow{background:var(--yellow);color:#000;}
+  .btn-ghost{background:var(--bg-card-2);border:1px solid var(--border);color:var(--white);}
+  .section-title{font-size:13px;color:var(--yellow);font-weight:700;margin:18px 0 10px;text-transform:uppercase;letter-spacing:.05em;}
+  .hint{color:var(--grey);font-size:11.5px;line-height:1.6;margin-top:4px;}
+  .empty-note{color:var(--grey);font-size:13px;padding:20px 0;text-align:center;}
+  .venue-order-head{display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:6px;}
+  .venue-order-head h4{flex:1;}
+  .order-btns{display:flex;gap:4px;}
+  .order-btns button{width:30px;height:30px;background:var(--bg-card-2);border:1px solid var(--border);color:var(--white);border-radius:7px;font-size:13px;}
+  .ev-chev{color:var(--grey);font-size:13px;margin-left:4px;transition:transform .2s;flex:none;}
+  .admin-card.open .ev-chev{transform:rotate(180deg);}
+  .ev-detail{display:none;}
+  .admin-card.open .ev-detail{display:block;}
+  .photo-preview{width:130px;height:130px;border-radius:50%;object-fit:cover;border:2px solid var(--yellow);margin-bottom:10px;background:#222;}
+  input[type="file"].field{padding:10px;font-size:12px;}
+  .facility-check-list{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 4px;}
+  .facility-check{display:flex;align-items:center;gap:6px;background:var(--bg-card-2);border:1px solid var(--border);border-radius:20px;padding:6px 8px 6px 10px;font-size:12px;}
+  .facility-check input{accent-color:var(--yellow);}
+  .facility-check .fx-del{color:var(--grey);font-size:12px;line-height:1;padding:0 2px;}
+  .facility-add-row{display:flex;gap:8px;margin-top:6px;}
+  .facility-add-row input{flex:1;margin-bottom:0;}
+  .facility-add-row button{flex:none;padding:0 14px;border-radius:8px;}
+  .checkbox-row{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;background:var(--bg-card-2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
+  .checkbox-row input{accent-color:var(--yellow);width:16px;height:16px;}
+  .roster-day-row{display:flex;align-items:center;justify-content:space-between;background:var(--bg-card-2);border:1px solid var(--border);border-radius:10px;padding:8px 12px;margin-bottom:6px;}
+  .roster-day-row .dlabel{font-size:13px;font-weight:700;}
+  .roster-day-row select{background:var(--bg-card);color:var(--white);border:1px solid var(--border);border-radius:8px;padding:6px 8px;font-size:12px;}
+  .code-block{background:var(--bg-card-2);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-family:monospace;font-size:11.5px;color:var(--yellow);word-break:break-all;margin-top:4px;}
+</style>
+</head>
+<body>
+
+<div class="update-banner" id="update-banner">🔄 有新版本可用 <button id="update-reload">立即更新</button></div>
+
+<div class="brandbar"><div class="wrap"><div class="dot"></div><span>FITNESS FACTORY 健身工廠</span></div></div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="card card-hero">
+      <div class="profile-top">
+        <img id="p-avatar" class="avatar" style="display:none;">
+        <div id="p-avatar-fallback" class="avatar-fallback">P</div>
+        <div>
+          <div class="profile-name brand-font" id="p-name">Peter 彼得</div>
+          <div class="profile-title" id="p-title">健體顧問｜健身工廠 青埔廠</div>
+          <div class="profile-area" id="p-area">📍 桃園地區皆可服務</div>
+        </div>
+      </div>
+      <div class="hero-actions-wrap">
+        <div class="profile-actions">
+          <a class="btn btn-primary" id="p-line" href="#">💬 加 LINE 好友</a>
+          <a class="btn btn-outline" id="p-call" href="#">📞 撥打電話</a>
+          <button class="btn btn-outline btn-full" id="p-share">📲 分享我的名片到 LINE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="venues">🏢 廠館據點</div>
+    <div class="tab" data-tab="sched">🚴 當月團體課表</div>
+    <div class="tab" data-tab="roster">🗓️ 顧問班表</div>
+    <div class="tab" data-tab="faq">❓ 常見問題</div>
+  </div>
+
+  <div class="panel active" id="panel-venues"></div>
+
+  <div class="panel" id="panel-sched">
+    <select class="select" id="sched-select"></select>
+    <div class="sched-imgs" id="sched-imgs"></div>
+  </div>
+
+  <div class="panel" id="panel-roster">
+    <div class="roster-head"><div class="ym" id="roster-ym"></div></div>
+    <div class="cal-grid" id="roster-grid"></div>
+    <div class="cal-legend" id="roster-legend"></div>
+  </div>
+
+  <div class="panel" id="panel-faq"></div>
+
+  <div class="form-section">
+    <h2>💬 免費諮詢 / 預約參觀體驗</h2>
+    <p class="sub">留下資料，送出後會自動開啟 LINE，Peter(彼得) 會盡快與您聯繫</p>
+    <input class="field" id="lead-name" placeholder="姓名">
+    <div class="phone-group">
+      <span class="phone-prefix">09</span>
+      <input class="field phone-suffix" id="lead-phone" placeholder="12345678" inputmode="numeric" maxlength="8">
+    </div>
+    <input class="field" id="lead-time" placeholder="方便聯絡時段（例：平日晚上）">
+    <textarea class="field" id="lead-note" placeholder="想了解的內容（選填）"></textarea>
+    <button class="btn btn-primary btn-wide" id="lead-submit">送出諮詢</button>
+  </div>
+
+  <div class="footer">
+    健身工廠 桃園地區｜Peter(彼得) 健體顧問
+    <div class="footer-links">
+      <a id="admin-open" href="#">後台管理</a>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="overlay" id="admin-overlay">
+  <div class="admin-box">
+    <div class="admin-header">
+      <h2>後台管理</h2>
+      <div class="close-x" id="admin-close">✕</div>
+    </div>
+    <div class="dirty-banner" id="dirty-banner">⚠️ 有尚未儲存的變更，記得到「設定」分頁按「儲存全部變更」</div>
+
+    <div id="admin-login" class="login-box">
+      <h2>請輸入密碼</h2>
+      <p>僅 Peter 本人可進入管理後台</p>
+      <input class="field" type="password" id="admin-pw" placeholder="輸入密碼">
+      <button class="btn btn-primary btn-wide" id="admin-pw-submit">登入</button>
+      <div class="hint" id="admin-pw-err" style="color:var(--danger);"></div>
+    </div>
+
+    <div id="admin-main" style="display:none;">
+      <div class="admin-tabs">
+        <div class="admin-tab active" data-atab="profile">名片</div>
+        <div class="admin-tab" data-atab="venue">廠館</div>
+        <div class="admin-tab" data-atab="sched">課表</div>
+        <div class="admin-tab" data-atab="roster">班表</div>
+        <div class="admin-tab" data-atab="faq">FAQ</div>
+        <div class="admin-tab" data-atab="settings">設定</div>
+      </div>
+
+      <div class="admin-panel active" data-apanel="profile">
+        <span class="field-label">大頭照</span>
+        <img class="photo-preview" id="a-photo-preview" style="display:none;">
+        <input class="field" type="file" accept="image/*" id="a-photo-file">
+        <button class="btn btn-sm btn-ghost" id="a-photo-remove" style="margin-bottom:10px;">移除照片</button>
+        <div class="hint">選擇照片後系統會自動壓縮，建議選擇主體置中、方形構圖的照片效果最好。記得到「設定」分頁按「儲存全部變更」才會真的存檔。</div>
+        <span class="field-label">姓名</span><input class="field" id="a-name">
+        <span class="field-label">職稱／所屬廠館</span><input class="field" id="a-title">
+        <span class="field-label">服務區域文字（可換行）</span><textarea class="field" id="a-area" placeholder="例：📍 桃園地區皆可服務"></textarea>
+        <span class="field-label">電話（純數字，例 0912345678）</span><input class="field" id="a-phone">
+        <span class="field-label">LINE 加好友連結</span><input class="field" id="a-line">
+      </div>
+
+      <div class="admin-panel" data-apanel="venue">
+        <div class="section-title">現有廠館（點名稱可展開／收合；↑↓ 調整前台顯示順序，會立即儲存）</div>
+        <div id="a-venue-list"></div>
+        <div class="section-title">新增廠館</div>
+        <div class="admin-card">
+          <span class="field-label">廠館名稱</span><input class="field" id="nv-name" placeholder="例：桃園青埔廠">
+          <span class="field-label">電話</span><input class="field" id="nv-phone" placeholder="03-287-2799">
+          <span class="field-label">地址</span><input class="field" id="nv-address" placeholder="桃園市中壢區永信路219號">
+          <span class="field-label">Google 地圖商家連結（選填，貼了會優先使用）</span><input class="field" id="nv-mapsurl" placeholder="https://maps.app.goo.gl/...">
+          <div class="hint">在 Google 地圖搜尋該廠館商家頁面，點「分享」複製連結貼上即可；不填的話系統會自動用地址產生搜尋連結。</div>
+          <span class="field-label">設施</span>
+          <div class="facility-check-list" id="nv-facility-list"></div>
+          <span class="field-label">停車位置（可換行）</span><textarea class="field" id="nv-park-loc"></textarea>
+          <span class="field-label">收費規則（可換行）</span><textarea class="field" id="nv-park-fee"></textarea>
+          <span class="field-label">折抵優惠（可換行）</span><textarea class="field" id="nv-park-discount"></textarea>
+          <span class="field-label">注意事項（可換行）</span><textarea class="field" id="nv-park-notice"></textarea>
+          <label class="checkbox-row"><input type="checkbox" id="nv-hide-sched"> 此廠館無團體課，不列入「當月團體課表」選單</label>
+          <button class="btn btn-yellow btn-wide" style="margin-top:12px;" id="nv-add">新增廠館（立即儲存）</button>
+        </div>
+      </div>
+
+      <div class="admin-panel" data-apanel="sched">
+        <div class="section-title">選擇廠館上傳／更新課表圖片</div>
+        <select class="select" id="a-sched-select"></select>
+        <span class="field-label">飛輪課表圖片網址</span><input class="field" id="a-sched-cycling">
+        <span class="field-label">有氧課表圖片網址</span><input class="field" id="a-sched-aerobics">
+        <div class="hint">圖片請先上傳到雲端相簿或 imgur.com，取得圖片網址後貼上。切換廠館前會自動暫存這裡的修改，記得最後到「設定」分頁按「儲存全部變更」。</div>
+      </div>
+
+      <div class="admin-panel" data-apanel="roster">
+        <div class="section-title">選擇月份並設定每天班別</div>
+        <input class="field" type="month" id="a-roster-month">
+        <div id="a-roster-list"></div>
+        <div class="hint">切換月份前會自動暫存這裡的修改，記得最後到「設定」分頁按「儲存全部變更」。前台「顧問班表」永遠只顯示目前所在月份。</div>
+      </div>
+
+      <div class="admin-panel" data-apanel="faq">
+        <div class="section-title">現有問答</div>
+        <div id="a-faq-list"></div>
+        <div class="section-title">新增問答</div>
+        <div class="admin-card">
+          <span class="field-label">問題</span><input class="field" id="nf-q">
+          <span class="field-label">答案（可換行）</span><textarea class="field" id="nf-a"></textarea>
+          <button class="btn btn-yellow btn-wide" id="nf-add">新增（立即儲存）</button>
+        </div>
+      </div>
+
+      <div class="admin-panel" data-apanel="settings">
+        <div class="section-title">💾 儲存</div>
+        <button class="btn btn-yellow btn-wide" id="save-all">儲存全部變更</button>
+        <div class="hint">名片、廠館內容、課表圖片、班表、FAQ 內文與下方設定欄位的修改，都要按這裡才會真的存檔（新增／刪除／排序會立即儲存，不用等這個按鈕）。</div>
+
+        <div class="section-title">匯出目前版本</div>
+        <button class="btn btn-ghost btn-wide" id="download-html">⬇️ 下載 .html 檔案</button>
+        <div class="hint">把目前所有已儲存的資料打包成一個新的 HTML 檔案下載，適合用來備份或放到 GitHub 等平台自行架站。</div>
+
+        <div class="section-title">LINE 官方帳號</div>
+        <span class="field-label">LINE 官方帳號 ID（不含＠，例：12345）</span>
+        <input class="field" id="a-oaid" placeholder="12345">
+        <span class="field-label">諮詢送出時的 LINE 訊息範本</span>
+        <textarea class="field" id="a-lead-template"></textarea>
+        <div class="hint">可使用替換代碼：{name} 姓名、{phone} 電話、{time} 方便聯絡時段、{note} 需求內容，系統會自動代入客人填寫的資料。</div>
+
+        <div class="section-title">分享文字（可換行）</div>
+        <span class="field-label">分享名片時附帶的文字</span>
+        <textarea class="field" id="a-sharetext"></textarea>
+
+        <div class="section-title">🔧 系統識別碼</div>
+        <span class="field-label">LINE LIFF ID</span>
+        <input class="field" id="a-liffid" placeholder="例：2009693763-bOg2whDg">
+        <div class="hint">✏️ 從 LINE Developers 後台取得的 LIFF ID，目前僅作為欄位保存、尚未實際串接 LIFF SDK 功能，一般不需改動。</div>
+
+        <span class="field-label" style="margin-top:16px;">自動更新偵測網址（GitHub Raw URL）</span>
+        <input class="field" id="a-rawurl" placeholder="https://raw.githubusercontent.com/帳號/repo名稱/main/檔案.html">
+        <div class="hint">
+          填入後，頁面每 60 秒會比對這個網址上的版本，偵測到有新版本時會在頁面頂端出現「立即更新」提示。<br>
+          怎麼取得網址：1. 到 GitHub 你的 repo → 點進 HTML 檔案　2. 點右上角「Raw」按鈕　3. 複製網址貼到這裡。<br>
+          留空 = 關閉自動偵測。此功能需要網頁架設在真實網域（例如 GitHub Pages）才能正常運作，在此預覽環境中可能無法連線偵測。
+        </div>
+
+        <div class="section-title">帳號設定</div>
+        <span class="field-label">修改後台密碼</span><input class="field" id="a-newpw" placeholder="輸入新密碼">
+        <button class="btn btn-yellow btn-wide" id="a-newpw-save">更新密碼（立即儲存）</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="ff-seed-data">{}</script>
+
+<script>
+(function(){
+  const K = { profile:'ff-profile', venues:'ff-venues', faqs:'ff-faqs', settings:'ff-settings', roster:'ff-roster', facilities:'ff-facilities' };
+
+  const DEFAULT_PROFILE = {
+    name:'Peter 彼得', title:'健體顧問｜健身工廠 青埔廠', area:'📍 桃園地區皆可服務',
+    phone:'', lineUrl:'', photo:''
+  };
+  const DEFAULT_LEAD_TEMPLATE = '【入會諮詢】\n姓名：{name}\n電話：{phone}\n方便聯絡時段：{time}\n需求：{note}';
+  const DEFAULT_SETTINGS = {
+    adminPassword:'233009',
+    shareText:'我是健身工廠 Peter，桃園地區入會諮詢找我最快！',
+    lineOaId:'12345',
+    leadMessageTemplate: DEFAULT_LEAD_TEMPLATE,
+    liffId:'',
+    githubRawUrl:''
+  };
+  const DEFAULT_FAQS = [
+    {id:'f1', q:'怎麼辦理入會？', a:'直接聯絡 Peter 約時間到廠館參觀，現場說明方案並協助辦理，全程約 20-30 分鐘。'},
+    {id:'f2', q:'可以先免費體驗嗎？', a:'可以，請透過下方表單或 LINE 聯絡 Peter 預約體驗時段。'},
+    {id:'f3', q:'停車真的能折抵嗎？', a:'各廠館折抵規則略有不同，詳見各廠館頁面內的停車資訊，離場前記得至櫃台或繳費機辦理折抵。'},
+    {id:'f4', q:'可以跨廠館使用嗎？', a:'依會籍卡別而定，部分卡別（如區卡）可跨廠館使用，詳細規則可洽詢 Peter。'}
+  ];
+  const DEFAULT_FACILITIES = [
+    {id:'fa1', name:'有氧教室'}, {id:'fa2', name:'飛輪教室'}, {id:'fa3', name:'蒸氣室'},
+    {id:'fa4', name:'烤箱'}, {id:'fa5', name:'女性專區'}
+  ];
+  const DEFAULT_VENUES = [
+    {id:'v3', name:'桃園青埔廠', phone:'03-287-2799', address:'桃園市中壢區永信路219號', mapsUrl:'', hideFromSchedule:false,
+      facilities:['fa1','fa2','fa3','fa4','fa5'],
+      park:{loc:'廠館正後方', fee:'超時50元/小時；非會員300元/小時', discount:'不分平假日，每次折抵3小時', notice:'折抵後須過繳費機'},
+      schedCycling:'', schedAerobics:''},
+    {id:'v6', name:'桃園中壢廠', phone:'03-434-5588', address:'桃園市中壢區中華路二段330號', mapsUrl:'', hideFromSchedule:false,
+      facilities:['fa1','fa2','fa3','fa4','fa5'],
+      park:{loc:'B3室內停車場（汽車）／FF對面人行道及中園路劃位機車格（機車）', fee:'汽車50元/時', discount:'不分平假日會員運動享3小時免費停車', notice:'折抵後仍須插卡過繳費機消磁；B3需停放於FF停車牌格內'},
+      schedCycling:'', schedAerobics:''},
+    {id:'v8', name:'桃園桃鶯廠', phone:'03-3642-999', address:'桃園市桃園區桃鶯路196號3樓', mapsUrl:'', hideFromSchedule:false,
+      facilities:['fa1','fa2','fa3','fa4'],
+      park:{loc:'桃園桃鶯停車場／多多停（大豐場）（汽車）；全聯、星巴克周邊空白停車格（機車）', fee:'桃鶯停車場每半小時40元（最高12hr/180元）；多多停平日每半小時15元、例假日20元（24hr內160元）', discount:'無折抵', notice:'桃鶯停車場僅電子支付；多多停可用現金／LINE PAY／悠遊卡／街口支付'},
+      schedCycling:'', schedAerobics:''},
+    {id:'v5', name:'桃園正光廠', phone:'03-392-1777', address:'桃園市桃園區正光路339號', mapsUrl:'', hideFromSchedule:false,
+      facilities:['fa1','fa2','fa3','fa4','fa5'],
+      park:{loc:'廠館正後方（力行路右轉再右轉正光一街）', fee:'逾時1小時50元，未滿1小時以1小時計', discount:'不分平假日，每次折抵3小時', notice:'離場前須至繳費機消磁；車輛不得停放超過晚上12點；不開放重機停放'},
+      schedCycling:'', schedAerobics:''},
+    {id:'v2', name:'桃園經國廠', phone:'03-355-5333', address:'桃園市桃園區經國路116號', mapsUrl:'', hideFromSchedule:true,
+      facilities:['fa3','fa4'],
+      park:{loc:'週邊停車格或附近私人停車場（汽車）／週邊停車格（機車）', fee:'汽車30元/時（當日最高400元）；機車30元/次', discount:'-', notice:'依該停車場標示收費標準為主'},
+      schedCycling:'', schedAerobics:''},
+    {id:'v1', name:'桃園復興廠', phone:'03-339-3399', address:'桃園市桃園區復興路207號B1', mapsUrl:'', hideFromSchedule:false,
+      facilities:['fa1','fa2','fa3','fa4'],
+      park:{loc:'新光大樓B2~B4', fee:'汽車40元/時；機車免費', discount:'-', notice:'24小時營業，當日上限200元'},
+      schedCycling:'', schedAerobics:''},
+    {id:'v4', name:'桃園大有廠', phone:'03-335-7575', address:'桃園市桃園區民光東路81號1樓', mapsUrl:'', hideFromSchedule:false,
+      facilities:['fa1','fa2','fa3','fa4'],
+      park:{loc:'新光三越（二館）地下B2停車場（汽車室內非機械式／重機可停，一般機車不可）', fee:'汽車／重型機車 30元/30分鐘', discount:'依車牌為單位，平日當日上限3小時、六日及國定假日上限2小時', notice:'離場向櫃台報車號折抵，15分鐘內離場；週一至六00:00-06:00、週日00:00-08:00為非營業時間不可折抵；採車牌辨識入場'},
+      schedCycling:'', schedAerobics:''},
+    {id:'v7', name:'桃園南崁廠', phone:'03-322-7333', address:'桃園市蘆竹區南平街11號', mapsUrl:'', hideFromSchedule:false,
+      facilities:['fa1','fa2','fa3','fa4'],
+      park:{loc:'廠館對面／側邊停車場（汽車）／附近車格（機車）', fee:'汽車50元/時；機車免費', discount:'不分假日平日，會員運動可抵3小時/次', notice:'折抵後至自動繳費機過卡，15分鐘內離場'},
+      schedCycling:'', schedAerobics:''}
+  ];
+
+  const SHIFTS = [
+    { v:'', label:'未設定' },
+    { v:'off', label:'休假' },
+    { v:'s1019', label:'10-19' },
+    { v:'s1120', label:'11-20' },
+    { v:'s1221', label:'12-21' },
+    { v:'s1322', label:'13-22' },
+    { v:'s1423', label:'14-23' }
+  ];
+  function shiftLabel(v){ const s = SHIFTS.find(x=>x.v===v); return s ? s.label : ''; }
+
+  let SEED = {};
+  try{
+    const seedEl = document.getElementById('ff-seed-data');
+    if(seedEl && seedEl.textContent.trim()) SEED = JSON.parse(seedEl.textContent);
+  }catch(e){ SEED = {}; }
+
+  let state = { profile:null, venues:null, faqs:null, settings:null, roster:null, facilities:null, adminAuthed:false };
+  let dirty = { profile:false, venues:false, faqs:false, sched:false, roster:false, settings:false };
+  let curSchedVenueId = null;
+  let curRosterYm = null;
+  let updateCheckTimer = null;
+
+  async function sget(key, shared){
+    try{ const r = await window.storage.get(key, shared); return r ? JSON.parse(r.value) : null; }
+    catch(e){ return null; }
+  }
+  async function sset(key, value, shared){
+    try{ await window.storage.set(key, JSON.stringify(value), shared); }
+    catch(e){ console.error('storage error', e); showToast('儲存失敗，請重試'); }
+  }
+
+  function uid(){ return 'id' + Math.random().toString(36).slice(2,9); }
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function ymNow(){ const d=new Date(); return d.getFullYear()+'-'+pad2(d.getMonth()+1); }
+  function ymLabel(ym){ const [y,m]=ym.split('-'); return y+'年 '+parseInt(m,10)+'月'; }
+
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'), 2400);
+  }
+
+  function setDirty(key){ dirty[key] = true; updateDirtyBanner(); }
+  function isAnyDirty(){ return Object.values(dirty).some(Boolean); }
+  function updateDirtyBanner(){
+    document.getElementById('dirty-banner').classList.toggle('show', isAnyDirty());
+  }
+
+  async function init(){
+    state.profile = await sget(K.profile, true);
+    if(!state.profile){ state.profile = SEED.profile || DEFAULT_PROFILE; await sset(K.profile, state.profile, true); }
+
+    state.settings = await sget(K.settings, true);
+    if(!state.settings){ state.settings = SEED.settings || DEFAULT_SETTINGS; await sset(K.settings, state.settings, true); }
+    if(!state.settings.lineOaId) state.settings.lineOaId = '12345';
+    if(!state.settings.leadMessageTemplate) state.settings.leadMessageTemplate = DEFAULT_LEAD_TEMPLATE;
+    if(state.settings.liffId === undefined) state.settings.liffId = '';
+    if(state.settings.githubRawUrl === undefined) state.settings.githubRawUrl = '';
+
+    state.facilities = await sget(K.facilities, true);
+    if(!state.facilities){ state.facilities = SEED.facilities || DEFAULT_FACILITIES; await sset(K.facilities, state.facilities, true); }
+
+    state.venues = await sget(K.venues, true);
+    if(!state.venues){ state.venues = SEED.venues || DEFAULT_VENUES; await sset(K.venues, state.venues, true); }
+
+    state.faqs = await sget(K.faqs, true);
+    if(!state.faqs){ state.faqs = SEED.faqs || DEFAULT_FAQS; await sset(K.faqs, state.faqs, true); }
+
+    state.roster = await sget(K.roster, true);
+    if(!state.roster){ state.roster = SEED.roster || {}; }
+
+    renderAll();
+    setupUpdateChecker();
+  }
+
+  function renderAll(){
+    renderProfile();
+    renderVenues();
+    renderSchedSelect();
+    renderFaqs();
+    renderRoster();
+  }
+
+  /* ---------- PROFILE ---------- */
+  function renderProfile(){
+    const p = state.profile;
+    document.getElementById('p-name').textContent = p.name || '';
+    document.getElementById('p-title').textContent = p.title || '';
+    document.getElementById('p-area').textContent = p.area || '';
+    const av = document.getElementById('p-avatar');
+    const fb = document.getElementById('p-avatar-fallback');
+    if(p.photo){ av.src = p.photo; av.style.display='block'; fb.style.display='none'; }
+    else { av.style.display='none'; fb.style.display='flex'; fb.textContent = (p.name||'P').charAt(0); }
+    const lineBtn = document.getElementById('p-line');
+    lineBtn.href = p.lineUrl || '#';
+    lineBtn.onclick = p.lineUrl ? null : (e)=>{e.preventDefault(); showToast('尚未設定 LINE 連結');};
+    const callBtn = document.getElementById('p-call');
+    callBtn.href = p.phone ? ('tel:'+p.phone.replace(/[^\d+]/g,'')) : '#';
+    callBtn.onclick = p.phone ? null : (e)=>{e.preventDefault(); showToast('尚未設定電話');};
+  }
+
+  document.getElementById('p-share').addEventListener('click', ()=>{
+    const text = ((state.settings && state.settings.shareText) || '') + '\n' + location.href;
+    window.open('https://line.me/R/msg/text/?' + encodeURIComponent(text), '_blank');
+  });
+
+  /* ---------- FACILITIES helpers ---------- */
+  function facilityName(id){ const f = state.facilities.find(x=>x.id===id); return f ? f.name : null; }
+
+  /* ---------- VENUES (front) ---------- */
+  function mapsSearchUrl(addr){ return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(addr); }
+  function telUrl(phone){ return 'tel:' + phone.replace(/[^\d+]/g,''); }
+
+  function renderVenues(){
+    const wrap = document.getElementById('panel-venues');
+    if(!state.venues.length){ wrap.innerHTML = '<div class="empty-note">尚未新增廠館資訊</div>'; return; }
+    wrap.innerHTML = state.venues.map(v => {
+      const tagNames = (v.facilities||[]).map(id=>facilityName(id)).filter(Boolean);
+      const mapHref = v.mapsUrl ? v.mapsUrl : mapsSearchUrl(v.address);
+      return `
+      <div class="venue" data-vid="${v.id}">
+        <div class="venue-head" data-toggle="${v.id}">
+          <div class="venue-name">🏋️ ${escHtml(v.name)}</div>
+          <div class="chev">▾</div>
+        </div>
+        <div class="venue-tags">${tagNames.map(f=>`<span class="tag">${escHtml(f)}</span>`).join('')}</div>
+        <div class="venue-body">
+          <a class="row-link" href="${telUrl(v.phone)}"><span class="row-ic">📞</span>${escHtml(v.phone)}</a>
+          <a class="row-link" href="${mapHref}" target="_blank" rel="noopener"><span class="row-ic">📍</span>${escHtml(v.address)}</a>
+          <div class="park-block">
+            <div class="park-item"><b>🚗 停車位置：</b>${escHtml(v.park.loc)}</div>
+            <div class="park-item"><b>💰 收費規則：</b>${escHtml(v.park.fee)}</div>
+            <div class="park-item"><b>🎫 折抵優惠：</b>${escHtml(v.park.discount)}</div>
+            <div class="park-item"><b>⚠️ 注意事項：</b>${escHtml(v.park.notice)}</div>
+          </div>
+        </div>
+      </div>
+    `;}).join('');
+    wrap.querySelectorAll('[data-toggle]').forEach(el=>{
+      el.addEventListener('click', ()=> el.closest('.venue').classList.toggle('open'));
+    });
+  }
+
+  /* ---------- SCHEDULE (front) ---------- */
+  function schedulableVenues(){ return state.venues.filter(v=>!v.hideFromSchedule); }
+  function renderSchedSelect(){
+    const sel = document.getElementById('sched-select');
+    const list = schedulableVenues();
+    if(!list.length){ sel.innerHTML=''; document.getElementById('sched-imgs').innerHTML = '<div class="sched-empty">目前沒有廠館開設團體課</div>'; return; }
+    sel.innerHTML = list.map(v=>`<option value="${v.id}">${v.name}</option>`).join('');
+    sel.onchange = renderSchedImgs;
+    renderSchedImgs();
+  }
+  function renderSchedImgs(){
+    const sel = document.getElementById('sched-select');
+    const v = schedulableVenues().find(x=>x.id===sel.value);
+    const wrap = document.getElementById('sched-imgs');
+    if(!v){ wrap.innerHTML=''; return; }
+    wrap.innerHTML = `
+      <div class="sched-block"><h3>🚴 飛輪課表</h3>${v.schedCycling ? `<img src="${v.schedCycling}">` : `<div class="sched-empty">本廠館尚未上傳飛輪課表</div>`}</div>
+      <div class="sched-block"><h3>🔥 有氧課表</h3>${v.schedAerobics ? `<img src="${v.schedAerobics}">` : `<div class="sched-empty">本廠館尚未上傳有氧課表</div>`}</div>
+    `;
+  }
+
+  /* ---------- ROSTER (front, current month only) ---------- */
+  function daysInMonth(ym){ const [y,m]=ym.split('-').map(Number); return new Date(y,m,0).getDate(); }
+  function firstDow(ym){ const [y,m]=ym.split('-').map(Number); return new Date(y,m-1,1).getDay(); }
+  const DOW = ['日','一','二','三','四','五','六'];
+
+  function renderRoster(){
+    const ym = ymNow();
+    document.getElementById('roster-ym').textContent = ymLabel(ym);
+    const grid = document.getElementById('roster-grid');
+    const total = daysInMonth(ym);
+    const offset = firstDow(ym);
+    const monthData = state.roster[ym] || {};
+    let html = DOW.map(d=>`<div class="cal-dow">${d}</div>`).join('');
+    for(let i=0;i<offset;i++) html += `<div class="cal-day blank"></div>`;
+    for(let d=1; d<=total; d++){
+      const val = monthData[d] || '';
+      const isWork = val && val !== 'off';
+      const cls = val === 'off' ? 'off' : isWork ? 'work' : '';
+      const tag = val === 'off' ? '休假' : isWork ? shiftLabel(val) : '';
+      html += `<div class="cal-day ${cls}"><div class="dnum">${d}</div>${tag?`<div class="dtag">${tag}</div>`:''}</div>`;
+    }
+    grid.innerHTML = html;
+    document.getElementById('roster-legend').innerHTML =
+      `<span><span class="legend-dot" style="background:var(--yellow)"></span>上班時段</span>
+       <span><span class="legend-dot" style="background:#555"></span>休假</span>`;
+  }
+
+  /* ---------- FAQ (front) ---------- */
+  function renderFaqs(){
+    const wrap = document.getElementById('panel-faq');
+    if(!state.faqs.length){ wrap.innerHTML = '<div class="empty-note">尚無常見問題</div>'; return; }
+    wrap.innerHTML = state.faqs.map(f=>`
+      <div class="faq" data-fid="${f.id}">
+        <div class="faq-q" data-ftoggle="${f.id}"><span>❓ ${escHtml(f.q)}</span><span class="chev">▾</span></div>
+        <div class="faq-a">${escHtml(f.a)}</div>
+      </div>
+    `).join('');
+    wrap.querySelectorAll('[data-ftoggle]').forEach(el=>{
+      el.addEventListener('click', ()=> el.closest('.faq').classList.toggle('open'));
+    });
+  }
+
+  /* ---------- TABS ---------- */
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById('panel-'+t.dataset.tab).classList.add('active');
+    });
+  });
+
+  /* ---------- LEAD FORM ---------- */
+  const leadPhoneInput = document.getElementById('lead-phone');
+  leadPhoneInput.addEventListener('input', ()=>{
+    leadPhoneInput.value = leadPhoneInput.value.replace(/\D/g,'').slice(0,8);
+  });
+  document.getElementById('lead-submit').addEventListener('click', ()=>{
+    const name = document.getElementById('lead-name').value.trim();
+    const phoneSuffix = leadPhoneInput.value.trim();
+    const time = document.getElementById('lead-time').value.trim();
+    const note = document.getElementById('lead-note').value.trim();
+    if(!name){ showToast('請填寫姓名'); return; }
+    if(phoneSuffix.length !== 8){ showToast('請輸入完整電話後8碼（09 開頭共10碼）'); return; }
+    const phone = '09' + phoneSuffix;
+    document.getElementById('lead-name').value='';
+    leadPhoneInput.value='';
+    document.getElementById('lead-time').value='';
+    document.getElementById('lead-note').value='';
+    showToast('正在為您開啟 LINE…');
+    const oaId = (state.settings.lineOaId || '').replace(/^@/,'');
+    const tpl = state.settings.leadMessageTemplate || DEFAULT_LEAD_TEMPLATE;
+    const msg = tpl
+      .replace(/\{name\}/g, name)
+      .replace(/\{phone\}/g, phone)
+      .replace(/\{time\}/g, time || '未填')
+      .replace(/\{note\}/g, note || '未填');
+    if(oaId){
+      window.open('https://line.me/R/oaMessage/@' + oaId + '/?' + encodeURIComponent(msg), '_blank');
+    }
+  });
+
+  /* ---------- UPDATE CHECK ---------- */
+  function setupUpdateChecker(){
+    if(updateCheckTimer){ clearInterval(updateCheckTimer); updateCheckTimer = null; }
+    const url = state.settings.githubRawUrl;
+    if(!url) return;
+    checkForUpdate(url);
+    updateCheckTimer = setInterval(()=> checkForUpdate(url), 60000);
+  }
+  async function checkForUpdate(url){
+    try{
+      const sep = url.includes('?') ? '&' : '?';
+      const res = await fetch(url + sep + '_=' + Date.now(), { cache:'no-store' });
+      if(!res.ok) return;
+      const text = await res.text();
+      const m = text.match(/<meta\s+name=["']ff-version["']\s+content=["']([^"']+)["']/i);
+      if(m){
+        const remote = m[1];
+        const local = document.querySelector('meta[name="ff-version"]').getAttribute('content');
+        if(remote && remote !== local){
+          document.getElementById('update-banner').classList.add('show');
+        }
+      }
+    }catch(e){ /* silent — likely offline or CORS restricted in this preview */ }
+  }
+  document.getElementById('update-reload').addEventListener('click', ()=> location.reload());
+
+  /* ---------- DOWNLOAD HTML SNAPSHOT ---------- */
+  document.getElementById('download-html').addEventListener('click', (e)=>{
+    e.preventDefault();
+    const seedObj = {
+      profile: state.profile, venues: state.venues, faqs: state.faqs,
+      settings: state.settings, roster: state.roster, facilities: state.facilities
+    };
+    document.getElementById('ff-seed-data').textContent = JSON.stringify(seedObj);
+    const newVersion = 'v' + Date.now().toString(36);
+    let htmlText = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    htmlText = htmlText.replace(/<meta name="ff-version" content="[^"]*">/, `<meta name="ff-version" content="${newVersion}">`);
+    const blob = new Blob([htmlText], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const d = new Date();
+    a.href = url;
+    a.download = `peter-fitness-factory-${d.getFullYear()}${pad2(d.getMonth()+1)}${pad2(d.getDate())}.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('已下載目前版本的 .html 檔案');
+  });
+
+  /* ================= ADMIN ================= */
+  const overlay = document.getElementById('admin-overlay');
+  document.getElementById('admin-open').addEventListener('click', e=>{
+    e.preventDefault();
+    overlay.classList.add('show');
+    if(state.adminAuthed) showAdminMain(); else showAdminLogin();
+  });
+  document.getElementById('admin-close').addEventListener('click', ()=>{
+    if(isAnyDirty()){
+      if(!confirm('你有尚未儲存的變更，確定要離開後台嗎？未儲存的內容會遺失。')) return;
+      dirty = { profile:false, venues:false, faqs:false, sched:false, roster:false, settings:false };
+      updateDirtyBanner();
+    }
+    overlay.classList.remove('show');
+  });
+
+  function showAdminLogin(){
+    document.getElementById('admin-login').style.display='block';
+    document.getElementById('admin-main').style.display='none';
+    document.getElementById('admin-pw').value='';
+    document.getElementById('admin-pw-err').textContent='';
+  }
+  function showAdminMain(){
+    document.getElementById('admin-login').style.display='none';
+    document.getElementById('admin-main').style.display='block';
+    fillAdminForms();
+  }
+  document.getElementById('admin-pw-submit').addEventListener('click', ()=>{
+    const val = document.getElementById('admin-pw').value;
+    if(val === (state.settings.adminPassword || '233009')){
+      state.adminAuthed = true;
+      showAdminMain();
+    } else {
+      document.getElementById('admin-pw-err').textContent = '密碼錯誤，請再試一次';
+    }
+  });
+
+  document.querySelectorAll('.admin-tab').forEach(t=>{
+    t.addEventListener('click', ()=>{
+      const leavingSched = document.querySelector('.admin-tab.active').dataset.atab === 'sched';
+      const leavingRoster = document.querySelector('.admin-tab.active').dataset.atab === 'roster';
+      if(leavingSched) commitCurrentScheduleSelection();
+      if(leavingRoster) commitCurrentRosterMonth();
+      document.querySelectorAll('.admin-tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.admin-panel').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.querySelector(`.admin-panel[data-apanel="${t.dataset.atab}"]`).classList.add('active');
+    });
+  });
+
+  function fillAdminForms(){
+    document.getElementById('a-name').value = state.profile.name || '';
+    document.getElementById('a-title').value = state.profile.title || '';
+    document.getElementById('a-area').value = state.profile.area || '';
+    document.getElementById('a-phone').value = state.profile.phone || '';
+    document.getElementById('a-line').value = state.profile.lineUrl || '';
+    const prev = document.getElementById('a-photo-preview');
+    if(state.profile.photo){ prev.src = state.profile.photo; prev.style.display='block'; } else prev.style.display='none';
+    document.getElementById('a-sharetext').value = state.settings.shareText || '';
+    document.getElementById('a-oaid').value = state.settings.lineOaId || '';
+    document.getElementById('a-lead-template').value = state.settings.leadMessageTemplate || DEFAULT_LEAD_TEMPLATE;
+    document.getElementById('a-liffid').value = state.settings.liffId || '';
+    document.getElementById('a-rawurl').value = state.settings.githubRawUrl || '';
+    document.getElementById('a-roster-month').value = ymNow();
+    curSchedVenueId = null; curRosterYm = null;
+    renderAdminVenueList();
+    renderAdminSchedSelect();
+    renderAdminFaqList();
+    renderAdminRosterList();
+    renderNewVenueFacilityChecklist();
+    wireProfileDirtyTracking();
+    wireSettingsDirtyTracking();
+  }
+
+  function wireProfileDirtyTracking(){
+    ['a-name','a-title','a-area','a-phone','a-line'].forEach(id=>{
+      document.getElementById(id).oninput = ()=> setDirty('profile');
+    });
+  }
+  function wireSettingsDirtyTracking(){
+    ['a-oaid','a-lead-template','a-sharetext','a-liffid','a-rawurl'].forEach(id=>{
+      document.getElementById(id).oninput = ()=> setDirty('settings');
+    });
+  }
+
+  /* photo upload + compress (banner style) */
+  document.getElementById('a-photo-file').addEventListener('change', (e)=>{
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev)=>{
+      const img = new Image();
+      img.onload = ()=>{
+        const maxDim = 600;
+        let w = img.width, h = img.height;
+        if(w > h && w > maxDim){ h = Math.round(h * maxDim / w); w = maxDim; }
+        else if(h > maxDim){ w = Math.round(w * maxDim / h); h = maxDim; }
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.75);
+        document.getElementById('a-photo-preview').src = dataUrl;
+        document.getElementById('a-photo-preview').style.display = 'block';
+        document.getElementById('a-photo-preview').dataset.pending = dataUrl;
+        setDirty('profile');
+      };
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+  document.getElementById('a-photo-remove').addEventListener('click', ()=>{
+    const prev = document.getElementById('a-photo-preview');
+    prev.style.display='none'; prev.src=''; prev.dataset.pending = '__remove__';
+    document.getElementById('a-photo-file').value = '';
+    setDirty('profile');
+  });
+
+  function commitProfileFromDom(){
+    const prev = document.getElementById('a-photo-preview');
+    let photo = state.profile.photo || '';
+    if(prev.dataset.pending === '__remove__') photo = '';
+    else if(prev.dataset.pending) photo = prev.dataset.pending;
+    state.profile = {
+      name: document.getElementById('a-name').value.trim(),
+      title: document.getElementById('a-title').value.trim(),
+      area: document.getElementById('a-area').value.trim(),
+      phone: document.getElementById('a-phone').value.trim(),
+      lineUrl: document.getElementById('a-line').value.trim(),
+      photo: photo
+    };
+    delete prev.dataset.pending;
+  }
+  function commitSettingsFromDom(){
+    state.settings.lineOaId = document.getElementById('a-oaid').value.trim().replace(/^@/,'');
+    state.settings.leadMessageTemplate = document.getElementById('a-lead-template').value.trim() || DEFAULT_LEAD_TEMPLATE;
+    state.settings.shareText = document.getElementById('a-sharetext').value.trim();
+    state.settings.liffId = document.getElementById('a-liffid').value.trim();
+    state.settings.githubRawUrl = document.getElementById('a-rawurl').value.trim();
+  }
+
+  function facilityChecklistHtml(selectedIds){
+    return state.facilities.map(f=>`
+      <label class="facility-check">
+        <input type="checkbox" class="fac-cb" value="${f.id}" ${selectedIds.includes(f.id)?'checked':''}>
+        ${escHtml(f.name)}
+        <span class="fx-del" data-facdel="${f.id}" title="從清單中刪除此設施">✕</span>
+      </label>
+    `).join('');
+  }
+  function wireFacilityChecklistEvents(container, onDirty){
+    container.querySelectorAll('.fac-cb').forEach(cb=> cb.addEventListener('change', onDirty));
+    container.querySelectorAll('[data-facdel]').forEach(x=>{
+      x.addEventListener('click', async (ev)=>{
+        ev.stopPropagation();
+        const fid = x.dataset.facdel;
+        if(!confirm('確定要從設施清單刪除？所有廠館內已勾選的此設施也會一併移除。')) return;
+        commitVenueFieldsFromDom();
+        state.facilities = state.facilities.filter(f=>f.id!==fid);
+        state.venues.forEach(v=>{ v.facilities = (v.facilities||[]).filter(id=>id!==fid); });
+        await sset(K.facilities, state.facilities, true);
+        await sset(K.venues, state.venues, true);
+        renderVenues(); renderAdminVenueList(); renderNewVenueFacilityChecklist();
+        showToast('已刪除設施');
+      });
+    });
+  }
+  function renderNewVenueFacilityChecklist(){
+    const wrap = document.getElementById('nv-facility-list');
+    wrap.innerHTML = facilityChecklistHtml([]);
+    wireFacilityChecklistEvents(wrap, ()=>{});
+  }
+
+  /* venue admin (collapsible cards + reorder + inline facilities) */
+  function renderAdminVenueList(){
+    const wrap = document.getElementById('a-venue-list');
+    if(!state.venues.length){ wrap.innerHTML = '<div class="empty-note">尚無廠館</div>'; return; }
+    wrap.innerHTML = state.venues.map((v,idx)=>`
+      <div class="admin-card" data-vid="${v.id}">
+        <div class="venue-order-head" data-ev-toggle="${v.id}">
+          <h4>${escHtml(v.name)}</h4>
+          <div class="order-btns">
+            <button class="ev-up" ${idx===0?'disabled':''}>↑</button>
+            <button class="ev-down" ${idx===state.venues.length-1?'disabled':''}>↓</button>
+          </div>
+          <span class="ev-chev">▾</span>
+        </div>
+        <div class="meta">${escHtml(v.phone)}｜${escHtml(v.address)}</div>
+        <div class="ev-detail">
+          <span class="field-label">廠館名稱</span><input class="field ev-name" value="${escAttr(v.name)}">
+          <span class="field-label">電話</span><input class="field ev-phone" value="${escAttr(v.phone)}">
+          <span class="field-label">地址</span><input class="field ev-address" value="${escAttr(v.address)}">
+          <span class="field-label">Google 地圖商家連結（選填，貼了會優先使用）</span><input class="field ev-mapsurl" value="${escAttr(v.mapsUrl||'')}" placeholder="https://maps.app.goo.gl/...">
+          <span class="field-label">設施</span>
+          <div class="facility-check-list ev-facwrap">${facilityChecklistHtml(v.facilities||[])}</div>
+          <div class="facility-add-row">
+            <input class="field ev-newfac" placeholder="新增設施類型，例如：拳擊教室">
+            <button class="btn btn-sm btn-ghost ev-newfac-add" type="button">＋新增</button>
+          </div>
+          <span class="field-label">停車位置（可換行）</span><textarea class="field ev-loc">${escHtml(v.park.loc)}</textarea>
+          <span class="field-label">收費規則（可換行）</span><textarea class="field ev-fee">${escHtml(v.park.fee)}</textarea>
+          <span class="field-label">折抵優惠（可換行）</span><textarea class="field ev-discount">${escHtml(v.park.discount)}</textarea>
+          <span class="field-label">注意事項（可換行）</span><textarea class="field ev-notice">${escHtml(v.park.notice)}</textarea>
+          <label class="checkbox-row"><input type="checkbox" class="ev-hide-sched" ${v.hideFromSchedule?'checked':''}> 此廠館無團體課，不列入「當月團體課表」選單</label>
+          <div class="admin-row-actions">
+            <button class="btn btn-sm btn-danger ev-del">刪除廠館（立即儲存）</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    wrap.querySelectorAll('[data-ev-toggle]').forEach(el=>{
+      el.addEventListener('click', (e)=>{
+        if(e.target.closest('.order-btns')) return;
+        el.closest('.admin-card').classList.toggle('open');
+      });
+    });
+
+    wrap.querySelectorAll('.admin-card').forEach(card=>{
+      card.querySelectorAll('.ev-name,.ev-phone,.ev-address,.ev-mapsurl,.ev-loc,.ev-fee,.ev-discount,.ev-notice').forEach(el=>{
+        el.addEventListener('input', ()=> setDirty('venues'));
+      });
+      const facWrap = card.querySelector('.ev-facwrap');
+      wireFacilityChecklistEvents(facWrap, ()=> setDirty('venues'));
+      card.querySelector('.ev-hide-sched').addEventListener('change', ()=> setDirty('venues'));
+      card.querySelector('.ev-newfac-add').addEventListener('click', async ()=>{
+        const input = card.querySelector('.ev-newfac');
+        const name = input.value.trim();
+        if(!name){ return; }
+        const newFac = { id: uid(), name };
+        commitVenueFieldsFromDom();
+        state.facilities.push(newFac);
+        const v = state.venues.find(x=>x.id===card.dataset.vid);
+        v.facilities = v.facilities || [];
+        v.facilities.push(newFac.id);
+        await sset(K.facilities, state.facilities, true);
+        renderAdminVenueList(); renderNewVenueFacilityChecklist();
+        showToast('已新增設施類型並套用到此廠館');
+      });
+    });
+
+    wrap.querySelectorAll('.ev-del').forEach(btn=>{
+      btn.addEventListener('click', async ()=>{
+        const id = btn.closest('.admin-card').dataset.vid;
+        if(!confirm('確定要刪除此廠館嗎？')) return;
+        commitVenueFieldsFromDom();
+        state.venues = state.venues.filter(x=>x.id!==id);
+        await sset(K.venues, state.venues, true);
+        renderVenues(); renderSchedSelect(); renderAdminVenueList(); renderAdminSchedSelect();
+        showToast('廠館已刪除');
+      });
+    });
+    wrap.querySelectorAll('.ev-up').forEach(btn=>{
+      btn.addEventListener('click', async (e)=>{
+        e.stopPropagation();
+        commitVenueFieldsFromDom();
+        const id = btn.closest('.admin-card').dataset.vid;
+        const idx = state.venues.findIndex(x=>x.id===id);
+        if(idx>0){ [state.venues[idx-1],state.venues[idx]]=[state.venues[idx],state.venues[idx-1]]; await sset(K.venues, state.venues, true); renderVenues(); renderAdminVenueList(); }
+      });
+    });
+    wrap.querySelectorAll('.ev-down').forEach(btn=>{
+      btn.addEventListener('click', async (e)=>{
+        e.stopPropagation();
+        commitVenueFieldsFromDom();
+        const id = btn.closest('.admin-card').dataset.vid;
+        const idx = state.venues.findIndex(x=>x.id===id);
+        if(idx<state.venues.length-1){ [state.venues[idx+1],state.venues[idx]]=[state.venues[idx],state.venues[idx+1]]; await sset(K.venues, state.venues, true); renderVenues(); renderAdminVenueList(); }
+      });
+    });
+  }
+
+  function commitVenueFieldsFromDom(){
+    document.querySelectorAll('#a-venue-list .admin-card').forEach(card=>{
+      const id = card.dataset.vid;
+      const v = state.venues.find(x=>x.id===id);
+      if(!v) return;
+      v.name = card.querySelector('.ev-name').value.trim();
+      v.phone = card.querySelector('.ev-phone').value.trim();
+      v.address = card.querySelector('.ev-address').value.trim();
+      v.mapsUrl = card.querySelector('.ev-mapsurl').value.trim();
+      v.facilities = Array.from(card.querySelectorAll('.ev-facwrap .fac-cb:checked')).map(cb=>cb.value);
+      v.park.loc = card.querySelector('.ev-loc').value.trim();
+      v.park.fee = card.querySelector('.ev-fee').value.trim();
+      v.park.discount = card.querySelector('.ev-discount').value.trim();
+      v.park.notice = card.querySelector('.ev-notice').value.trim();
+      v.hideFromSchedule = card.querySelector('.ev-hide-sched').checked;
+    });
+  }
+
+  document.getElementById('nv-add').addEventListener('click', async ()=>{
+    const name = document.getElementById('nv-name').value.trim();
+    if(!name){ showToast('請輸入廠館名稱'); return; }
+    commitVenueFieldsFromDom();
+    const facilities = Array.from(document.querySelectorAll('#nv-facility-list .fac-cb:checked')).map(cb=>cb.value);
+    const v = {
+      id: uid(), name,
+      phone: document.getElementById('nv-phone').value.trim(),
+      address: document.getElementById('nv-address').value.trim(),
+      mapsUrl: document.getElementById('nv-mapsurl').value.trim(),
+      facilities: facilities,
+      hideFromSchedule: document.getElementById('nv-hide-sched').checked,
+      park:{
+        loc: document.getElementById('nv-park-loc').value.trim(),
+        fee: document.getElementById('nv-park-fee').value.trim(),
+        discount: document.getElementById('nv-park-discount').value.trim(),
+        notice: document.getElementById('nv-park-notice').value.trim()
+      },
+      schedCycling:'', schedAerobics:''
+    };
+    state.venues.push(v);
+    await sset(K.venues, state.venues, true);
+    ['nv-name','nv-phone','nv-address','nv-mapsurl','nv-park-loc','nv-park-fee','nv-park-discount','nv-park-notice'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('nv-hide-sched').checked = false;
+    renderNewVenueFacilityChecklist();
+    renderVenues(); renderSchedSelect(); renderAdminVenueList(); renderAdminSchedSelect();
+    showToast('廠館已新增並儲存');
+  });
+
+  /* schedule admin (in-memory commit on switch) */
+  function renderAdminSchedSelect(){
+    const sel = document.getElementById('a-sched-select');
+    sel.innerHTML = state.venues.map(v=>`<option value="${v.id}">${v.name}${v.hideFromSchedule?'（未列入前台課表選單）':''}</option>`).join('');
+    sel.onchange = ()=>{
+      commitCurrentScheduleSelection();
+      fillSchedFields();
+    };
+    if(state.venues.length) fillSchedFields();
+  }
+  function fillSchedFields(){
+    const sel = document.getElementById('a-sched-select');
+    const v = state.venues.find(x=>x.id===sel.value);
+    curSchedVenueId = v ? v.id : null;
+    document.getElementById('a-sched-cycling').value = v ? (v.schedCycling||'') : '';
+    document.getElementById('a-sched-aerobics').value = v ? (v.schedAerobics||'') : '';
+    document.getElementById('a-sched-cycling').oninput = ()=> setDirty('sched');
+    document.getElementById('a-sched-aerobics').oninput = ()=> setDirty('sched');
+  }
+  function commitCurrentScheduleSelection(){
+    if(!curSchedVenueId) return;
+    const v = state.venues.find(x=>x.id===curSchedVenueId);
+    if(!v) return;
+    v.schedCycling = document.getElementById('a-sched-cycling').value.trim();
+    v.schedAerobics = document.getElementById('a-sched-aerobics').value.trim();
+  }
+
+  /* roster admin (in-memory commit on switch) */
+  document.getElementById('a-roster-month').addEventListener('change', ()=>{
+    commitCurrentRosterMonth();
+    renderAdminRosterList();
+  });
+  function renderAdminRosterList(){
+    const ym = document.getElementById('a-roster-month').value || ymNow();
+    curRosterYm = ym;
+    const total = daysInMonth(ym);
+    const monthData = state.roster[ym] || {};
+    const wrap = document.getElementById('a-roster-list');
+    let html = '';
+    for(let d=1; d<=total; d++){
+      const cur = monthData[d] || '';
+      html += `<div class="roster-day-row" data-day="${d}">
+        <span class="dlabel">${d} 日</span>
+        <select class="roster-day-select">
+          ${SHIFTS.map(s=>`<option value="${s.v}" ${s.v===cur?'selected':''}>${s.label}</option>`).join('')}
+        </select>
+      </div>`;
+    }
+    wrap.innerHTML = html;
+    wrap.querySelectorAll('.roster-day-select').forEach(sel=> sel.addEventListener('change', ()=> setDirty('roster')));
+  }
+  function commitCurrentRosterMonth(){
+    if(!curRosterYm) return;
+    const wrap = document.getElementById('a-roster-list');
+    const monthData = {};
+    wrap.querySelectorAll('.roster-day-row').forEach(row=>{
+      const day = row.dataset.day;
+      const val = row.querySelector('.roster-day-select').value;
+      if(val) monthData[day] = val;
+    });
+    state.roster[curRosterYm] = monthData;
+  }
+
+  /* faq admin */
+  function renderAdminFaqList(){
+    const wrap = document.getElementById('a-faq-list');
+    if(!state.faqs.length){ wrap.innerHTML = '<div class="empty-note">尚無問答</div>'; return; }
+    wrap.innerHTML = state.faqs.map(f=>`
+      <div class="admin-card" data-fid="${f.id}">
+        <span class="field-label">問題</span><input class="field ef-q" value="${escAttr(f.q)}">
+        <span class="field-label">答案（可換行）</span><textarea class="field ef-a">${escHtml(f.a)}</textarea>
+        <div class="admin-row-actions">
+          <button class="btn btn-sm btn-danger ef-del">刪除（立即儲存）</button>
+        </div>
+      </div>
+    `).join('');
+    wrap.querySelectorAll('.admin-card').forEach(card=>{
+      card.querySelector('.ef-q').addEventListener('input', ()=> setDirty('faqs'));
+      card.querySelector('.ef-a').addEventListener('input', ()=> setDirty('faqs'));
+    });
+    wrap.querySelectorAll('.ef-del').forEach(btn=>{
+      btn.addEventListener('click', async ()=>{
+        const id = btn.closest('.admin-card').dataset.fid;
+        if(!confirm('確定要刪除此問答？')) return;
+        commitFaqFieldsFromDom();
+        state.faqs = state.faqs.filter(x=>x.id!==id);
+        await sset(K.faqs, state.faqs, true);
+        renderFaqs(); renderAdminFaqList();
+        showToast('已刪除');
+      });
+    });
+  }
+  function commitFaqFieldsFromDom(){
+    document.querySelectorAll('#a-faq-list .admin-card').forEach(card=>{
+      const id = card.dataset.fid;
+      const f = state.faqs.find(x=>x.id===id);
+      if(!f) return;
+      f.q = card.querySelector('.ef-q').value.trim();
+      f.a = card.querySelector('.ef-a').value.trim();
+    });
+  }
+  document.getElementById('nf-add').addEventListener('click', async ()=>{
+    const q = document.getElementById('nf-q').value.trim();
+    const a = document.getElementById('nf-a').value.trim();
+    if(!q || !a){ showToast('請填寫問題與答案'); return; }
+    commitFaqFieldsFromDom();
+    state.faqs.push({ id:uid(), q, a });
+    await sset(K.faqs, state.faqs, true);
+    document.getElementById('nf-q').value=''; document.getElementById('nf-a').value='';
+    renderFaqs(); renderAdminFaqList();
+    showToast('已新增並儲存');
+  });
+
+  /* settings: password (immediate) */
+  document.getElementById('a-newpw-save').addEventListener('click', async ()=>{
+    const val = document.getElementById('a-newpw').value.trim();
+    if(!val){ showToast('請輸入新密碼'); return; }
+    state.settings.adminPassword = val;
+    await sset(K.settings, state.settings, true);
+    document.getElementById('a-newpw').value='';
+    showToast('密碼已更新');
+  });
+
+  /* GLOBAL SAVE ALL */
+  document.getElementById('save-all').addEventListener('click', async ()=>{
+    commitProfileFromDom();
+    commitVenueFieldsFromDom();
+    commitFaqFieldsFromDom();
+    commitCurrentScheduleSelection();
+    commitCurrentRosterMonth();
+    commitSettingsFromDom();
+    await Promise.all([
+      sset(K.profile, state.profile, true),
+      sset(K.venues, state.venues, true),
+      sset(K.faqs, state.faqs, true),
+      sset(K.roster, state.roster, true),
+      sset(K.settings, state.settings, true)
+    ]);
+    dirty = { profile:false, venues:false, faqs:false, sched:false, roster:false, settings:false };
+    updateDirtyBanner();
+    renderAll();
+    renderAdminVenueList();
+    renderAdminFaqList();
+    setupUpdateChecker();
+    showToast('已儲存全部變更');
+  });
+
+  function escHtml(s){ return (s||'').replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+  function escAttr(s){ return escHtml(s).replace(/"/g,'&quot;'); }
+
+  init();
+})();
+</script>
+</body>
+</html>
